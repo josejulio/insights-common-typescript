@@ -1,0 +1,44 @@
+{
+  "name": "insights-common-typescript",
+  "version": "1.0.0",
+  "private": false,
+  "license": "Apache-2.0",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint --ext js,ts,tsx config src",
+    "lint:fix": "eslint --ext js,ts,tsx config src --fix",
+    "nightly": "npm run deploy",
+    "test": "jest --verbose",
+    "ci": "npm-run-all build lint 'test --coverage --forceExit --maxWorkers=4 --detectOpenHandles'"
+  },
+  "dependencies": {
+    "@patternfly/react-core": "4.18.5",
+    "@patternfly/react-icons": "4.3.5",
+    "@patternfly/react-table": "4.5.7",
+    "@redhat-cloud-services/frontend-components": "2.1.2",
+    "@redhat-cloud-services/frontend-components-notifications": "2.1.0",
+    "@redhat-cloud-services/frontend-components-utilities": "2.1.0",
+    "@redhat-cloud-services/rbac-client": "1.0.67",
+    "axios": "^0.19.2",
+    "camelcase": "5.3.1",
+    "classnames": "^2.2.6",
+    "csx": "^10.0.1",
+    "formik": "2.1.4",
+    "lodash": "4.17.15",
+    "react-content-loader": "^3.4.2",
+    "react-fetching-library": "1.7.4",
+    "react-redux": "^5.1.2",
+    "react-router-dom": "5.1.2",
+    "react-use": "^13.24.0",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-promise-middleware": "^5.1.1",
+    "typestyle": "^2.0.4"
+  },
+  "peerDependencies": {
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  }
+}
