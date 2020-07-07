@@ -3,7 +3,7 @@ import { Alert, AlertVariant, Text, TextContent } from '@patternfly/react-core';
 
 import { Messages } from '../../properties/Messages';
 import { Config } from '../../config';
-import {getInsights, InsightsType} from '../../utils';
+import { InsightsType } from '../../utils';
 
 interface EmailOptInProps {
     content: string;
