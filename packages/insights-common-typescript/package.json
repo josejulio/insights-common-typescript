@@ -1,6 +1,6 @@
 {
   "name": "@redhat-cloud-services/insights-common-typescript",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "license": "Apache-2.0",
   "main": "lib/index.js",
@@ -12,7 +12,6 @@
     "build": "tsc",
     "lint": "eslint --ext js,ts,tsx config src",
     "lint:fix": "eslint --ext js,ts,tsx config src --fix",
-    "nightly": "npm run deploy",
     "test": "jest --verbose",
     "ci": "npm-run-all build lint 'test --coverage --forceExit --maxWorkers=4 --detectOpenHandles'"
   },
