@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "@redhat-cloud-services/insights-common-typescript-root",
   "private": true,
   "scripts": {
     "build": "lerna run build",
