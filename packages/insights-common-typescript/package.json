@@ -1,10 +1,13 @@
 {
-  "name": "insights-common-typescript",
-  "version": "1.0.0",
+  "name": "@redhat-cloud-services/insights-common-typescript",
+  "version": "0.0.1",
   "private": false,
   "license": "Apache-2.0",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc",
     "lint": "eslint --ext js,ts,tsx config src",

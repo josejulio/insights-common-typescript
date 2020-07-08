@@ -1,0 +1,8 @@
+config
+test
+src/
+codecov.yml
+jest.config.json
+tsconfig.json
+jest.config.js
+!lib
