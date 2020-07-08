@@ -6,3 +6,5 @@ jest.config.json
 tsconfig.json
 jest.config.js
 !lib
+coverage
+.idea
