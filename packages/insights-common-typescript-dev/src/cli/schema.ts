@@ -33,7 +33,7 @@ interface Options {
 }
 
 const execute = async (options: Options) => {
-    const templatePath: string = options.templatePath ?? './src/schemas';
+    const templatePath: string = options.templatePath ?? `${__dirname}/../src/schemas`;
 
     let inputType = 'file';
     let input = options.inputFile;
