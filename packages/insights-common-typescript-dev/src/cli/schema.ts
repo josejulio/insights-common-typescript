@@ -1,10 +1,14 @@
-#!/usr/bin/env ts-node-script
+#!/usr/bin/env node
 
-import { program } from 'commander';
+import { Command } from 'commander';
 import * as jq from 'node-jq';
 import { CLIEngine } from 'eslint';
 import { Codegen } from 'openapi3-typescript-codegen/dist/codegen';
 import { OpenAPI3 } from 'openapi3-typescript-codegen/dist/schema';
+import fetch from 'node-fetch';
+import isUrl from 'is-url';
+
+const program = new Command();
 
 program
 .description('Generates the actions needed by react-fetching-library to do the queries out of the openapi.json file')
@@ -28,24 +32,39 @@ interface Options {
     output: string;
 }
 
-const options = program as unknown as Options;
+const execute = async (options: Options) => {
+    const templatePath: string = options.templatePath ?? './src/schemas';
 
-const templatePath: string = options.templatePath ?? './src/schemas';
+    let inputType = 'file';
+    let input = options.inputFile;
 
-jq.run('.', program.inputFile, {
-    sort: true
-}).then(output => {
-    return new Codegen(
-        templatePath,
-        options.output,
-        {
-            generateEnums: true
-        }
-    ).generate(JSON.parse(output as string) as OpenAPI3);
-}).then(async () => {
-    const eslint = new CLIEngine({
-        fix: true
+    if (isUrl(options.inputFile)) {
+        inputType = 'string';
+        input = await fetch(options.inputFile, {
+            headers: {
+                Accept: 'application/json'
+            }
+        }).then(res => res.text());
+    }
+
+    jq.run('.', input, {
+        sort: true,
+        input: inputType
+    }).then(output => {
+        return new Codegen(
+            templatePath,
+            options.output,
+            {
+                generateEnums: true
+            }
+        ).generate(JSON.parse(output as string) as OpenAPI3);
+    }).then(async () => {
+        const eslint = new CLIEngine({
+            fix: true
+        });
+        const results = await eslint.executeOnFiles([ `${options.output}/*.ts*` ]);
+        return CLIEngine.outputFixes(results);
     });
-    const results = await eslint.executeOnFiles([ `${options.output}/*.ts*` ]);
-    return CLIEngine.outputFixes(results);
-});
+};
+
+execute(program as unknown as Options);
