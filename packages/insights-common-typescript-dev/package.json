@@ -1,0 +1,18 @@
+{
+  "name": "insights-common-typescript-dev",
+  "version": "0.0.0-dev",
+  "description": "> TODO: description",
+  "author": "Josejulio Martínez <jmartine@redhat.com>",
+  "license": "Apache-2.0",
+  "main": "lib/insights-common-typescript-dev.js",
+  "scripts": {
+  },
+  "dependencies": {
+    "commander": "^5.1.0",
+    "node-jq": "^1.11.1",
+    "openapi3-typescript-codegen": "^0.0.13"
+  },
+  "devDependencies": {
+    "@types/eslint": "^6.8.0"
+  }
+}
