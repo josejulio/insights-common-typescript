@@ -5,10 +5,10 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run build",
-    "ci": "lerna run ci",
-    "lint": "lerna run lint",
-    "test": "lerna run test"
+    "build": "lerna run build --stream",
+    "ci": "lerna run ci --stream",
+    "lint": "lerna run lint --stream",
+    "test": "lerna run test --stream"
   },
   "dependencies": {
     "insights-common-typescript": "file:packages/insights-common-typescript"
