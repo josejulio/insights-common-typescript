@@ -41,12 +41,15 @@ export type InsightsType = {
     chrome: {
         init: () => void;
         identifyApp: (appId: string) => Promise<void>;
+        getApp: () => string;
+        getBundle: () => string;
         on: (type: string, callback: ((event: any) => void)) => void;
         auth: {
             getUser: () => Promise<User>;
         };
         isProd: boolean;
         isBeta: () => boolean;
+        isPenTest: () => boolean;
     };
 };
 
@@ -83,6 +86,9 @@ export const mockInsights = (mock?: InsightsType) => {
             on: jestMock.fn((type: string, callback: ((event: any) => void)) => {
                 callback(new Event('fake'));
             }),
+            getApp: jestMock.fn(() => 'my-app'),
+            getBundle: jestMock.fn(() => 'my-bundle'),
+            isPenTest: jestMock.fn(() => false),
             isProd: false,
             isBeta: jestMock.fn(() => true),
             auth: {
