@@ -8,13 +8,14 @@ import {
     Skeleton,
     Spinner
 } from '@redhat-cloud-services/frontend-components';
-
 import { Bullseye } from '@patternfly/react-core';
 
-export const AppSkeleton: React.FunctionComponent = () => {
+import { OuiaComponentProps, getOuiaProps } from '../../utils/Ouia';
+
+export const AppSkeleton: React.FunctionComponent<OuiaComponentProps> = (props) => {
 
     return (
-        <>
+        <div { ...getOuiaProps('AppSkeleton', props) }>
             <PageHeader>
                 <div className="pf-c-content">
                     <PageHeaderTitle title={ <Skeleton size="sm"/> }/>
@@ -27,6 +28,6 @@ export const AppSkeleton: React.FunctionComponent = () => {
                     </Bullseye>
                 </Section>
             </Main>
-        </>
+        </div>
     );
 };

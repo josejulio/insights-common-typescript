@@ -1,11 +1,17 @@
 import * as React from 'react';
 import { useField } from 'formik';
-import { Checkbox as PFCheckbox, FormGroup } from '@patternfly/react-core';
+import { Checkbox as PFCheckbox, FormGroup, CheckboxProps as PFCheckboxProps } from '@patternfly/react-core';
 
 import { onChangePFAdapter } from './Common';
+import { OuiaComponentProps } from '../../../utils';
+import { getOuiaProps, withoutOuiaProps } from '../../../utils/Ouia';
 
-// Todo: Check correct typing for the props
-export const Checkbox = (props: any) => {
+interface CheckboxProps extends OuiaComponentProps, Omit<PFCheckboxProps, 'onChange' | 'ref'> {
+    name: string;
+    isRequired?: boolean;
+}
+
+export const Checkbox: React.FunctionComponent<CheckboxProps> = (props) => {
     const [ field, meta ] = useField({ ...props, type: 'checkbox' });
     const isValid = !meta.error || !meta.touched;
 
@@ -16,10 +22,11 @@ export const Checkbox = (props: any) => {
             isRequired={ props.isRequired }
             validated={ (isValid) ? 'default' : 'error' }
             label={ props.label }
+            { ...getOuiaProps('FormikPatternfly/Checkbox', props) }
         >
             <PFCheckbox
                 isChecked={ field.checked  }
-                { ...props }
+                { ...withoutOuiaProps(props) }
                 { ...field }
                 isValid={ isValid }
                 onChange={ onChangePFAdapter<boolean>(field) }

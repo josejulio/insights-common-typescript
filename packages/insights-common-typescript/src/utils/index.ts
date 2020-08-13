@@ -10,3 +10,4 @@ export * from './Insights';
 export * from './PFColors';
 export * from './RbacUtils';
 export * from './Spacer';
+export { OuiaComponentProps, getOuiaPropsFactory, setOuiaPage, withoutOuiaProps } from './Ouia';

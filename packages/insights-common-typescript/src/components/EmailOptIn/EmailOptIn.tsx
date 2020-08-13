@@ -3,9 +3,10 @@ import { Alert, AlertVariant, Text, TextContent } from '@patternfly/react-core';
 
 import { Messages } from '../../properties/Messages';
 import { Config } from '../../config';
-import { InsightsType } from '../../utils';
+import { InsightsType, OuiaComponentProps } from '../../utils';
+import { getOuiaProps } from '../../utils/Ouia';
 
-interface EmailOptInProps {
+interface EmailOptInProps extends OuiaComponentProps {
     content: string;
     isBeta: boolean;
 }
@@ -14,18 +15,20 @@ export const EmailOptIn: React.FunctionComponent<EmailOptInProps> = (props) => {
     const emailUrl = React.useMemo(() => Config.pages.emailPreferences(props.isBeta), [ props.isBeta ]);
 
     return (
-        <Alert
-            title={ Messages.components.emailOptIn.title }
-            variant={ AlertVariant.warning }
-            isInline={ true }
-        >
-            <TextContent>
-                <Text>{ props.content }</Text>
-                <Text>
-                    <a href={ emailUrl } target='_blank' rel='noopener noreferrer' >{ Messages.components.emailOptIn.link }</a>
-                </Text>
-            </TextContent>
-        </Alert>
+        <div { ...getOuiaProps('EmailOptin', props) }>
+            <Alert
+                title={ Messages.components.emailOptIn.title }
+                variant={ AlertVariant.warning }
+                isInline={ true }
+            >
+                <TextContent>
+                    <Text>{ props.content }</Text>
+                    <Text>
+                        <a href={ emailUrl } target='_blank' rel='noopener noreferrer' >{ Messages.components.emailOptIn.link }</a>
+                    </Text>
+                </TextContent>
+            </Alert>
+        </div>
     );
 };
 

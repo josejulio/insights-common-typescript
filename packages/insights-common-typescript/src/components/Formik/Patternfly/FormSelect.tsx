@@ -1,11 +1,18 @@
 import * as React from 'react';
 import { useField } from 'formik';
-import { FormGroup, FormSelect as PFFormSelect } from '@patternfly/react-core';
+import { FormGroup, FormSelect as PFFormSelect, FormSelectProps as PFFormSelectProps } from '@patternfly/react-core';
 
 import { onChangePFAdapter } from './Common';
+import { OuiaComponentProps } from '../../../utils';
+import { getOuiaProps, withoutOuiaProps } from '../../../utils/Ouia';
 
-// Todo: Check correct typing for the props
-export const FormSelect = (props: any) => {
+interface FormSelectProps extends OuiaComponentProps, Omit<PFFormSelectProps, 'onChange' | 'ref' | 'ouiaId'> {
+    id: string;
+    name: string;
+    isRequired?: boolean;
+}
+
+export const FormSelect: React.FunctionComponent<FormSelectProps> = (props) => {
     const [ field, meta ] = useField({ ...props });
     const isValid = !meta.error || !meta.touched;
 
@@ -16,12 +23,15 @@ export const FormSelect = (props: any) => {
             isRequired={ props.isRequired }
             validated={ (isValid) ? 'default' : 'error' }
             label={ props.label }
+            { ...getOuiaProps('FormikPatternfly/FormSelect', props) }
         >
             <PFFormSelect
-                { ...props }
+                { ...withoutOuiaProps(props) }
                 { ...field }
-                onChange={ onChangePFAdapter<string | number>(field) }
+                onChange={ onChangePFAdapter<string | number, React.FormEvent<HTMLSelectElement>>(field) }
                 validated={ (isValid) ? 'default' : 'error' }
+                ouiaSafe={ props.ouiaSafe }
+                ouiaId="pf-form-select"
             >
                 { props.children }
             </PFFormSelect>

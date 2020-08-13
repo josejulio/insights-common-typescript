@@ -1,6 +1,6 @@
 export interface OuiaComponentProps {
-    OuiaId: string;
-    OuiaSafe?: boolean;
+    ouiaId: string;
+    ouiaSafe?: boolean;
 }
 
 interface UseOuiaReturn {
@@ -24,8 +24,17 @@ export const setOuiaPage = (type: string, action?: string, objectId?: string) =>
     }
 };
 
-export const getOuiaPropsFactory = (framework: string) => (type: string, id: string, isSafe = true): UseOuiaReturn => ({
-    'data-ouia-component-type': `${framework}/${type}`,
-    'data-ouia-component-id': id,
-    'data-ouia-safe': isSafe
+export const getOuiaPropsFactory = (module: string) => (type: string, oiuaProps: OuiaComponentProps): UseOuiaReturn => ({
+    'data-ouia-component-type': `${module}/${type}`,
+    'data-ouia-component-id': oiuaProps.ouiaId,
+    'data-ouia-safe': oiuaProps.ouiaSafe ?? true
 });
+
+export const withoutOuiaProps = <T extends OuiaComponentProps>(props: T): Omit<T, 'ouiaId' | 'ouiaSafe'> => {
+    const { ouiaId, ouiaSafe, ...rest } = props;
+
+    return rest;
+};
+
+// For internal use
+export const getOuiaProps = getOuiaPropsFactory('insights-common-typescript');
