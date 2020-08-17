@@ -36,6 +36,7 @@ describe('src/pages/Error/Page', () => {
 
     it('Renders content when there is no error', () => {
         render(<ErrorBoundaryPage
+            ouiaId={ 'error-boundary' }
             action={ jestMock.fn }
             actionLabel={ 'Foo!' }
             title={ 'Something wrong' }
@@ -54,6 +55,7 @@ describe('src/pages/Error/Page', () => {
         };
 
         render(<ErrorBoundaryPage
+            ouiaId={ 'error-boundary' }
             action={ jestMock.fn }
             actionLabel={ 'Foo!' }
             title={ 'Something wrong' }
@@ -72,6 +74,7 @@ describe('src/pages/Error/Page', () => {
         };
 
         render(<ErrorBoundaryPage
+            ouiaId={ 'error-boundary' }
             action={ jestMock.fn }
             actionLabel={ 'Foo!' }
             title={ 'Something wrong' }
@@ -90,6 +93,7 @@ describe('src/pages/Error/Page', () => {
         };
 
         render(<ErrorBoundaryPage
+            ouiaId={ 'error-boundary' }
             action={ jestMock.fn }
             actionLabel={ 'Foo!' }
             title={ 'Something wrong' }
@@ -111,6 +115,7 @@ describe('src/pages/Error/Page', () => {
         const action = jestMock.fn();
 
         render(<ErrorBoundaryPage
+            ouiaId={ 'error-boundary' }
             action={ action }
             actionLabel={ 'Foo!' }
             title={ 'Something wrong' }
