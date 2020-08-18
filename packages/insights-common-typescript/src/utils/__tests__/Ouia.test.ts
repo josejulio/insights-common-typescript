@@ -1,4 +1,4 @@
-import { getOuiaPropsFactory, setOuiaPage, withoutOuiaProps } from '../..';
+import { getOuiaPropsFactory, ouiaIdConcat, setOuiaPage, withoutOuiaProps } from '../..';
 import { getOuiaProps } from '../Ouia';
 
 describe('src/utils/Ouia.test.ts', () => {
@@ -94,6 +94,16 @@ describe('src/utils/Ouia.test.ts', () => {
                 i: 0,
                 j: 5
             });
+        });
+    });
+
+    describe('ouiaIdConcat', () => {
+        it('Concatenate both params', () => {
+            expect(ouiaIdConcat('foo', 'bar')).toEqual('foo.bar');
+        });
+
+        it('If first is undefined, only later is included', () => {
+            expect(ouiaIdConcat(undefined, 'bar')).toEqual('bar');
         });
     });
 });

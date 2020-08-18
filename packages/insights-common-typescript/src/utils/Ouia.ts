@@ -43,5 +43,13 @@ export const withoutOuiaProps = <T extends OuiaComponentProps>(props: T): Omit<T
     return rest;
 };
 
+export const ouiaIdConcat = (ouiaIdParent: string | undefined, ouiaId: string) => {
+    if (ouiaIdParent) {
+        return `${ouiaIdParent}.${ouiaId}`;
+    }
+
+    return ouiaId;
+};
+
 // For internal use
 export const getOuiaProps = getOuiaPropsFactory('insights-common-typescript');
