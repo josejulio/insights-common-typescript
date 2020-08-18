@@ -8,8 +8,9 @@ import { style } from 'typestyle';
 import { PFColors } from '../../utils/PFColors';
 import { Spacer } from '../../utils/Spacer';
 import { EmptyState } from '../EmptyState/EmptyState';
+import { getOuiaProps, OuiaComponentProps } from '../../utils/Ouia';
 
-interface ErrorPageProps {
+interface ErrorPageProps extends OuiaComponentProps {
     action: () => void;
     actionLabel: string;
     pageHeader: string;
@@ -93,12 +94,13 @@ export class ErrorBoundaryPage extends React.Component<ErrorPageProps, ErrorPage
     render() {
         if (this.state.hasError) {
             return (
-                <>
+                <div { ...getOuiaProps('ErrorBoundaryPage', this.props) }>
                     <PageHeader>
                         <PageHeaderTitle title={ this.props.pageHeader }/>
                     </PageHeader>
                     <Main>
                         <EmptyState
+                            ouiaId={ 'error-state' }
                             icon={ ErrorCircleOIcon }
                             title={ this.props.title }
                             content={ <>
@@ -113,7 +115,7 @@ export class ErrorBoundaryPage extends React.Component<ErrorPageProps, ErrorPage
                             actionLabel={ this.props.actionLabel }
                         />
                     </Main>
-                </>
+                </div>
             );
         }
 

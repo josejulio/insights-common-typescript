@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { Section as IFCSection, DarkContext } from '@redhat-cloud-services/frontend-components';
 import { classes } from 'typestyle';
+import { OuiaComponentProps } from '../../utils';
+import { getOuiaProps } from '../../utils/Ouia';
 
-type SectionProps = {
+interface SectionProps extends OuiaComponentProps {
     className?: string;
     style?: React.CSSProperties;
-};
+}
 
 export const Section: React.FunctionComponent<SectionProps> = (props) => {
     return (
@@ -18,7 +20,12 @@ export const Section: React.FunctionComponent<SectionProps> = (props) => {
                     theme === 'dark' ? 'pf-m-dark-200' : '',
                     theme === 'light' ? 'pf-m-light' : ''
                 );
-                return <IFCSection style={ props.style } className={ className }> { props.children } </IFCSection>;
+                return <IFCSection
+                    { ...getOuiaProps('Section', props) }
+                    style={ props.style }
+                    className={ className }>
+                    { props.children }
+                </IFCSection>;
             }}
         </DarkContext.Consumer>
     );

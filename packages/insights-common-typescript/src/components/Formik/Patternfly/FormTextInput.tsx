@@ -1,11 +1,18 @@
 import * as React from 'react';
 import { useField } from 'formik';
-import { FormGroup, Text, TextInput as PFTextInput, TextVariants } from '@patternfly/react-core';
+import { FormGroup, Text, TextInput as PFTextInput, TextInputProps, TextVariants } from '@patternfly/react-core';
 
 import { onChangePFAdapter } from './Common';
+import { OuiaComponentProps, withoutOuiaProps } from '../../../utils';
+import { getOuiaProps } from '../../../utils/Ouia';
 
-// Todo: Check correct typing for the props
-export const FormTextInput = (props: any) => {
+interface FormTextInput extends OuiaComponentProps, Omit<TextInputProps, 'onChange' | 'innerRef'> {
+    id: string;
+    name: string;
+    hint?: string;
+}
+
+export const FormTextInput: React.FunctionComponent<FormTextInput> = (props) => {
     const { hint, ...otherProps } = props;
     const [ field, meta ] = useField({ ...otherProps });
     const isValid = !meta.error || !meta.touched;
@@ -17,9 +24,10 @@ export const FormTextInput = (props: any) => {
             isRequired={ props.isRequired }
             validated={ (isValid) ? 'default' : 'error' }
             label={ props.label }
+            { ...getOuiaProps('FormikPatternfly/FormTextInput', props) }
         >
             <PFTextInput
-                { ...otherProps }
+                { ...withoutOuiaProps(otherProps) }
                 { ...field }
                 value={ field.value !== undefined ? field.value.toString() : '' }
                 validated={ (isValid) ? 'default' : 'error' }

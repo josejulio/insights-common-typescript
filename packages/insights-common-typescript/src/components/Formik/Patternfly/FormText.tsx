@@ -1,9 +1,15 @@
 import * as React from 'react';
 import { useField } from 'formik';
-import { FormGroup, Text, TextVariants } from '@patternfly/react-core';
+import { FormGroup, Text, TextVariants, TextProps } from '@patternfly/react-core';
+import { getOuiaProps, OuiaComponentProps, withoutOuiaProps } from '../../../utils/Ouia';
 
-// Todo: Check correct typing for the props
-export const FormText = (props: any) => {
+interface FormText extends OuiaComponentProps, Omit<TextProps, 'ref'> {
+    id: string;
+    name: string;
+    isRequired?: boolean;
+}
+
+export const FormText: React.FunctionComponent<FormText> = (props) => {
     const [ field, meta ] = useField({ ...props });
     const isValid = !meta.error || !meta.touched;
 
@@ -14,9 +20,10 @@ export const FormText = (props: any) => {
             isRequired={ props.isRequired }
             validated={ (isValid) ? 'default' : 'error' }
             label={ props.label }
+            { ...getOuiaProps('FormikPatternfly/FormText', props) }
         >
             <Text component={ TextVariants.p }
-                { ...props }
+                { ...withoutOuiaProps(props) }
                 { ...field }
             >
                 { field.value || '' }

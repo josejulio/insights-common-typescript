@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: '12'
           check-latest: true
-      - uses: bahmutov/npm-install@v1.4.1
+      - uses: bahmutov/npm-install@v1
       - run: yarn ci
       - uses: codecov/codecov-action@v1
         with:
@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: '12'
           check-latest: true
-      - run: yarn
+      - uses: bahmutov/npm-install@v1
       - run: yarn build
       - uses: mikeal/merge-release@master
         env:
