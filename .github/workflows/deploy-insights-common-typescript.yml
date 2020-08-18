@@ -6,9 +6,10 @@ on:
     paths:
       - 'packages/insights-common-typescript/**'
 
+env:
+  SCOPE_PACKAGE: '@redhat-cloud-services/insights-common-typescript'
+
 jobs:
-  env:
-    SCOPE_PACKAGE: '@redhat-cloud-services/insights-common-typescript'
   publish:
     runs-on: ubuntu-latest
     steps:
