@@ -15,10 +15,13 @@
     "noImplicitAny": false,
     "sourceMap": true
   },
+  "include":[
+    "src/**/*",
+    "./global.d.ts"
+  ],
   "exclude": [
     "node_modules",
     "**/*.js",
-    "**/__tests__",
     "**/__mocks__"
   ]
 }
