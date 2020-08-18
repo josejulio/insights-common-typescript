@@ -7,9 +7,9 @@ import { OuiaComponentProps, withoutOuiaProps } from '../../../utils';
 import { getOuiaProps } from '../../../utils/Ouia';
 
 interface FormTextInput extends OuiaComponentProps, Omit<TextInputProps, 'onChange' | 'innerRef'> {
-    hint: string;
     id: string;
     name: string;
+    hint?: string;
 }
 
 export const FormTextInput: React.FunctionComponent<FormTextInput> = (props) => {

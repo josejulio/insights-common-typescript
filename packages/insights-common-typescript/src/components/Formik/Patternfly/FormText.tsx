@@ -6,7 +6,7 @@ import { getOuiaProps, OuiaComponentProps, withoutOuiaProps } from '../../../uti
 interface FormText extends OuiaComponentProps, Omit<TextProps, 'ref'> {
     id: string;
     name: string;
-    isRequired: boolean;
+    isRequired?: boolean;
 }
 
 export const FormText: React.FunctionComponent<FormText> = (props) => {

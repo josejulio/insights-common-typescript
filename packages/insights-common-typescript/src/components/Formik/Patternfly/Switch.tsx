@@ -9,7 +9,7 @@ import { getOuiaProps } from '../../../utils/Ouia';
 interface SwitchProps extends OuiaComponentProps, Omit<PFSwitchProps, 'onChange' | 'ref' | 'ouiaSafe' | 'ouiaId'> {
     id: string;
     name: string;
-    isRequired: boolean;
+    isRequired?: boolean;
     labelOn?: string;
 }
 
