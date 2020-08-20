@@ -1,6 +1,8 @@
 /**
 * Generated code, DO NOT modify directly.
 */
+/* eslint-disable max-len */
+
 import { actionBuilder } from '@redhat-cloud-services/insights-common-typescript';
 import { Action } from 'react-fetching-library';
 import * as schemas from './Types';
@@ -24,7 +26,7 @@ export const action{{className name}} = ({{>operation_arg .}}): Action => {
     const path = '{{@root.servers.[0].variables.basePath.default}}{{path}}'
     {{~#each parameters}}
     {{~#with (deref this @root)}}{{#switch in}}{{#case "path"}}
-    .replace('{{concat "{" name "}"}}', params.{{valueName name}}){{/case}}{{/switch}}{{/with~}}
+    .replace('{{concat "{" name "}"}}', params.{{valueName name}}.toString()){{/case}}{{/switch}}{{/with~}}
     {{/each~}}
     ;
 
