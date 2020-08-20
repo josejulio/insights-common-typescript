@@ -1,8 +1,0 @@
-./config
-./test
-./src
-./codecov.yml
-./tsconfig.json
-./jest.config.js
-./coverage
-./.idea
