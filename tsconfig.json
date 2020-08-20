@@ -14,14 +14,5 @@
     "esModuleInterop": true,
     "noImplicitAny": false,
     "sourceMap": true
-  },
-  "include":[
-    "src/**/*",
-    "./global.d.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.js",
-    "**/__mocks__"
-  ]
+  }
 }
