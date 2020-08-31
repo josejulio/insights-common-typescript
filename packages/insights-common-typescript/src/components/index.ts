@@ -5,4 +5,5 @@ export * from './EmptyState/EmptyState';
 export * from './ErrorBoundaryPage/ErrorBoundaryPage';
 export * from './Formik/Patternfly';
 export * from './FrontendComponents/Section';
+export * from './Modals';
 export * from './Wrappers/BreadcrumbLinkItem';

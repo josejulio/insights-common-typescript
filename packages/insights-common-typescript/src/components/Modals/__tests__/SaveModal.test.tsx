@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 import jestMock from 'jest-mock';
 import { ouiaSelectors } from '../../..';
-import { SaveModal } from '../SaveModal';
+import { SaveModal } from '../..';
 
 describe('src/components/Modals/SaveModal', () => {
     it('Shows action modal with Save action button', () => {

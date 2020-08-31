@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 import jestMock from 'jest-mock';
 import { ouiaSelectors } from '../../..';
-import { DeleteModal } from '../DeleteModal';
+import { DeleteModal } from '../..';
 
 describe('src/components/Modals/DeleteModal', () => {
     it('Shows action modal with Delete action button', () => {
