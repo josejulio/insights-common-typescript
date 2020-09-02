@@ -21,7 +21,6 @@ export const Checkbox: React.FunctionComponent<CheckboxProps> = (props) => {
             helperTextInvalid={ meta.error }
             isRequired={ props.isRequired }
             validated={ (isValid) ? 'default' : 'error' }
-            label={ props.label }
             { ...getOuiaProps('FormikPatternfly/Checkbox', props) }
         >
             <PFCheckbox
