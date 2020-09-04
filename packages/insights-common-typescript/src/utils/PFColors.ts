@@ -18,5 +18,11 @@ export const PFColors = {
     GlobalDangerColor300: '#470000',
 
     GlobalSuccessColor100: '#92d400',
-    GlobalSuccessColor200: '#486b00'
+    GlobalSuccessColor200: '#486b00',
+
+    GlobalWarningColor100: '#F0AB00',
+    GlobalWarningColor200: '#795600',
+
+    GlobalInfoColor100: '#2B9AF3',
+    GlobalInfoColor200: '#002952'
 };
