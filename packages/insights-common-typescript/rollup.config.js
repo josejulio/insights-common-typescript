@@ -53,7 +53,6 @@ const config = [
             }
         ],
         plugins: [
-            wildcardExternal([ 'openapi3-typescript-codegen/**' ]),
             typescript({
                 sourceMap: false,
                 declaration: false,
@@ -61,7 +60,7 @@ const config = [
             }),
             compiler()
         ],
-        external: getDependencies()
+        external: [ ...getDependencies(), 'fs' ]
     }
 ];
 

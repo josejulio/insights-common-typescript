@@ -1,57 +1,53 @@
 import fetchMockJest from 'fetch-mock-jest';
 import { execute } from '../schema';
-import { existsSync, readFileSync } from 'fs';
+import { existsSync, readFileSync, mkdirSync } from 'fs';
 import rimRaf from 'rimraf';
 import fetchMock from 'node-fetch';
 
 jest.mock('node-fetch', () => fetchMockJest.sandbox());
 
-describe('src/cli/schema', () => {
+describe.each([
+    './src/cli/__tests__/notifications-openapi.json',
+    './src/cli/__tests__/policies-openapi.json'
+])('src/cli/schema for %s', (filename) => {
 
     const tempSchemaDir = './tmp/schemas';
 
-    it ('execute input file accepts path', () => {
-        rimRaf.sync(tempSchemaDir);
-        const log = jest.spyOn(console, 'log');
-        log.mockImplementation(() => '');
-
-        return execute({
-            inputFile: './src/cli/__tests__/policies-openapi.json',
-            output: tempSchemaDir
-        }).then(() => {
-            expect(log).toHaveBeenCalledWith('tmp/schemas/Types.ts generated');
-            expect(log).toHaveBeenCalledWith('tmp/schemas/ActionCreators.ts generated');
-            expect(existsSync('./tmp/schemas/ActionCreators.ts')).toBeTruthy();
-            expect(existsSync('./tmp/schemas/Types.ts')).toBeTruthy();
-            expect(readFileSync(`${tempSchemaDir}/Types.ts`).toString()).toMatchSnapshot();
-            expect(readFileSync(`${tempSchemaDir}/ActionCreators.ts`).toString()).toMatchSnapshot();
-            rimRaf.sync(tempSchemaDir);
+    beforeEach(() => {
+        mkdirSync(tempSchemaDir, {
+            recursive: true
         });
     });
 
-    it ('execute accepts urls', async () => {
+    afterEach(() => {
         rimRaf.sync(tempSchemaDir);
+    });
 
+    it('execute input file accepts path', () => {
+        return execute({
+            inputFile: filename,
+            output: tempSchemaDir,
+            skipPostProcess: false
+        }).then(() => {
+            expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
+            expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).toMatchSnapshot();
+
+        });
+    });
+
+    it('execute accepts urls', async () => {
         (fetchMock as any).get('http://foobar.baz/my-openapi.json', {
-            body: readFileSync('./src/cli/__tests__/policies-openapi.json').toString(),
+            body: readFileSync(filename).toString(),
             status: 200
         });
-
-        const log = jest.spyOn(console, 'log');
-        log.mockImplementation(() => '');
 
         return execute({
             inputFile: 'http://foobar.baz/my-openapi.json',
             output: tempSchemaDir
         }).then(() => {
             (fetchMock as any).restore();
-            expect(log).toHaveBeenCalledWith('tmp/schemas/Types.ts generated');
-            expect(log).toHaveBeenCalledWith('tmp/schemas/ActionCreators.ts generated');
-            expect(existsSync('./tmp/schemas/ActionCreators.ts')).toBeTruthy();
-            expect(existsSync('./tmp/schemas/Types.ts')).toBeTruthy();
-            expect(readFileSync(`${tempSchemaDir}/Types.ts`).toString()).toMatchSnapshot();
-            expect(readFileSync(`${tempSchemaDir}/ActionCreators.ts`).toString()).toMatchSnapshot();
-            rimRaf.sync(tempSchemaDir);
+            expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
+            expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).toMatchSnapshot();
         });
     });
 });

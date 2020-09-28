@@ -3,15 +3,19 @@
 import { Command } from 'commander';
 import * as jq from 'node-jq';
 import { CLIEngine } from 'eslint';
-import { Codegen } from 'openapi3-typescript-codegen/dist/codegen';
-import { OpenAPI3 } from 'openapi3-typescript-codegen/dist/schema';
 import fetch from 'node-fetch';
+import prettier from 'prettier';
 import isUrl from 'is-url';
+import { existsSync, lstatSync, writeFileSync } from 'fs';
+
+import { SchemaActionBuilder, SchemaTypeBuilder, OpenAPI3 } from './schema/';
+import { buildApiDescriptor } from './schema/ApiDescriptorBuilder';
 
 export interface Options {
-    templatePath?: string;
     inputFile: string;
     output: string;
+    skipPostProcess?: boolean;
+    skipActionGenerator?: boolean;
 }
 
 const getProgram = () => {
@@ -20,8 +24,14 @@ const getProgram = () => {
     program
     .description('Generates the actions needed by react-fetching-library to do the queries out of the openapi.json file')
     .option(
-        '-t, --template-path <template-path>',
-        'Path to load the templates (defaults to local templates)'
+        '-s, --skip-post-process',
+        'Skips the postprocess (prettier and linter)',
+        false
+    )
+    .option(
+        '-sa, --skip-action-generator',
+        'Skips the actions generators used for react-fetching-library',
+        false
     )
     .requiredOption(
         '-i, --input-file <openapijson-path>',
@@ -29,14 +39,13 @@ const getProgram = () => {
     )
     .requiredOption(
         '-o, --output <output-path>',
-        'Output path to put the generated files'
+        'Output file to put the generated files.'
     );
 
     return program;
 };
 
 export const execute = async (options: Options) => {
-    const templatePath: string = options.templatePath ?? `${__dirname}/../../resources/schemas`;
 
     let inputType = 'file';
     let input = options.inputFile;
@@ -50,22 +59,64 @@ export const execute = async (options: Options) => {
         }).then(res => res.text());
     }
 
+    if (existsSync(options.output)) {
+        const fileStat = lstatSync(options.output);
+        if (fileStat.isDirectory()) {
+            options.output = `${options.output}/Generated.ts`;
+        }
+    }
+
     return jq.run('.', input, {
         sort: true,
         input: inputType
-    }).then(output => {
-        return new Codegen(
-            templatePath,
-            options.output,
+    }).then(output => JSON.parse(output as string) as OpenAPI3)
+    .then(openapi => buildApiDescriptor(openapi, {
+        nonRequiredPropertyIsNull: true
+    }))
+    .then(descriptor => {
+        const actionGeneratorHeaders = [
+            'import { actionBuilder, ValidatedResponse, ActionValidatable } from \'@redhat-cloud-services/insights-common-typescript\';\n',
+            'import { Action } from \'react-fetching-library\';\n'
+        ];
+
+        const buffer: Array<string> = [
+            '/**\n',
+            '* Generated code, DO NOT modify directly.\n',
+            '*/\n',
+            'import * as z from \'zod\';\n',
+            ...(options.skipActionGenerator ? [] : actionGeneratorHeaders),
+            '/* eslint-disable @typescript-eslint/no-use-before-define */\n\n'
+        ];
+
+        const typeBuilder = new SchemaTypeBuilder(descriptor, buffer);
+        typeBuilder.build();
+
+        if (!options.skipActionGenerator) {
+            const actionBuilder = new SchemaActionBuilder(descriptor, buffer);
+            actionBuilder.build();
+        }
+
+        return buffer.join('');
+    }).then(content => {
+        if (options.skipPostProcess) {
+            return content;
+        }
+
+        return prettier.format(
+            content,
             {
-                generateEnums: true
+                parser: 'typescript'
             }
-        ).generate(JSON.parse(output as string) as OpenAPI3);
-    }).then(async () => {
+        );
+    }).then(async (content) => {
+        if (options.skipPostProcess) {
+            return writeFileSync(options.output, content);
+        }
+
         const eslint = new CLIEngine({
             fix: true
         });
-        const results = await eslint.executeOnFiles([ `${options.output}/*.ts*` ]);
+        const results = await eslint.executeOnText(content, options.output);
         return CLIEngine.outputFixes(results);
     });
 };
