@@ -6,7 +6,7 @@ import {
     global_spacer_xl,
     global_spacer_2xl,
     global_spacer_3xl,
-    global_spacer_form_element,
+    global_spacer_form_element
 } from '@patternfly/react-tokens';
 
 type Keys = 'XS' | 'SM' | 'MD' | 'LG' | 'XL' | 'XL_2' | 'XL_3' | 'FORM_ELEMENT';

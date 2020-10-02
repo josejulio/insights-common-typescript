@@ -17,7 +17,7 @@ import {
     global_warning_color_100,
     global_warning_color_200,
     global_info_color_100,
-    global_info_color_200,
+    global_info_color_200
 } from '@patternfly/react-tokens';
 /**
  * Deprecated color palette, use @patternfly/react-token
