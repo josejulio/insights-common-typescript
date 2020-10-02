@@ -118,7 +118,11 @@ export const execute = async (options: Options) => {
             fix: true
         });
         const results = await eslint.executeOnText(content, options.output);
-        return CLIEngine.outputFixes(results);
+        if (results.fixableErrorCount || results.fixableWarningCount) {
+            return CLIEngine.outputFixes(results);
+        }
+
+        return writeFileSync(options.output, content);
     });
 };
 
