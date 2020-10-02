@@ -118,7 +118,7 @@ export const execute = async (options: Options) => {
             fix: true
         });
         const results = await eslint.executeOnText(content, options.output);
-        if (results.fixableErrorCount || results.fixableWarningCount) {
+        if (results.errorCount || results.warningCount) {
             return CLIEngine.outputFixes(results);
         }
 

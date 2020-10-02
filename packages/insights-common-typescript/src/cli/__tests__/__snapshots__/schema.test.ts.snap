@@ -2831,3 +2831,189 @@ export const actionGetStatus = (): ActionGetStatus => {
 };
 "
 `;
+
+exports[`src/cli/schema for ./src/cli/__tests__/simple-openapi.json execute accepts urls 1`] = `
+"/**
+ * Generated code, DO NOT modify directly.
+ */
+import * as z from 'zod';
+import {
+    actionBuilder,
+    ValidatedResponse,
+    ActionValidatable
+} from '@redhat-cloud-services/insights-common-typescript';
+import { Action } from 'react-fetching-library';
+/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable @typescript-eslint/no-use-before-define */
+
+export const Fruit = zodSchemaFruit();
+export type Fruit = z.infer<typeof Fruit>;
+
+export const SetFruit = zodSchemaSetFruit();
+export type SetFruit = z.infer<typeof SetFruit>;
+
+export function zodSchemaFruit() {
+    return z.object({
+        description: z.string().optional().nullable(),
+        name: z.string().optional().nullable()
+    });
+}
+
+export function zodSchemaSetFruit() {
+    return z.array(zodSchemaFruit());
+}
+
+// GET /fruits
+export type GetFruitsPayload =
+  | ValidatedResponse<'SetFruit', 200, SetFruit>
+  | ValidatedResponse<'unknown', undefined, unknown>;
+export type ActionGetFruits = Action<GetFruitsPayload, ActionValidatable>;
+export const actionGetFruits = (): ActionGetFruits => {
+    const path = '/fruits';
+    const query = {} as Record<string, any>;
+    return actionBuilder('GET', path)
+    .queryParams(query)
+    .config({
+        rules: [{ status: 200, zod: SetFruit, type: 'SetFruit' }]
+    })
+    .build();
+};
+
+// POST /fruits
+export interface PostFruits {
+  body: Fruit;
+}
+
+export type PostFruitsPayload =
+  | ValidatedResponse<'SetFruit', 200, SetFruit>
+  | ValidatedResponse<'unknown', undefined, unknown>;
+export type ActionPostFruits = Action<PostFruitsPayload, ActionValidatable>;
+export const actionPostFruits = (params: PostFruits): ActionPostFruits => {
+    const path = '/fruits';
+    const query = {} as Record<string, any>;
+    return actionBuilder('POST', path)
+    .queryParams(query)
+    .data(params.body)
+    .config({
+        rules: [{ status: 200, zod: SetFruit, type: 'SetFruit' }]
+    })
+    .build();
+};
+
+// DELETE /fruits
+export interface DeleteFruits {
+  body: Fruit;
+}
+
+export type DeleteFruitsPayload =
+  | ValidatedResponse<'SetFruit', 200, SetFruit>
+  | ValidatedResponse<'unknown', undefined, unknown>;
+export type ActionDeleteFruits = Action<DeleteFruitsPayload, ActionValidatable>;
+export const actionDeleteFruits = (
+    params: DeleteFruits
+): ActionDeleteFruits => {
+    const path = '/fruits';
+    const query = {} as Record<string, any>;
+    return actionBuilder('DELETE', path)
+    .queryParams(query)
+    .data(params.body)
+    .config({
+        rules: [{ status: 200, zod: SetFruit, type: 'SetFruit' }]
+    })
+    .build();
+};
+"
+`;
+
+exports[`src/cli/schema for ./src/cli/__tests__/simple-openapi.json execute input file accepts path 1`] = `
+"/**
+ * Generated code, DO NOT modify directly.
+ */
+import * as z from 'zod';
+import {
+    actionBuilder,
+    ValidatedResponse,
+    ActionValidatable
+} from '@redhat-cloud-services/insights-common-typescript';
+import { Action } from 'react-fetching-library';
+/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable @typescript-eslint/no-use-before-define */
+
+export const Fruit = zodSchemaFruit();
+export type Fruit = z.infer<typeof Fruit>;
+
+export const SetFruit = zodSchemaSetFruit();
+export type SetFruit = z.infer<typeof SetFruit>;
+
+export function zodSchemaFruit() {
+    return z.object({
+        description: z.string().optional().nullable(),
+        name: z.string().optional().nullable()
+    });
+}
+
+export function zodSchemaSetFruit() {
+    return z.array(zodSchemaFruit());
+}
+
+// GET /fruits
+export type GetFruitsPayload =
+  | ValidatedResponse<'SetFruit', 200, SetFruit>
+  | ValidatedResponse<'unknown', undefined, unknown>;
+export type ActionGetFruits = Action<GetFruitsPayload, ActionValidatable>;
+export const actionGetFruits = (): ActionGetFruits => {
+    const path = '/fruits';
+    const query = {} as Record<string, any>;
+    return actionBuilder('GET', path)
+    .queryParams(query)
+    .config({
+        rules: [{ status: 200, zod: SetFruit, type: 'SetFruit' }]
+    })
+    .build();
+};
+
+// POST /fruits
+export interface PostFruits {
+  body: Fruit;
+}
+
+export type PostFruitsPayload =
+  | ValidatedResponse<'SetFruit', 200, SetFruit>
+  | ValidatedResponse<'unknown', undefined, unknown>;
+export type ActionPostFruits = Action<PostFruitsPayload, ActionValidatable>;
+export const actionPostFruits = (params: PostFruits): ActionPostFruits => {
+    const path = '/fruits';
+    const query = {} as Record<string, any>;
+    return actionBuilder('POST', path)
+    .queryParams(query)
+    .data(params.body)
+    .config({
+        rules: [{ status: 200, zod: SetFruit, type: 'SetFruit' }]
+    })
+    .build();
+};
+
+// DELETE /fruits
+export interface DeleteFruits {
+  body: Fruit;
+}
+
+export type DeleteFruitsPayload =
+  | ValidatedResponse<'SetFruit', 200, SetFruit>
+  | ValidatedResponse<'unknown', undefined, unknown>;
+export type ActionDeleteFruits = Action<DeleteFruitsPayload, ActionValidatable>;
+export const actionDeleteFruits = (
+    params: DeleteFruits
+): ActionDeleteFruits => {
+    const path = '/fruits';
+    const query = {} as Record<string, any>;
+    return actionBuilder('DELETE', path)
+    .queryParams(query)
+    .data(params.body)
+    .config({
+        rules: [{ status: 200, zod: SetFruit, type: 'SetFruit' }]
+    })
+    .build();
+};
+"
+`;

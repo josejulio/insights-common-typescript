@@ -8,7 +8,8 @@ jest.mock('node-fetch', () => fetchMockJest.sandbox());
 
 describe.each([
     './src/cli/__tests__/notifications-openapi.json',
-    './src/cli/__tests__/policies-openapi.json'
+    './src/cli/__tests__/policies-openapi.json',
+    './src/cli/__tests__/simple-openapi.json'
 ])('src/cli/schema for %s', (filename) => {
 
     const tempSchemaDir = './tmp/schemas';
