@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`src/cli/schema for ./src/cli/__tests__/notifications-openapi.json execute accepts urls 1`] = `
+exports[`src/cli/schema execute for ./src/cli/__tests__/notifications-openapi.json execute accepts urls 1`] = `
 "/* eslint-disable */
 /**
  * Generated code, DO NOT modify directly.
@@ -460,7 +460,7 @@ export const actionGetApiNotificationsV10EndpointsByIdHistoryByHistoryIdDetails 
 "
 `;
 
-exports[`src/cli/schema for ./src/cli/__tests__/notifications-openapi.json execute input file accepts path 1`] = `
+exports[`src/cli/schema execute for ./src/cli/__tests__/notifications-openapi.json execute input file accepts path 1`] = `
 "/* eslint-disable */
 /**
  * Generated code, DO NOT modify directly.
@@ -920,7 +920,7 @@ export const actionGetApiNotificationsV10EndpointsByIdHistoryByHistoryIdDetails 
 "
 `;
 
-exports[`src/cli/schema for ./src/cli/__tests__/policies-openapi.json execute accepts urls 1`] = `
+exports[`src/cli/schema execute for ./src/cli/__tests__/policies-openapi.json execute accepts urls 1`] = `
 "/* eslint-disable */
 /**
  * Generated code, DO NOT modify directly.
@@ -1872,7 +1872,7 @@ export const actionGetStatus = (): ActionGetStatus => {
 "
 `;
 
-exports[`src/cli/schema for ./src/cli/__tests__/policies-openapi.json execute input file accepts path 1`] = `
+exports[`src/cli/schema execute for ./src/cli/__tests__/policies-openapi.json execute input file accepts path 1`] = `
 "/* eslint-disable */
 /**
  * Generated code, DO NOT modify directly.
@@ -2824,7 +2824,7 @@ export const actionGetStatus = (): ActionGetStatus => {
 "
 `;
 
-exports[`src/cli/schema for ./src/cli/__tests__/simple-openapi.json execute accepts urls 1`] = `
+exports[`src/cli/schema execute for ./src/cli/__tests__/simple-openapi.json execute accepts urls 1`] = `
 "/* eslint-disable */
 /**
  * Generated code, DO NOT modify directly.
@@ -2915,7 +2915,7 @@ export const actionDeleteFruits = (
 "
 `;
 
-exports[`src/cli/schema for ./src/cli/__tests__/simple-openapi.json execute input file accepts path 1`] = `
+exports[`src/cli/schema execute for ./src/cli/__tests__/simple-openapi.json execute input file accepts path 1`] = `
 "/* eslint-disable */
 /**
  * Generated code, DO NOT modify directly.

@@ -16,10 +16,10 @@ export interface Options {
     output: string;
     skipPostProcess: boolean;
     skipActionGenerator: boolean;
-    addEslintIgnore: boolean;
+    addEslintDisable: boolean;
 }
 
-const getProgram = () => {
+export const getProgram = () => {
     const program = new Command();
 
     program
@@ -127,7 +127,7 @@ export const execute = async (options: Options) => {
             content = eslintResult.results[0].output;
         }
 
-        if (options.addEslintIgnore) {
+        if (options.addEslintDisable) {
             content = '/* eslint-disable */\n' + content;
         }
 
