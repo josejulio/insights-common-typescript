@@ -28,7 +28,9 @@ describe.each([
         return execute({
             inputFile: filename,
             output: tempSchemaDir,
-            skipPostProcess: false
+            skipPostProcess: false,
+            addEslintIgnore: true,
+            skipActionGenerator: false
         }).then(() => {
             expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
             expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).toMatchSnapshot();
@@ -44,7 +46,10 @@ describe.each([
 
         return execute({
             inputFile: 'http://foobar.baz/my-openapi.json',
-            output: tempSchemaDir
+            output: tempSchemaDir,
+            addEslintIgnore: true,
+            skipPostProcess: false,
+            skipActionGenerator: false
         }).then(() => {
             (fetchMock as any).restore();
             expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();

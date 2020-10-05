@@ -14,8 +14,9 @@ import { buildApiDescriptor } from './schema/ApiDescriptorBuilder';
 export interface Options {
     inputFile: string;
     output: string;
-    skipPostProcess?: boolean;
-    skipActionGenerator?: boolean;
+    skipPostProcess: boolean;
+    skipActionGenerator: boolean;
+    addEslintIgnore: boolean;
 }
 
 const getProgram = () => {
@@ -32,6 +33,11 @@ const getProgram = () => {
         '-sa, --skip-action-generator',
         'Skips the actions generators used for react-fetching-library',
         false
+    )
+    .option(
+        '-ed, --add-eslint-disable',
+        'Add /* eslint-disable */ on top of the file after processing',
+        true
     )
     .requiredOption(
         '-i, --input-file <openapijson-path>',
@@ -84,8 +90,7 @@ export const execute = async (options: Options) => {
             '* Generated code, DO NOT modify directly.\n',
             '*/\n',
             'import * as z from \'zod\';\n',
-            ...(options.skipActionGenerator ? [] : actionGeneratorHeaders),
-            '/* eslint-disable */\n'
+            ...(options.skipActionGenerator ? [] : actionGeneratorHeaders)
         ];
 
         const typeBuilder = new SchemaTypeBuilder(descriptor, buffer);
@@ -116,9 +121,14 @@ export const execute = async (options: Options) => {
         const eslint = new CLIEngine({
             fix: true
         });
-        const results = await eslint.executeOnText(content, options.output);
-        if (results.errorCount || results.warningCount) {
-            return CLIEngine.outputFixes(results);
+
+        const eslintResult = await eslint.executeOnText(content, options.output);
+        if (eslintResult.results.length === 1 && eslintResult.results[0].output) {
+            content = eslintResult.results[0].output;
+        }
+
+        if (options.addEslintIgnore) {
+            content = '/* eslint-disable */\n' + content;
         }
 
         return writeFileSync(options.output, content);
