@@ -85,8 +85,7 @@ export const execute = async (options: Options) => {
             '*/\n',
             'import * as z from \'zod\';\n',
             ...(options.skipActionGenerator ? [] : actionGeneratorHeaders),
-            '/* eslint-disable @typescript-eslint/camelcase */\n',
-            '/* eslint-disable @typescript-eslint/no-use-before-define */\n\n'
+            '/* eslint-disable */\n'
         ];
 
         const typeBuilder = new SchemaTypeBuilder(descriptor, buffer);
