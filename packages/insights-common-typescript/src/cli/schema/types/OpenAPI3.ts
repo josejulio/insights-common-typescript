@@ -63,9 +63,9 @@ export namespace OpenAPI3 {
         callbacks?: StringMap<OpenAPI3.Callback | OpenAPI3.Reference>;
     }
     export interface Paths {
-        [path: string]: OpenAPI3.Path;
+        [path: string]: OpenAPI3.Path | OpenAPI3.Reference;
     }
-    export interface Path extends OpenAPI3.Reference {
+    export interface Path {
         summary?: string;
         description?: string;
         get?: OpenAPI3.Operation;

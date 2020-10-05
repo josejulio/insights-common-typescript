@@ -1,28 +1,52 @@
+import {
+    global_BackgroundColor_100,
+    global_palette_black_150,
+    global_BackgroundColor_200,
+    global_BackgroundColor_dark_100,
+    global_BackgroundColor_dark_200,
+    global_BackgroundColor_dark_300,
+    global_BackgroundColor_dark_400,
+    global_BackgroundColor_light_100,
+    global_BackgroundColor_light_200,
+    global_BackgroundColor_light_300,
+    global_danger_color_100,
+    global_danger_color_200,
+    global_danger_color_300,
+    global_success_color_100,
+    global_success_color_200,
+    global_warning_color_100,
+    global_warning_color_200,
+    global_info_color_100,
+    global_info_color_200
+} from '@patternfly/react-tokens';
+/**
+ * @deprecated Color palette, use @patternfly/react-token
+ */
 export const PFColors = {
-    GlobalBackgroundColor100: '#fff',
-    GlobalBackgroundColor150: '#f5f5f5',
-    GlobalBackgroundColor200: '#fafafa',
-    GlobalBackgroundColor300: '#ededed',
+    GlobalBackgroundColor100: global_BackgroundColor_100.value,
+    GlobalBackgroundColor150: global_palette_black_150.value,
+    GlobalBackgroundColor200: global_BackgroundColor_200.value,
+    GlobalBackgroundColor300: '#ededed', // no idea where i took this from.
 
-    GlobalBackgroundColorDark100: '#151515',
-    GlobalBackgroundColorDark200: '#3c3f42',
-    GlobalBackgroundColorDark300: '#212427',
-    GlobalBackgroundColorDark400: '#4f5255',
+    GlobalBackgroundColorDark100: global_BackgroundColor_dark_100.value,
+    GlobalBackgroundColorDark200: global_BackgroundColor_dark_200.value,
+    GlobalBackgroundColorDark300: global_BackgroundColor_dark_300.value,
+    GlobalBackgroundColorDark400: global_BackgroundColor_dark_400.value,
 
-    GlobalBackgroundColorLight100: '#fff',
-    GlobalBackgroundColorLight200: '#fafafa',
-    GlobalBackgroundColorLight300: '#ededed',
+    GlobalBackgroundColorLight100: global_BackgroundColor_light_100.value,
+    GlobalBackgroundColorLight200: global_BackgroundColor_light_200.value,
+    GlobalBackgroundColorLight300: global_BackgroundColor_light_300.value,
 
-    GlobalDangerColor100: '#c9190b',
-    GlobalDangerColor200: '#a30000',
-    GlobalDangerColor300: '#470000',
+    GlobalDangerColor100: global_danger_color_100.value,
+    GlobalDangerColor200: global_danger_color_200.value,
+    GlobalDangerColor300: global_danger_color_300.value,
 
-    GlobalSuccessColor100: '#92d400',
-    GlobalSuccessColor200: '#486b00',
+    GlobalSuccessColor100: global_success_color_100.value,
+    GlobalSuccessColor200: global_success_color_200.value,
 
-    GlobalWarningColor100: '#F0AB00',
-    GlobalWarningColor200: '#795600',
+    GlobalWarningColor100: global_warning_color_100.value,
+    GlobalWarningColor200: global_warning_color_200.value,
 
-    GlobalInfoColor100: '#2B9AF3',
-    GlobalInfoColor200: '#002952'
+    GlobalInfoColor100: global_info_color_100.value,
+    GlobalInfoColor200: global_info_color_200.value
 };
