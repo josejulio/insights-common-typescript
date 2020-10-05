@@ -16,7 +16,7 @@ type RawSpacerTemplate<T> = {
 };
 
 /**
- * @Deprecated sizes, use @patternfly/react-token.
+ * @deprecated Sizes, use @patternfly/react-token.
  */
 const RawSpacer: RawSpacerTemplate<string> = {
     XS: global_spacer_xs.value,

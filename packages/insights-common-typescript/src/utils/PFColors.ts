@@ -20,7 +20,7 @@ import {
     global_info_color_200
 } from '@patternfly/react-tokens';
 /**
- * Deprecated color palette, use @patternfly/react-token
+ * @deprecated Color palette, use @patternfly/react-token
  */
 export const PFColors = {
     GlobalBackgroundColor100: global_BackgroundColor_100.value,
