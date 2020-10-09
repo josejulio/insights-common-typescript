@@ -8,15 +8,11 @@ on:
 
 env:
   SCOPE_PACKAGE: 'insights-common-typescript-dev'
-  PACKAGE_DIR: 'packages/insights-common-typescript-dev'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Set PACKAGE.DIR
-        run: echo '::set-output name=DIR::${PACKAGE_DIR}'
-        id: PACKAGE
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
@@ -29,5 +25,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-          DEPLOY_DIR: ${{ steps.PACKAGE.outputs.DIR }}
-          SRC_PACKAGE_DIR: ${{ steps.PACKAGE.outputs.DIR }}
+          DEPLOY_DIR: 'packages/insights-common-typescript-dev'
+          SRC_PACKAGE_DIR: 'packages/insights-common-typescript-dev'
