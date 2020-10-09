@@ -2,7 +2,7 @@ import * as React from 'react';
 import { getByText, render, screen } from '@testing-library/react';
 import { ActionModal } from '../..';
 import jestMock from 'jest-mock';
-import { ouiaSelectors } from '../../../dev';
+import { ouiaSelectors } from 'insights-common-typescript-dev';
 import userEvent from '@testing-library/user-event';
 import { waitForAsyncEvents } from '../../../../test/TestUtils';
 import { ButtonVariant, ModalVariant } from '@patternfly/react-core';
@@ -112,7 +112,7 @@ describe('src/components/Modals/ActionModal', () => {
         );
 
         expect(
-            ouiaSelectors.getByOuia('PF4/ModalContent')
+            screen.getByRole('dialog')
         ).toHaveClass('pf-m-sm');
     });
 
@@ -133,7 +133,7 @@ describe('src/components/Modals/ActionModal', () => {
         );
 
         expect(
-            ouiaSelectors.getByOuia('PF4/ModalContent')
+            screen.getByRole('dialog')
         ).toHaveClass('pf-m-lg');
     });
 
