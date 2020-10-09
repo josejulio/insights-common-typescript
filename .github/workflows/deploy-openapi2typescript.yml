@@ -3,8 +3,8 @@ name: Deploy openapi2typescript
 on:
   push:
     branches: [ master ]
-    paths:
-      - 'packages/openapi2typescript/**'
+#    paths:
+#      - 'packages/openapi2typescript/**'
 
 env:
   SCOPE_PACKAGE: 'openapi2typescript'
@@ -26,5 +26,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-          DEPLOY_DIR: ${{ PACKAGE_DIR }}
-          SRC_PACKAGE_DIR: ${{ PACKAGE_DIR }}
+          DEPLOY_DIR: $PACKAGE_DIR
+          SRC_PACKAGE_DIR: $PACKAGE_DIR
