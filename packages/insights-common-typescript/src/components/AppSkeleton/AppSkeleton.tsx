@@ -15,7 +15,7 @@ import { OuiaComponentProps, getOuiaProps } from '../../utils/Ouia';
 export const AppSkeleton: React.FunctionComponent<OuiaComponentProps> = (props) => {
 
     return (
-        <div { ...getOuiaProps('AppSkeleton', props) }>
+        <div { ...getOuiaProps('AppSkeleton foo bar', props) }>
             <PageHeader>
                 <div className="pf-c-content">
                     <PageHeaderTitle title={ <Skeleton size="sm"/> }/>
