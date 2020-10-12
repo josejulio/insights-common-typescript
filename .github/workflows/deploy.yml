@@ -1,4 +1,4 @@
-name: Deploy insights-common-typescript
+name: Deploy
 
 on:
   push:
@@ -15,4 +15,5 @@ jobs:
           check-latest: true
       - uses: bahmutov/npm-install@v1
       - run: yarn ci
+      - run: git config user.email "insights-common-typescript@notfound" && git config user.name "CI job"
       - run: yarn release
