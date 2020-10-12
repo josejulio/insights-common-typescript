@@ -1,6 +1,6 @@
 {
   "name": "openapi2typescript-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "license": "Apache-2.0",
   "bin": {
@@ -21,9 +21,9 @@
     "prettier": "2.1.1"
   },
   "devDependencies": {
+    "assert-never": "1.2.1",
     "camelcase": "5.3.1",
-    "commander": "6.1.0",
-    "assert-never": "1.2.1"
+    "commander": "6.1.0"
   },
   "publishConfig": {
     "access": "public"
