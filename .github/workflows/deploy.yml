@@ -13,7 +13,10 @@ jobs:
         with:
           node-version: '12'
           check-latest: true
+          registry-url: 'https://registry.npmjs.org'
       - uses: bahmutov/npm-install@v1
       - run: yarn ci
       - run: git config user.email "insights-common-typescript@notfound" && git config user.name "CI job"
       - run: yarn release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
