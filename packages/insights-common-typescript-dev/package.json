@@ -19,5 +19,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "jest-mock": "26.5.2"
   }
 }
