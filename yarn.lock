@@ -1827,6 +1827,17 @@
     "@redhat-cloud-services/frontend-components-utilities" "*"
     sanitize-html "^1.25.0"
 
+"@redhat-cloud-services/insights-common-typescript@file:packages/insights-common-typescript":
+  version "3.0.6"
+  dependencies:
+    camelcase "5.3.1"
+    classnames "2.2.6"
+    commander "5.1.0"
+    is-url "1.2.4"
+    node-fetch "2.6.0"
+    node-jq "1.11.1"
+    prettier "2.1.1"
+
 "@redhat-cloud-services/rbac-client@1.0.71":
   version "1.0.71"
   resolved "https://registry.yarnpkg.com/@redhat-cloud-services/rbac-client/-/rbac-client-1.0.71.tgz#4a3b052e68d71a343fefe094249ac36bd8e4d33d"
@@ -7673,7 +7684,7 @@ inquirer@6.5.2, inquirer@^6.2.0, inquirer@^6.2.2:
     through "^2.3.6"
 
 "insights-common-typescript@file:packages/insights-common-typescript":
-  version "3.0.5"
+  version "3.0.6"
   dependencies:
     camelcase "5.3.1"
     classnames "2.2.6"

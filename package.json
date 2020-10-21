@@ -6,9 +6,10 @@
   ],
   "scripts": {
     "build": "lerna run build --stream",
-    "ci": "lerna run ci --stream",
+    "ci": "npm-run-all build lint test:ci",
     "lint": "lerna run lint --stream",
     "test": "lerna run test --stream",
+    "test:ci": "lerna run test:ci --stream",
     "release": "lerna publish --conventional-commits --no-commit-hooks --yes"
   },
   "husky": {

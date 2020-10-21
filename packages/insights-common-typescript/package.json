@@ -12,10 +12,10 @@
   ],
   "scripts": {
     "build": "rollup --config",
-    "ci": "npm-run-all build lint 'test --coverage --forceExit --maxWorkers=4 --detectOpenHandles'",
     "lint": "eslint --ext js,ts,tsx config src",
     "lint:fix": "eslint --ext js,ts,tsx config src --fix",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "test:ci": "npm-run-all 'test --coverage --forceExit --maxWorkers=4 --detectOpenHandles'"
   },
   "dependencies": {
     "camelcase": "5.3.1",
@@ -46,8 +46,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "devDependencies": {
-    "insights-common-typescript-dev": "^0.0.4"
   }
 }
