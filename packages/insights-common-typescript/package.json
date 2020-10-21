@@ -48,6 +48,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "insights-common-typescript-dev": "^0.0.3"
+    "insights-common-typescript-dev": "^0.0.4"
   }
 }
