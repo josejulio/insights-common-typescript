@@ -1,5 +1,6 @@
 import fetchMock from 'fetch-mock';
-import { getInsights, mockInsights, createFetchingClient } from '../..';
+import { getInsights, createFetchingClient } from '../..';
+import { mockInsights } from 'insights-common-typescript-dev';
 
 describe('src/app/FetchingConfiguration', () => {
 

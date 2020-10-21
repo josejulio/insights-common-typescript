@@ -31,7 +31,8 @@ const config = [
                     'node-fetch',
                     'is-url',
                     'commander',
-                    'camelcase'
+                    'camelcase',
+                    'assert-never'
                 ],
                 extensions,
                 preferBuiltins: false

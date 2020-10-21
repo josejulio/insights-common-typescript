@@ -59,7 +59,8 @@ const configEntriesForTsFile = (source, output) => [
             wildcardExternal([ '@redhat-cloud-services/frontend-components-utilities/**' ]),
             typescript({
                 sourceMap: true,
-                declaration: false
+                declaration: false,
+                exclude: /__tests__/
             }),
             compiler()
         ],

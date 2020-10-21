@@ -820,6 +820,17 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@jest/types@^26.5.2":
+  version "26.5.2"
+  resolved "https://registry.yarnpkg.com/@jest/types/-/types-26.5.2.tgz#44c24f30c8ee6c7f492ead9ec3f3c62a5289756d"
+  integrity sha512-QDs5d0gYiyetI8q+2xWdkixVQMklReZr4ltw7GFDtb4fuJIBCE6mzj2LnitGqCuAlLap6wPyb8fpoHgwZz5fdg==
+  dependencies:
+    "@types/istanbul-lib-coverage" "^2.0.0"
+    "@types/istanbul-reports" "^3.0.0"
+    "@types/node" "*"
+    "@types/yargs" "^15.0.0"
+    chalk "^4.0.0"
+
 "@jridgewell/resolve-uri@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@jridgewell/resolve-uri/-/resolve-uri-1.0.0.tgz#3fdf5798f0b49e90155896f6291df186eac06c83"
@@ -1815,6 +1826,17 @@
   dependencies:
     "@redhat-cloud-services/frontend-components-utilities" "*"
     sanitize-html "^1.25.0"
+
+"@redhat-cloud-services/insights-common-typescript@file:packages/insights-common-typescript":
+  version "3.0.6"
+  dependencies:
+    camelcase "5.3.1"
+    classnames "2.2.6"
+    commander "5.1.0"
+    is-url "1.2.4"
+    node-fetch "2.6.0"
+    node-jq "1.11.1"
+    prettier "2.1.1"
 
 "@redhat-cloud-services/rbac-client@1.0.71":
   version "1.0.71"
@@ -7662,7 +7684,7 @@ inquirer@6.5.2, inquirer@^6.2.0, inquirer@^6.2.2:
     through "^2.3.6"
 
 "insights-common-typescript@file:packages/insights-common-typescript":
-  version "3.0.3"
+  version "3.0.6"
   dependencies:
     camelcase "5.3.1"
     classnames "2.2.6"
@@ -8510,7 +8532,15 @@ jest-message-util@^26.3.0:
     slash "^3.0.0"
     stack-utils "^2.0.2"
 
-jest-mock@26.3.0, jest-mock@^26.3.0:
+jest-mock@26.5.2, jest-mock@^26.5.2:
+  version "26.5.2"
+  resolved "https://registry.yarnpkg.com/jest-mock/-/jest-mock-26.5.2.tgz#c9302e8ef807f2bfc749ee52e65ad11166a1b6a1"
+  integrity sha512-9SiU4b5PtO51v0MtJwVRqeGEroH66Bnwtq4ARdNP7jNXbpT7+ByeWNAk4NeT/uHfNSVDXEXgQo1XRuwEqS6Rdw==
+  dependencies:
+    "@jest/types" "^26.5.2"
+    "@types/node" "*"
+
+jest-mock@^26.3.0:
   version "26.3.0"
   resolved "https://registry.yarnpkg.com/jest-mock/-/jest-mock-26.3.0.tgz#ee62207c3c5ebe5f35b760e1267fee19a1cfdeba"
   integrity sha512-PeaRrg8Dc6mnS35gOo/CbZovoDPKAeB1FICZiuagAgGvbWdNNyjQjkOaGUa/3N3JtpQ/Mh9P4A2D4Fv51NnP8Q==

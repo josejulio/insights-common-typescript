@@ -14,7 +14,10 @@ const config = [
                 file: 'index.js',
                 format: 'umd',
                 name: 'index',
-                sourcemap: true
+                sourcemap: true,
+                globals: {
+                    'jest-mock': 'jestMock'
+                }
             },
             {
                 file: 'esm/index.js',

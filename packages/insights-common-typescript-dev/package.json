@@ -12,12 +12,16 @@
   ],
   "scripts": {
     "build": "rollup --config",
-    "ci": "npm-run-all build lint 'test --coverage --forceExit --maxWorkers=4 --detectOpenHandles'",
     "lint": "eslint --ext js,ts,tsx src",
     "lint:fix": "eslint --ext js,ts,tsx src --fix",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "test:ci": "npm-run-all 'test --coverage --forceExit --maxWorkers=4 --detectOpenHandles'"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@redhat-cloud-services/insights-common-typescript": "file:../insights-common-typescript",
+    "jest-mock": "26.5.2"
   }
 }

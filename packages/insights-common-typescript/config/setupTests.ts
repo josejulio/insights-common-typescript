@@ -1,3 +1,3 @@
-import { mockInsights } from '../src/utils';
+import { mockInsights } from 'insights-common-typescript-dev';
 
 mockInsights();
