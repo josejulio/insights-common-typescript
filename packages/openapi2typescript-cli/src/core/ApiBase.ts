@@ -14,6 +14,7 @@ import assertNever from 'assert-never';
 
 export interface Options {
     skipTypes: boolean;
+    strict: boolean;
 }
 
 export class ApiBase {
@@ -27,6 +28,7 @@ export class ApiBase {
         this.buffer = buffer;
         this.options = {
             skipTypes: false,
+            strict: true,
             ...options
         };
         this.localBuffer = [];
@@ -53,6 +55,9 @@ export class ApiBase {
                 this.appendTemp('z.object({\n');
                 this.properties(schema.properties);
                 this.appendTemp('})\n');
+                if (!this.options.strict) {
+                    this.appendTemp('.nonstrict()');
+                }
             }
 
             if (schema.properties && schema.additionalProperties) {

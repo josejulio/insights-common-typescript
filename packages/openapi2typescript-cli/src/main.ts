@@ -19,6 +19,7 @@ export interface Options {
     actionGenerator: ActionGeneratorType;
     addEslintDisable: boolean;
     skipTypes: boolean;
+    strict: boolean;
 }
 
 export const execute = async (options: Options) => {
