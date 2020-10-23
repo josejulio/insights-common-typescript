@@ -7,7 +7,31 @@ describe('src/Program', () => {
             skipPostProcess: false,
             actionGenerator: ActionGeneratorType.NONE,
             addEslintDisable: false,
-            skipTypes: false
+            skipTypes: false,
+            strict: true
+        });
+    });
+
+    it('Allows to override default values', () => {
+        expect(getProgram().parse([
+            '--skip-post-process',
+            '--action-generator',
+            'react-fetching-library',
+            '--add-eslint-disable',
+            '--skip-types',
+            '--no-strict',
+            '-i',
+            'input',
+            '-o',
+            'output'
+        ], {
+            from: 'user'
+        })).toMatchObject({
+            skipPostProcess: true,
+            actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
+            addEslintDisable: true,
+            skipTypes: true,
+            strict: false
         });
     });
 });

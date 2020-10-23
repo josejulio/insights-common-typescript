@@ -33,10 +33,43 @@ describe('src/cli/schema', () => {
                 skipPostProcess: false,
                 addEslintDisable: true,
                 actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
-                skipTypes: true
+                skipTypes: true,
+                strict: true
             }).then(() => {
                 expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
                 expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).toMatchSnapshot();
+
+            });
+        });
+
+        it('sets objects to nonstrict if strict is false', () => {
+            return execute({
+                input: filename,
+                output: tempSchemaDir,
+                skipPostProcess: false,
+                addEslintDisable: true,
+                actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
+                skipTypes: true,
+                strict: false
+            }).then(() => {
+                expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
+                expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).toContain('.nonstrict()');
+
+            });
+        });
+
+        it('do not set objects to nonstrict if strict is true', () => {
+            return execute({
+                input: filename,
+                output: tempSchemaDir,
+                skipPostProcess: false,
+                addEslintDisable: true,
+                actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
+                skipTypes: true,
+                strict: true
+            }).then(() => {
+                expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
+                expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).not.toContain('.nonstrict()');
 
             });
         });
@@ -53,7 +86,8 @@ describe('src/cli/schema', () => {
                 addEslintDisable: true,
                 skipPostProcess: false,
                 skipTypes: false,
-                actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY
+                actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
+                strict: true
             }).then(() => {
                 (fetchMock as any).restore();
                 expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();

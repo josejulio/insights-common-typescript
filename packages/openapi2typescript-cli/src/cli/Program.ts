@@ -43,6 +43,12 @@ export const getProgram = () => {
         'Skip the types, useful for js building',
         false
     )
+    .option(
+        '--no-strict',
+        'Whether or not to use the non-strict checking of zod. \n' +
+        'If --no-strict is set, the unknown keys are ignored instead of counting as an error.\n' +
+        'This could be useful to avoid failing if a new schema adds new properties to objects.'
+    )
     .requiredOption(
         '-i, --input <openapijson-file-or-url>',
         'URL or local path to the openapi.json file.'
