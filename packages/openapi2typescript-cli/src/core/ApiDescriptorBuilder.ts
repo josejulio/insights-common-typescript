@@ -1,7 +1,7 @@
 import { isReference, OpenAPI3 } from './types/OpenAPI3';
 import {
     APIDescriptor, Type, StringMap, Schema, SchemaObject, SchemaOrType, SchemaType, SchemaUnknown, SchemaWithTypeName,
-    Parameter, ParamType, Path, RequestBody, Response, Verb, deType, SchemaBase, isType
+    Parameter, ParamType, Path, RequestBody, Response, Verb, deType, isType
 } from './types/ApiDescriptor';
 import camelcase from 'camelcase';
 
@@ -80,14 +80,17 @@ class ApiDescriptorBuilder {
                 if (schema.properties) {
                     this.findAndFixLoopsOfArraySchema(Object.values(schema.properties), localTypePath);
                 }
+
                 if (schema.additionalProperties) {
                     this.findAndFixLoopsOfSchema(schema.additionalProperties, localTypePath);
                 }
+
                 break;
             case SchemaType.ARRAY:
                 if (schema.items) {
                     this.findAndFixLoopsOfSchema(schema.items, localTypePath);
                 }
+
                 break;
             case SchemaType.ANY_OF:
                 this.findAndFixLoopsOfArraySchema(schema.anyOf, localTypePath);

@@ -27,6 +27,7 @@ export class ApiTypeBuilder extends ApiBase {
                 } else {
                     this.appendTemp(`z.infer<typeof ${schema.typeName}>`);
                 }
+
                 this.appendTemp(';\n');
             }
 

@@ -91,6 +91,7 @@ export abstract class ApiActionBuilder extends ApiBase {
                     } else {
                         this.appendTemp(`z.infer<typeof ${propName}>`);
                     }
+
                     this.appendTemp(';\n');
                 }
             }
@@ -109,6 +110,7 @@ export abstract class ApiActionBuilder extends ApiBase {
                     } else {
                         this.appendTemp(`z.infer<typeof ${propName}>`);
                     }
+
                     this.appendTemp(';\n');
                 }
             }

@@ -44,6 +44,7 @@ export class ApiBase {
             if (schema.isOptional) {
                 this.appendTemp('?');
             }
+
             this.appendTemp(': ');
 
             this.schemaTypes(schema);
@@ -66,10 +67,11 @@ export class ApiBase {
             }
 
             if (schema.additionalProperties) {
-                this.appendTemp('[x: string]: ')
+                this.appendTemp('[x: string]: ');
                 this.schemaTypes(schema.additionalProperties);
                 this.appendTemp('\n');
             }
+
             this.appendTemp('}\n');
         } else {
             this.appendTemp('unknown');
@@ -89,7 +91,7 @@ export class ApiBase {
             switch (schema.type) {
                 case SchemaType.ALL_OF:
                     if (schema.allOf.length) {
-                        this.appendTemp('(')
+                        this.appendTemp('(');
                     }
 
                     schema.allOf.filter(schema => !this.isUnknown(schema)).forEach((localSchema, index, array) => {
@@ -100,7 +102,7 @@ export class ApiBase {
                     });
 
                     if (schema.allOf.length) {
-                        this.appendTemp(')')
+                        this.appendTemp(')');
                     }
 
                     break;
@@ -149,6 +151,7 @@ export class ApiBase {
                     if (schema.enum.length > 0) {
                         this.appendTemp(')');
                     }
+
                     break;
                 case SchemaType.ARRAY:
                     this.arrayTypes(schema);
