@@ -1,7 +1,8 @@
 import { isReference, OpenAPI3 } from './types/OpenAPI3';
 import {
     APIDescriptor, Type, StringMap, Schema, SchemaObject, SchemaOrType, SchemaType, SchemaUnknown, SchemaWithTypeName,
-    Parameter, ParamType, Path, RequestBody, Response, Verb } from './types/ApiDescriptor';
+    Parameter, ParamType, Path, RequestBody, Response, Verb, deType, SchemaBase, isType
+} from './types/ApiDescriptor';
 import camelcase from 'camelcase';
 
 const refToName = (reference: OpenAPI3.Reference) => {
@@ -32,13 +33,72 @@ class ApiDescriptorBuilder {
     }
 
     public build(): APIDescriptor {
-        return {
+        const descriptor: APIDescriptor = {
             basePath: this.getBasePath(),
             components: {
                 schemas: this.getSchemaComponents()
             },
             paths: this.getPaths()
         };
+
+        this.findAndFixLoops(descriptor);
+
+        return descriptor;
+    }
+
+    private findAndFixLoops(descriptor: APIDescriptor) {
+        for (const [ name, schema ] of Object.entries(descriptor.components?.schemas ?? {})) {
+            this.findAndFixLoopsOfSchema(schema, [ name ]);
+        }
+    }
+
+    private findAndFixLoopsOfArraySchema(schemasOrTypes: Array<SchemaOrType>, typePath: Array<string>) {
+        for (const schemaOrType of schemasOrTypes) {
+            this.findAndFixLoopsOfSchema(schemaOrType, typePath);
+        }
+    }
+
+    private findAndFixLoopsOfSchema(schemaOrType: SchemaOrType, typePath: Array<string>) {
+        const localTypePath = [ ...typePath ];
+        if (isType(schemaOrType)) {
+            if (localTypePath.includes(schemaOrType.typeName)) {
+                schemaOrType.hasLoop = true;
+            }
+
+            localTypePath.push(schemaOrType.typeName);
+
+            if (schemaOrType.hasLoop) {
+                // Loop already identified, nothing else to do.
+                return;
+            }
+        }
+
+        const schema = deType(schemaOrType);
+
+        switch (schema.type) {
+            case SchemaType.OBJECT:
+                if (schema.properties) {
+                    this.findAndFixLoopsOfArraySchema(Object.values(schema.properties), localTypePath);
+                }
+                if (schema.additionalProperties) {
+                    this.findAndFixLoopsOfSchema(schema.additionalProperties, localTypePath);
+                }
+                break;
+            case SchemaType.ARRAY:
+                if (schema.items) {
+                    this.findAndFixLoopsOfSchema(schema.items, localTypePath);
+                }
+                break;
+            case SchemaType.ANY_OF:
+                this.findAndFixLoopsOfArraySchema(schema.anyOf, localTypePath);
+                break;
+            case SchemaType.ONE_OF:
+                this.findAndFixLoopsOfArraySchema(schema.oneOf, localTypePath);
+                break;
+            case SchemaType.ALL_OF:
+                this.findAndFixLoopsOfArraySchema(schema.allOf, localTypePath);
+                break;
+        }
     }
 
     private getSchemaComponents(): StringMap<SchemaWithTypeName> {

@@ -1,6 +1,6 @@
 import camelcase from 'camelcase';
 import {
-    APIDescriptor,
+    APIDescriptor, deType,
     isType,
     Operation,
     Parameter,
@@ -52,7 +52,7 @@ export abstract class ApiActionBuilder extends ApiBase {
     }
 
     protected filteredParameters(parameters: Array<ParameterOrType>) {
-        return parameters.map(p => this.deType<Parameter>(p)).filter(p => p.type !== ParamType.COOKIE);
+        return parameters.map(p => deType<Parameter>(p)).filter(p => p.type !== ParamType.COOKIE);
     }
 
     protected anonymousTypes(operation: Operation) {

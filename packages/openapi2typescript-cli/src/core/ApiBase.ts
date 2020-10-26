@@ -187,14 +187,6 @@ export class ApiBase {
         }
     }
 
-    protected deType<T>(type: T | Type<T>): T {
-        if (isType(type)) {
-            return type.referred as T;
-        }
-
-        return type;
-    }
-
     protected appendTemp(...lines: Array<string>) {
         for (const line of lines) {
             this.localBuffer.push(line);
