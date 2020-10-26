@@ -106,6 +106,7 @@ export class ApiBase {
 
                         if (array.length !== index + 1) {
                             ++open;
+                            // Todo: Intersection is not the proper zod-way to do it. Need to change to schema.merge() to chain all the objects.
                             this.appendTemp('z.intersection(\n');
                         }
 
