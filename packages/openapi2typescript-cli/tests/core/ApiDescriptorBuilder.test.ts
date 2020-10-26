@@ -1,6 +1,7 @@
 import { buildApiDescriptor } from '../../src/core/ApiDescriptorBuilder';
 import { OpenAPI3 } from '../../src/core/types/OpenAPI3';
 import { SchemaType } from '../../src/core/types/ApiDescriptor';
+import { readFileSync } from "fs";
 
 const emptyOpenApi: Readonly<OpenAPI3> = {
     info: {
@@ -417,5 +418,13 @@ describe('src/core/ApiDescriptorBuilder', () => {
             },
             paths: []
         });
+    });
+
+    it.only('Only first component is marked for a loop', () => {
+        const json = JSON.parse(readFileSync('./tests/__fixtures__/notifications-openapi.json').toString());
+        const descriptor = buildApiDescriptor(json);
+        console.log(descriptor.components.schemas?.EventType);
+        console.log((descriptor.components.schemas?.Application as any).properties.eventTypes.referred);
+
     });
 });

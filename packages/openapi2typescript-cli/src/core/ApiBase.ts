@@ -86,8 +86,15 @@ export class ApiBase {
 
     protected schema(schema: SchemaOrType, doNotUseModifiers?: boolean) {
         if (isType(schema)) {
-            // Todo: Check if we can use the type instead of the function name
-            this.appendTemp(`${this.functionName(schema)}()`);
+            if (schema.hasLoop) {
+                this.appendTemp('z.lazy(() => ');
+            }
+
+            this.appendTemp(schema.typeName);
+
+            if (schema.hasLoop) {
+                this.appendTemp(')');
+            }
         } else {
             switch (schema.type) {
                 case SchemaType.ALL_OF:
