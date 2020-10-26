@@ -192,6 +192,9 @@ import * as z from 'zod';
 export const Fruit = zodSchemaFruit();
 export type Fruit = z.infer<typeof Fruit>;
 
+export const Message = zodSchemaMessage();
+export type Message = z.infer<typeof Message>;
+
 export const SetFruit = zodSchemaSetFruit();
 export type SetFruit = z.infer<typeof SetFruit>;
 
@@ -199,6 +202,12 @@ export function zodSchemaFruit() {
     return z.object({
         description: z.string().optional().nullable(),
         name: z.string().optional().nullable()
+    });
+}
+
+export function zodSchemaMessage() {
+    return z.object({
+        description: z.string().optional().nullable()
     });
 }
 
@@ -226,6 +235,9 @@ import {
 
 export const Fruit = zodSchemaFruit();
 export type Fruit = z.infer<typeof Fruit>;
+
+export const Message = zodSchemaMessage();
+export type Message = z.infer<typeof Message>;
 
 export const SetFruit = zodSchemaSetFruit();
 export type SetFruit = z.infer<typeof SetFruit>;
@@ -277,6 +289,7 @@ export interface DeleteFruits {
 
 export type DeleteFruitsPayload =
   | ValidatedResponse<'SetFruit', 200, SetFruit>
+  | ValidatedResponse<'Message', 400, Message>
   | ValidatedResponse<'unknown', undefined, unknown>;
 export type ActionDeleteFruits = Action<
   DeleteFruitsPayload,
@@ -291,7 +304,10 @@ export const actionDeleteFruits = (
     .queryParams(query)
     .data(params.body)
     .config({
-        rules: [{ status: 200, zod: SetFruit, type: 'SetFruit' }]
+        rules: [
+            { status: 200, zod: SetFruit, type: 'SetFruit' },
+            { status: 400, zod: Message, type: 'Message' }
+        ]
     })
     .build();
 };
@@ -300,6 +316,12 @@ export function zodSchemaFruit() {
     return z.object({
         description: z.string().optional().nullable(),
         name: z.string().optional().nullable()
+    });
+}
+
+export function zodSchemaMessage() {
+    return z.object({
+        description: z.string().optional().nullable()
     });
 }
 
@@ -321,12 +343,20 @@ import * as z from 'zod';
 
 export const Fruit = zodSchemaFruit();
 
+export const Message = zodSchemaMessage();
+
 export const SetFruit = zodSchemaSetFruit();
 
 export function zodSchemaFruit() {
     return z.object({
         description: z.string().optional().nullable(),
         name: z.string().optional().nullable()
+    });
+}
+
+export function zodSchemaMessage() {
+    return z.object({
+        description: z.string().optional().nullable()
     });
 }
 
@@ -352,6 +382,11 @@ export type Fruit = {
   name?: string | undefined | null;
 };
 
+export const Message = zodSchemaMessage();
+export type Message = {
+  description?: string | undefined | null;
+};
+
 export const SetFruit = zodSchemaSetFruit();
 export type SetFruit = Array<Fruit>;
 
@@ -359,6 +394,12 @@ export function zodSchemaFruit() {
     return z.object({
         description: z.string().optional().nullable(),
         name: z.string().optional().nullable()
+    });
+}
+
+export function zodSchemaMessage() {
+    return z.object({
+        description: z.string().optional().nullable()
     });
 }
 
@@ -380,6 +421,8 @@ import * as z from 'zod';
 import { actionBuilder } from 'openapi2typescript/react-fetching-library';
 
 export const Fruit = zodSchemaFruit();
+
+export const Message = zodSchemaMessage();
 
 export const SetFruit = zodSchemaSetFruit();
 
@@ -424,7 +467,10 @@ export const actionDeleteFruits = (params) => {
     .queryParams(query)
     .data(params.body)
     .config({
-        rules: [{ status: 200, zod: SetFruit, type: 'SetFruit' }]
+        rules: [
+            { status: 200, zod: SetFruit, type: 'SetFruit' },
+            { status: 400, zod: Message, type: 'Message' }
+        ]
     })
     .build();
 };
@@ -433,6 +479,12 @@ export function zodSchemaFruit() {
     return z.object({
         description: z.string().optional().nullable(),
         name: z.string().optional().nullable()
+    });
+}
+
+export function zodSchemaMessage() {
+    return z.object({
+        description: z.string().optional().nullable()
     });
 }
 
