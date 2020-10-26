@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript-cli@0.2.0...openapi2typescript-cli@0.2.1) (2020-10-26)
+
+
+### Bug Fixes
+
+* remove type from react-fetching-library plugin when using --skip-types ([375e391](https://github.com/RedHatInsights/insights-common-typescript/commit/375e391ef22ddead5d282560eef5742758e0a3aa))
+
+
+
+
+
 # [0.2.0](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript-cli@0.1.0...openapi2typescript-cli@0.2.0) (2020-10-26)
 
 
