@@ -926,7 +926,7 @@ const EndpointServiceGetEndpointsParamResponse200 = z.array(Endpoint);
 */
 export const actionEndpointServiceGetEndpoints = (params) => {
     const path = '/api/integrations/v1.0/endpoints';
-    const query = {} as Record<string, any>;
+    const query = {};
     if (params.active !== undefined) {
         query.active = params.active.toString();
     }
@@ -972,7 +972,7 @@ body: Endpoint
 */
 export const actionEndpointServiceCreateEndpoint = (params) => {
     const path = '/api/integrations/v1.0/endpoints';
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('POST', path)
     .queryParams(query)
     .data(params.body)
@@ -992,7 +992,7 @@ export const actionEndpointServiceGetEndpoint = (params) => {
         '{id}',
         params.id.toString()
     );
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
@@ -1013,7 +1013,7 @@ export const actionEndpointServiceUpdateEndpoint = (params) => {
         '{id}',
         params.id.toString()
     );
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('PUT', path)
     .queryParams(query)
     .data(params.body)
@@ -1040,7 +1040,7 @@ export const actionEndpointServiceDeleteEndpoint = (params) => {
         '{id}',
         params.id.toString()
     );
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('DELETE', path)
     .queryParams(query)
     .config({
@@ -1066,7 +1066,7 @@ export const actionEndpointServiceEnableEndpoint = (params) => {
         '{id}',
         params.id.toString()
     );
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('PUT', path)
     .queryParams(query)
     .config({
@@ -1092,7 +1092,7 @@ export const actionEndpointServiceDisableEndpoint = (params) => {
         '{id}',
         params.id.toString()
     );
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('DELETE', path)
     .queryParams(query)
     .config({
@@ -1120,7 +1120,7 @@ export const actionEndpointServiceGetEndpointHistory = (params) => {
         '{id}',
         params.id.toString()
     );
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
@@ -1161,7 +1161,7 @@ export const actionEndpointServiceGetDetailedEndpointHistory = (params) => {
     const path = '/api/integrations/v1.0/endpoints/{id}/history/{history_id}/details'
     .replace('{history_id}', params.historyId.toString())
     .replace('{id}', params.id.toString());
-    const query = {} as Record<string, any>;
+    const query = {};
     if (params.limit !== undefined) {
         query.limit = params.limit.toString();
     }
@@ -2305,7 +2305,7 @@ const NotificationServiceGetEndpointsForDefaultsParamResponse200 = z.array(
 );
 export const actionNotificationServiceGetEndpointsForDefaults = () => {
     const path = '/api/notifications/v1.0/notifications/defaults';
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
@@ -2330,7 +2330,7 @@ export const actionNotificationServiceAddEndpointToDefaults = (params) => {
         '{endpointId}',
         params.endpointId.toString()
     );
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('PUT', path)
     .queryParams(query)
     .config({
@@ -2349,7 +2349,7 @@ export const actionNotificationServiceDeleteEndpointFromDefaults = (params) => {
         '{endpointId}',
         params.endpointId.toString()
     );
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('DELETE', path)
     .queryParams(query)
     .config({
@@ -2373,7 +2373,7 @@ const NotificationServiceGetEventTypesParamResponse200 = z.array(EventType);
 */
 export const actionNotificationServiceGetEventTypes = (params) => {
     const path = '/api/notifications/v1.0/notifications/eventTypes';
-    const query = {} as Record<string, any>;
+    const query = {};
     if (params.limit !== undefined) {
         query.limit = params.limit.toString();
     }
@@ -2424,7 +2424,7 @@ export const actionNotificationServiceGetLinkedEndpoints = (params) => {
         '{eventTypeId}',
         params.eventTypeId.toString()
     );
-    const query = {} as Record<string, any>;
+    const query = {};
     if (params.limit !== undefined) {
         query.limit = params.limit.toString();
     }
@@ -2469,7 +2469,7 @@ export const actionNotificationServiceLinkEndpointToEventType = (params) => {
     const path = '/api/notifications/v1.0/notifications/eventTypes/{eventTypeId}/{endpointId}'
     .replace('{endpointId}', params.endpointId.toString())
     .replace('{eventTypeId}', params.eventTypeId.toString());
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('PUT', path)
     .queryParams(query)
     .config({
@@ -2499,7 +2499,7 @@ export const actionNotificationServiceUnlinkEndpointFromEventType = (
     const path = '/api/notifications/v1.0/notifications/eventTypes/{eventTypeId}/{endpointId}'
     .replace('{endpointId}', params.endpointId.toString())
     .replace('{eventTypeId}', params.eventTypeId.toString());
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('DELETE', path)
     .queryParams(query)
     .config({
@@ -2514,7 +2514,7 @@ const NotificationServiceGetNotificationUpdatesParamResponse200 = z.array(
 );
 export const actionNotificationServiceGetNotificationUpdates = () => {
     const path = '/api/notifications/v1.0/notifications/updates';
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
@@ -2537,7 +2537,7 @@ body: NotificationServiceMarkReadParamBody
 */
 export const actionNotificationServiceMarkRead = (params) => {
     const path = '/api/notifications/v1.0/notifications/{id}';
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('DELETE', path)
     .queryParams(query)
     .data(params.body)
@@ -3812,7 +3812,7 @@ export const actionPostPoliciesByIdEnabled = (params) => {
         '{id}',
         params.id.toString()
     );
-    const query = {} as Record<string, any>;
+    const query = {};
     if (params.enabled !== undefined) {
         query.enabled = params.enabled.toString();
     }
@@ -3833,7 +3833,7 @@ export const actionPostPoliciesByIdEnabled = (params) => {
 // GET /status
 export const actionGetStatus = () => {
     const path = '/api/policies/v1.0/status';
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
@@ -3852,7 +3852,7 @@ body: ListUUID
 */
 export const actionPostPoliciesIdsEnabled = (params) => {
     const path = '/api/policies/v1.0/policies/ids/enabled';
-    const query = {} as Record<string, any>;
+    const query = {};
     if (params.enabled !== undefined) {
         query.enabled = params.enabled.toString();
     }
@@ -3874,7 +3874,7 @@ export const actionPostPoliciesIdsEnabled = (params) => {
 const GetFactsParamResponse200 = z.array(Fact);
 export const actionGetFacts = () => {
     const path = '/api/policies/v1.0/facts';
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
@@ -3929,7 +3929,7 @@ const GetPoliciesParamSortDirection = z.enum([ 'asc', 'desc' ]);
 */
 export const actionGetPolicies = (params) => {
     const path = '/api/policies/v1.0/policies';
-    const query = {} as Record<string, any>;
+    const query = {};
     if (params.filterOpDescription !== undefined) {
         query['filter:op[description]'] = params.filterOpDescription.toString();
     }
@@ -3999,7 +3999,7 @@ body: Policy
 */
 export const actionPostPolicies = (params) => {
     const path = '/api/policies/v1.0/policies';
-    const query = {} as Record<string, any>;
+    const query = {};
     if (params.alsoStore !== undefined) {
         query.alsoStore = params.alsoStore.toString();
     }
@@ -4039,7 +4039,7 @@ export const actionGetPoliciesById = (params) => {
         '{id}',
         params.id.toString()
     );
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
@@ -4063,7 +4063,7 @@ export const actionDeletePoliciesById = (params) => {
         '{id}',
         params.id.toString()
     );
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('DELETE', path)
     .queryParams(query)
     .config({
@@ -4093,7 +4093,7 @@ export const actionPutPoliciesByPolicyId = (params) => {
         '{policyId}',
         params.policyId.toString()
     );
-    const query = {} as Record<string, any>;
+    const query = {};
     if (params.dry !== undefined) {
         query.dry = params.dry.toString();
     }
@@ -4127,7 +4127,7 @@ body: PostPoliciesValidateNameParamBody
 */
 export const actionPostPoliciesValidateName = (params) => {
     const path = '/api/policies/v1.0/policies/validate-name';
-    const query = {} as Record<string, any>;
+    const query = {};
     if (params.id !== undefined) {
         query.id = params.id.toString();
     }
@@ -4174,7 +4174,7 @@ const GetPoliciesIdsParamFilterName = z.string();
 */
 export const actionGetPoliciesIds = (params) => {
     const path = '/api/policies/v1.0/policies/ids';
-    const query = {} as Record<string, any>;
+    const query = {};
     if (params.filterOpDescription !== undefined) {
         query['filter:op[description]'] = params.filterOpDescription.toString();
     }
@@ -4217,7 +4217,7 @@ body: ListUUID
 */
 export const actionDeletePoliciesIds = (params) => {
     const path = '/api/policies/v1.0/policies/ids';
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('DELETE', path)
     .queryParams(query)
     .data(params.body)
@@ -4242,7 +4242,7 @@ body: Policy
 */
 export const actionPostPoliciesValidate = (params) => {
     const path = '/api/policies/v1.0/policies/validate';
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('POST', path)
     .queryParams(query)
     .data(params.body)
@@ -4260,7 +4260,7 @@ export const actionPostPoliciesValidate = (params) => {
 // Just a filler to have a defined return code for the base path
 export const actionGet = () => {
     const path = '/api/policies/v1.0/';
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
@@ -4308,7 +4308,7 @@ export const actionGetPoliciesByIdHistoryTrigger = (params) => {
         '{id}',
         params.id.toString()
     );
-    const query = {} as Record<string, any>;
+    const query = {};
     if (params.filterOpId !== undefined) {
         query['filter:op[id]'] = params.filterOpId.toString();
     }
@@ -4558,7 +4558,7 @@ export const SetFruit = zodSchemaSetFruit();
 // GET /fruits
 export const actionGetFruits = () => {
     const path = '/fruits';
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
@@ -4574,7 +4574,7 @@ body: Fruit
 */
 export const actionPostFruits = (params) => {
     const path = '/fruits';
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('POST', path)
     .queryParams(query)
     .data(params.body)
@@ -4591,7 +4591,7 @@ body: Fruit
 */
 export const actionDeleteFruits = (params) => {
     const path = '/fruits';
-    const query = {} as Record<string, any>;
+    const query = {};
     return actionBuilder('DELETE', path)
     .queryParams(query)
     .data(params.body)

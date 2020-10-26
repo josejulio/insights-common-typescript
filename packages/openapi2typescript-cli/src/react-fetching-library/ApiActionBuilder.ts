@@ -52,7 +52,13 @@ export class ReactFetchingLibraryApiActionBuilder extends ApiActionBuilder {
         this.appendTemp(';\n');
 
         // Query params
-        this.appendTemp('const query = {} as Record<string, any>;\n');
+        this.appendTemp('const query = {}');
+        if (!this.options.skipTypes) {
+            this.appendTemp(' as Record<string, any>');
+        }
+
+        this.appendTemp(';\n');
+
         if (operation.parameters) {
             this.filteredParameters(operation.parameters).filter(p => p.type === ParamType.QUERY).forEach(param => {
                 this.appendTemp(`if (params['${this.paramName(param.name)}'] !== undefined) {\n`);
