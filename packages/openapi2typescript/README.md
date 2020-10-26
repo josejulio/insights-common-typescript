@@ -1,4 +1,4 @@
-#openapi2typescript
+# openapi2typescript
 
 Supporting lib for [openapi2typescript-cli](../openapi2typescript-cli/README.md).
 
@@ -7,8 +7,8 @@ See [openapi2typescript-cli](../openapi2typescript-cli/README.md)
 
 # Usage
 
-Once you have this library installed and your schema generated you can use this library to connect your client library
-to this one. Currently only [react-fetching-library](https://github.com/marcin-piela/react-fetching-library) is 
+Once you have this library installed and your schema generated you can use this library to connect your request library
+and start validating. Currently only [react-fetching-library](https://github.com/marcin-piela/react-fetching-library) is 
 supported, but more are welcome.
 
 ## Using without connecting
