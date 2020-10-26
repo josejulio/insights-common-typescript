@@ -19,7 +19,7 @@ npx openapi2typescript-cli
 To use, you must run the binary `npm run openapi2typescript` or with npx `npx openapi2typescript-cli `.
 You must specify the input file or url to the openapi and the output file, see the [Options](#Options) for more info.
 
-You can see the lib usage at: (openapi2typescript)[../Readme.md]
+You can see the lib usage at: [openapi2typescript](../openapi2typescript/README.md)
 
 ## Options
 
@@ -58,7 +58,7 @@ Use the `nonstrict` checking behavior of [zod](https://github.com/vriad/zod) for
 By default, zod will fail if an object comes with extra properties. With this flag, it won't fail if there are extra
 properties.
 
-## Examples
+## Example
 
 Given the following example:
 ```openapi.json
@@ -127,6 +127,16 @@ Given the following example:
                 }
               }
             }
+          },
+          "400" : {
+            "description" : "Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Message"
+                }
+              }
+            }
           }
         }
       }
@@ -141,6 +151,14 @@ Given the following example:
             "type" : "string"
           },
           "name" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Message" : {
+        "type" : "object",
+        "properties" : {
+          "description" : {
             "type" : "string"
           }
         }
@@ -165,7 +183,7 @@ Here are some results testing different flags:
 npx -i openapi.json -o result.ts
 ```
 
-```ts
+```typescript
 /**
  * Generated code, DO NOT modify directly.
  */
@@ -194,7 +212,7 @@ export function zodSchemaSetFruit() {
 npx -i openapi.json -o result.ts --action-generator react-fetching-library
 ```
 
-```ts
+```typescript
 /**
  * Generated code, DO NOT modify directly.
  */
@@ -322,7 +340,7 @@ export function zodSchemaSetFruit() {
 npx -i openapi.json -o result.ts --explicit-types
 ```
 
-```ts
+```typescript
 /**
  * Generated code, DO NOT modify directly.
  */
