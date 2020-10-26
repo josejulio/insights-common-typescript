@@ -21,7 +21,13 @@ export class ApiTypeBuilder extends ApiBase {
             this.appendTemp(`export const ${schema.typeName} = ${this.functionName(schema)}();\n`);
             this.writeTempToBuffer(BufferType.TYPES);
             if (!this.options.skipTypes) {
-                this.appendTemp(`export type ${schema.typeName} = z.infer<typeof ${schema.typeName}>;\n`);
+                this.appendTemp(`export type ${schema.typeName} = `);
+                if (this.options.explicitTypes) {
+                    this.schemaTypes(schema);
+                } else {
+                    this.appendTemp(`z.infer<typeof ${schema.typeName}>`);
+                }
+                this.appendTemp(';\n');
             }
 
             this.appendTemp('\n');

@@ -65,7 +65,14 @@ export abstract class ApiActionBuilder extends ApiBase {
                     this.appendTemp(';\n');
 
                     if (!this.options.skipTypes) {
-                        this.appendTemp(`type ${propName} = z.infer<typeof ${propName}>;\n`);
+                        this.appendTemp(`type ${propName} = `);
+                        if (this.options.explicitTypes) {
+                            this.schemaTypes(p.schema, true);
+                        } else {
+                            this.appendTemp(`z.infer<typeof ${propName}>`);
+                        }
+
+                        this.appendTemp(';\n');
                     }
                 }
             });
@@ -77,7 +84,15 @@ export abstract class ApiActionBuilder extends ApiBase {
                 this.appendTemp(`const ${propName} = `);
                 this.schema(operation.requestBody.schema, true);
                 this.appendTemp(';\n');
-                this.appendTemp(`type ${propName} = z.infer<typeof ${propName}>;\n`);
+                if (!this.options.skipTypes) {
+                    this.appendTemp(`type ${propName} = `);
+                    if (this.options.explicitTypes) {
+                        this.schemaTypes(operation.requestBody.schema, true);
+                    } else {
+                        this.appendTemp(`z.infer<typeof ${propName}>`);
+                    }
+                    this.appendTemp(';\n');
+                }
             }
         }
 
@@ -88,7 +103,13 @@ export abstract class ApiActionBuilder extends ApiBase {
                 this.schema(response.schema, true);
                 this.appendTemp(';\n');
                 if (!this.options.skipTypes) {
-                    this.appendTemp(`type ${propName} = z.infer<typeof ${propName}>;\n`);
+                    this.appendTemp(`type ${propName} = `);
+                    if (this.options.explicitTypes) {
+                        this.schemaTypes(response.schema, true);
+                    } else {
+                        this.appendTemp(`z.infer<typeof ${propName}>`);
+                    }
+                    this.appendTemp(';\n');
                 }
             }
         }

@@ -35,11 +35,43 @@ describe('src/cli/schema', () => {
                 addEslintDisable: true,
                 actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
                 skipTypes: true,
-                strict: true
+                strict: true,
+                explicitTypes: false
             }).then(() => {
                 expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
                 expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).toMatchSnapshot();
+            });
+        });
 
+        it('use any z.infer if explicitTypes is false', () => {
+            return execute({
+                input: filename,
+                output: tempSchemaDir,
+                skipPostProcess: false,
+                addEslintDisable: true,
+                actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
+                skipTypes: false,
+                strict: true,
+                explicitTypes: false
+            }).then(() => {
+                expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
+                expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).toContain('z.infer<');
+            });
+        });
+
+        it('do not use any z.infer if explicitTypes is true', () => {
+            return execute({
+                input: filename,
+                output: tempSchemaDir,
+                skipPostProcess: false,
+                addEslintDisable: true,
+                actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
+                skipTypes: false,
+                strict: true,
+                explicitTypes: true
+            }).then(() => {
+                expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
+                expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).not.toContain('z.infer<');
             });
         });
 
@@ -51,11 +83,11 @@ describe('src/cli/schema', () => {
                 addEslintDisable: true,
                 actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
                 skipTypes: true,
-                strict: false
+                strict: false,
+                explicitTypes: false
             }).then(() => {
                 expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
                 expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).toContain('.nonstrict()');
-
             });
         });
 
@@ -67,11 +99,11 @@ describe('src/cli/schema', () => {
                 addEslintDisable: true,
                 actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
                 skipTypes: true,
-                strict: true
+                strict: true,
+                explicitTypes: false
             }).then(() => {
                 expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();
                 expect(readFileSync(`${tempSchemaDir}/Generated.ts`).toString()).not.toContain('.nonstrict()');
-
             });
         });
 
@@ -88,7 +120,8 @@ describe('src/cli/schema', () => {
                 skipPostProcess: false,
                 skipTypes: false,
                 actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
-                strict: true
+                strict: true,
+                explicitTypes: false
             }).then(() => {
                 (fetchMock as any).restore();
                 expect(existsSync(`${tempSchemaDir}/Generated.ts`)).toBeTruthy();

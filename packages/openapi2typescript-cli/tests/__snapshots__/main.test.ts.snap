@@ -144,9 +144,7 @@ const EndpointServiceGetEndpointsParamType = z.string();
 type EndpointServiceGetEndpointsParamType = z.infer<
   typeof EndpointServiceGetEndpointsParamType
 >;
-const EndpointServiceGetEndpointsParamResponse200 = z.array(
-    zodSchemaEndpoint()
-);
+const EndpointServiceGetEndpointsParamResponse200 = z.array(Endpoint);
 type EndpointServiceGetEndpointsParamResponse200 = z.infer<
   typeof EndpointServiceGetEndpointsParamResponse200
 >;
@@ -439,7 +437,7 @@ export const actionEndpointServiceDisableEndpoint = (
 
 // GET /endpoints/{id}/history
 const EndpointServiceGetEndpointHistoryParamResponse200 = z.array(
-    zodSchemaNotificationHistory()
+    NotificationHistory
 );
 type EndpointServiceGetEndpointHistoryParamResponse200 = z.infer<
   typeof EndpointServiceGetEndpointHistoryParamResponse200
@@ -592,7 +590,7 @@ export function zodSchemaNewCookie() {
         value: z.string().optional().nullable(),
         version: z.number().int().optional().nullable(),
         comment: z.string().optional().nullable(),
-        expiry: zodSchemaDate().optional().nullable(),
+        expiry: Date.optional().nullable(),
         httpOnly: z.boolean().optional().nullable(),
         maxAge: z.number().int().optional().nullable(),
         secure: z.boolean().optional().nullable()
@@ -600,7 +598,7 @@ export function zodSchemaNewCookie() {
 }
 
 export function zodSchemaMapStringNewCookie() {
-    return z.record(zodSchemaNewCookie());
+    return z.record(NewCookie);
 }
 
 export function zodSchemaDate() {
@@ -626,31 +624,31 @@ export function zodSchemaLocale() {
         displayName: z.string().optional().nullable(),
         displayScript: z.string().optional().nullable(),
         displayVariant: z.string().optional().nullable(),
-        extensionKeys: zodSchemaSetCharacter().optional().nullable(),
+        extensionKeys: SetCharacter.optional().nullable(),
         iSO3Country: z.string().optional().nullable(),
         iSO3Language: z.string().optional().nullable(),
         language: z.string().optional().nullable(),
         script: z.string().optional().nullable(),
-        unicodeLocaleAttributes: zodSchemaSetString().optional().nullable(),
-        unicodeLocaleKeys: zodSchemaSetString().optional().nullable(),
+        unicodeLocaleAttributes: SetString.optional().nullable(),
+        unicodeLocaleKeys: SetString.optional().nullable(),
         variant: z.string().optional().nullable()
     });
 }
 
 export function zodSchemaLink() {
     return z.object({
-        params: zodSchemaMapStringString().optional().nullable(),
+        params: MapStringString.optional().nullable(),
         rel: z.string().optional().nullable(),
-        rels: zodSchemaListString().optional().nullable(),
+        rels: ListString.optional().nullable(),
         title: z.string().optional().nullable(),
         type: z.string().optional().nullable(),
-        uri: zodSchemaURI().optional().nullable(),
-        uriBuilder: zodSchemaUriBuilder().optional().nullable()
+        uri: URI.optional().nullable(),
+        uriBuilder: UriBuilder.optional().nullable()
     });
 }
 
 export function zodSchemaSetLink() {
-    return z.array(zodSchemaLink());
+    return z.array(Link);
 }
 
 export function zodSchemaURI() {
@@ -659,7 +657,7 @@ export function zodSchemaURI() {
 
 export function zodSchemaMediaType() {
     return z.object({
-        parameters: zodSchemaMapStringString().optional().nullable(),
+        parameters: MapStringString.optional().nullable(),
         subtype: z.string().optional().nullable(),
         type: z.string().optional().nullable(),
         wildcardSubtype: z.boolean().optional().nullable(),
@@ -669,7 +667,7 @@ export function zodSchemaMediaType() {
 
 export function zodSchemaStatusType() {
     return z.object({
-        family: zodSchemaFamily().optional().nullable(),
+        family: Family.optional().nullable(),
         reasonPhrase: z.string().optional().nullable(),
         statusCode: z.number().int().optional().nullable()
     });
@@ -708,22 +706,22 @@ export function zodSchemaSetCharacter() {
 
 export function zodSchemaResponse() {
     return z.object({
-        allowedMethods: zodSchemaSetString().optional().nullable(),
-        cookies: zodSchemaMapStringNewCookie().optional().nullable(),
-        date: zodSchemaDate().optional().nullable(),
+        allowedMethods: SetString.optional().nullable(),
+        cookies: MapStringNewCookie.optional().nullable(),
+        date: Date.optional().nullable(),
         entity: z.unknown().optional().nullable(),
-        entityTag: zodSchemaEntityTag().optional().nullable(),
-        headers: zodSchemaMultivaluedMapStringObject().optional().nullable(),
-        language: zodSchemaLocale().optional().nullable(),
-        lastModified: zodSchemaDate().optional().nullable(),
+        entityTag: EntityTag.optional().nullable(),
+        headers: MultivaluedMapStringObject.optional().nullable(),
+        language: Locale.optional().nullable(),
+        lastModified: Date.optional().nullable(),
         length: z.number().int().optional().nullable(),
-        links: zodSchemaSetLink().optional().nullable(),
-        location: zodSchemaURI().optional().nullable(),
-        mediaType: zodSchemaMediaType().optional().nullable(),
-        metadata: zodSchemaMultivaluedMapStringObject().optional().nullable(),
+        links: SetLink.optional().nullable(),
+        location: URI.optional().nullable(),
+        mediaType: MediaType.optional().nullable(),
+        metadata: MultivaluedMapStringObject.optional().nullable(),
         status: z.number().int().optional().nullable(),
-        statusInfo: zodSchemaStatusType().optional().nullable(),
-        stringHeaders: zodSchemaMultivaluedMapStringString().optional().nullable()
+        statusInfo: StatusType.optional().nullable(),
+        stringHeaders: MultivaluedMapStringString.optional().nullable()
     });
 }
 
@@ -744,9 +742,9 @@ export function zodSchemaHttpType() {
 
 export function zodSchemaWebhookAttributes() {
     return z.object({
-        basic_authentication: zodSchemaBasicAuthentication().optional().nullable(),
+        basic_authentication: BasicAuthentication.optional().nullable(),
         disable_ssl_verification: z.boolean().optional().nullable(),
-        method: z.intersection(zodSchemaHttpType(), z.enum([ 'GET', 'POST', 'PUT' ])),
+        method: z.intersection(HttpType, z.enum([ 'GET', 'POST', 'PUT' ])),
         secret_token: z.string().optional().nullable(),
         url: z.string()
     });
@@ -762,55 +760,55 @@ export function zodSchemaEndpointType() {
 
 export function zodSchemaEndpoint() {
     return z.object({
-        created: zodSchemaDate().optional().nullable(),
+        created: Date.optional().nullable(),
         description: z.string(),
         enabled: z.boolean().optional().nullable(),
-        id: zodSchemaUUID().optional().nullable(),
+        id: UUID.optional().nullable(),
         name: z.string(),
         properties: z
-        .union([ zodSchemaWebhookAttributes(), zodSchemaEmailAttributes() ])
+        .union([ WebhookAttributes, EmailAttributes ])
         .optional()
         .nullable(),
-        type: z.intersection(
-            zodSchemaEndpointType(),
-            z.enum([ 'webhook', 'email', 'default' ])
-        ),
-        updated: zodSchemaDate().optional().nullable()
+        type: z.intersection(EndpointType, z.enum([ 'webhook', 'email', 'default' ])),
+        updated: Date.optional().nullable()
     });
 }
 
 export function zodSchemaApplication() {
     return z.object({
-        created: zodSchemaDate().optional().nullable(),
+        created: Date.optional().nullable(),
         description: z.string(),
-        eventTypes: zodSchemaSetEventType().optional().nullable(),
-        id: zodSchemaUUID().optional().nullable(),
+        eventTypes: SetEventType.optional().nullable(),
+        id: UUID.optional().nullable(),
         name: z.string(),
-        updated: zodSchemaDate().optional().nullable()
+        updated: Date.optional().nullable()
     });
 }
 
 export function zodSchemaSetEndpoint() {
-    return z.array(zodSchemaEndpoint());
+    return z.array(Endpoint);
 }
 
 export function zodSchemaEventType() {
     return z.object({
-        application: z.unknown().optional().nullable(),
+        application: z
+        .lazy(() => Application)
+        .optional()
+        .nullable(),
         description: z.string(),
-        endpoints: zodSchemaSetEndpoint().optional().nullable(),
+        endpoints: SetEndpoint.optional().nullable(),
         id: z.number().int().optional().nullable(),
         name: z.string()
     });
 }
 
 export function zodSchemaSetEventType() {
-    return z.array(zodSchemaEventType());
+    return z.array(EventType);
 }
 
 export function zodSchemaNotification() {
     return z.object({
-        endpoint: zodSchemaEndpoint().optional().nullable(),
+        endpoint: Endpoint.optional().nullable(),
         payload: z.unknown().optional().nullable(),
         tenant: z.string().optional().nullable()
     });
@@ -822,9 +820,9 @@ export function zodSchemaJsonObject() {
 
 export function zodSchemaNotificationHistory() {
     return z.object({
-        created: zodSchemaDate().optional().nullable(),
-        details: zodSchemaJsonObject().optional().nullable(),
-        endpointId: zodSchemaUUID().optional().nullable(),
+        created: Date.optional().nullable(),
+        details: JsonObject.optional().nullable(),
+        endpointId: UUID.optional().nullable(),
         id: z.number().int().optional().nullable(),
         invocationResult: z.boolean().optional().nullable(),
         invocationTime: z.number().int().optional().nullable()
@@ -916,9 +914,7 @@ const EndpointServiceGetEndpointsParamOffset = z.number().int();
 const EndpointServiceGetEndpointsParamPageNumber = z.number().int();
 const EndpointServiceGetEndpointsParamSortBy = z.string();
 const EndpointServiceGetEndpointsParamType = z.string();
-const EndpointServiceGetEndpointsParamResponse200 = z.array(
-    zodSchemaEndpoint()
-);
+const EndpointServiceGetEndpointsParamResponse200 = z.array(Endpoint);
 /*
  Params
 'active'?:EndpointServiceGetEndpointsParamActive,
@@ -1113,7 +1109,7 @@ export const actionEndpointServiceDisableEndpoint = (params) => {
 
 // GET /endpoints/{id}/history
 const EndpointServiceGetEndpointHistoryParamResponse200 = z.array(
-    zodSchemaNotificationHistory()
+    NotificationHistory
 );
 /*
  Params
@@ -1216,7 +1212,7 @@ export function zodSchemaNewCookie() {
         value: z.string().optional().nullable(),
         version: z.number().int().optional().nullable(),
         comment: z.string().optional().nullable(),
-        expiry: zodSchemaDate().optional().nullable(),
+        expiry: Date.optional().nullable(),
         httpOnly: z.boolean().optional().nullable(),
         maxAge: z.number().int().optional().nullable(),
         secure: z.boolean().optional().nullable()
@@ -1224,7 +1220,7 @@ export function zodSchemaNewCookie() {
 }
 
 export function zodSchemaMapStringNewCookie() {
-    return z.record(zodSchemaNewCookie());
+    return z.record(NewCookie);
 }
 
 export function zodSchemaDate() {
@@ -1250,31 +1246,31 @@ export function zodSchemaLocale() {
         displayName: z.string().optional().nullable(),
         displayScript: z.string().optional().nullable(),
         displayVariant: z.string().optional().nullable(),
-        extensionKeys: zodSchemaSetCharacter().optional().nullable(),
+        extensionKeys: SetCharacter.optional().nullable(),
         iSO3Country: z.string().optional().nullable(),
         iSO3Language: z.string().optional().nullable(),
         language: z.string().optional().nullable(),
         script: z.string().optional().nullable(),
-        unicodeLocaleAttributes: zodSchemaSetString().optional().nullable(),
-        unicodeLocaleKeys: zodSchemaSetString().optional().nullable(),
+        unicodeLocaleAttributes: SetString.optional().nullable(),
+        unicodeLocaleKeys: SetString.optional().nullable(),
         variant: z.string().optional().nullable()
     });
 }
 
 export function zodSchemaLink() {
     return z.object({
-        params: zodSchemaMapStringString().optional().nullable(),
+        params: MapStringString.optional().nullable(),
         rel: z.string().optional().nullable(),
-        rels: zodSchemaListString().optional().nullable(),
+        rels: ListString.optional().nullable(),
         title: z.string().optional().nullable(),
         type: z.string().optional().nullable(),
-        uri: zodSchemaURI().optional().nullable(),
-        uriBuilder: zodSchemaUriBuilder().optional().nullable()
+        uri: URI.optional().nullable(),
+        uriBuilder: UriBuilder.optional().nullable()
     });
 }
 
 export function zodSchemaSetLink() {
-    return z.array(zodSchemaLink());
+    return z.array(Link);
 }
 
 export function zodSchemaURI() {
@@ -1283,7 +1279,7 @@ export function zodSchemaURI() {
 
 export function zodSchemaMediaType() {
     return z.object({
-        parameters: zodSchemaMapStringString().optional().nullable(),
+        parameters: MapStringString.optional().nullable(),
         subtype: z.string().optional().nullable(),
         type: z.string().optional().nullable(),
         wildcardSubtype: z.boolean().optional().nullable(),
@@ -1293,7 +1289,7 @@ export function zodSchemaMediaType() {
 
 export function zodSchemaStatusType() {
     return z.object({
-        family: zodSchemaFamily().optional().nullable(),
+        family: Family.optional().nullable(),
         reasonPhrase: z.string().optional().nullable(),
         statusCode: z.number().int().optional().nullable()
     });
@@ -1332,22 +1328,22 @@ export function zodSchemaSetCharacter() {
 
 export function zodSchemaResponse() {
     return z.object({
-        allowedMethods: zodSchemaSetString().optional().nullable(),
-        cookies: zodSchemaMapStringNewCookie().optional().nullable(),
-        date: zodSchemaDate().optional().nullable(),
+        allowedMethods: SetString.optional().nullable(),
+        cookies: MapStringNewCookie.optional().nullable(),
+        date: Date.optional().nullable(),
         entity: z.unknown().optional().nullable(),
-        entityTag: zodSchemaEntityTag().optional().nullable(),
-        headers: zodSchemaMultivaluedMapStringObject().optional().nullable(),
-        language: zodSchemaLocale().optional().nullable(),
-        lastModified: zodSchemaDate().optional().nullable(),
+        entityTag: EntityTag.optional().nullable(),
+        headers: MultivaluedMapStringObject.optional().nullable(),
+        language: Locale.optional().nullable(),
+        lastModified: Date.optional().nullable(),
         length: z.number().int().optional().nullable(),
-        links: zodSchemaSetLink().optional().nullable(),
-        location: zodSchemaURI().optional().nullable(),
-        mediaType: zodSchemaMediaType().optional().nullable(),
-        metadata: zodSchemaMultivaluedMapStringObject().optional().nullable(),
+        links: SetLink.optional().nullable(),
+        location: URI.optional().nullable(),
+        mediaType: MediaType.optional().nullable(),
+        metadata: MultivaluedMapStringObject.optional().nullable(),
         status: z.number().int().optional().nullable(),
-        statusInfo: zodSchemaStatusType().optional().nullable(),
-        stringHeaders: zodSchemaMultivaluedMapStringString().optional().nullable()
+        statusInfo: StatusType.optional().nullable(),
+        stringHeaders: MultivaluedMapStringString.optional().nullable()
     });
 }
 
@@ -1368,9 +1364,9 @@ export function zodSchemaHttpType() {
 
 export function zodSchemaWebhookAttributes() {
     return z.object({
-        basic_authentication: zodSchemaBasicAuthentication().optional().nullable(),
+        basic_authentication: BasicAuthentication.optional().nullable(),
         disable_ssl_verification: z.boolean().optional().nullable(),
-        method: z.intersection(zodSchemaHttpType(), z.enum([ 'GET', 'POST', 'PUT' ])),
+        method: z.intersection(HttpType, z.enum([ 'GET', 'POST', 'PUT' ])),
         secret_token: z.string().optional().nullable(),
         url: z.string()
     });
@@ -1386,55 +1382,55 @@ export function zodSchemaEndpointType() {
 
 export function zodSchemaEndpoint() {
     return z.object({
-        created: zodSchemaDate().optional().nullable(),
+        created: Date.optional().nullable(),
         description: z.string(),
         enabled: z.boolean().optional().nullable(),
-        id: zodSchemaUUID().optional().nullable(),
+        id: UUID.optional().nullable(),
         name: z.string(),
         properties: z
-        .union([ zodSchemaWebhookAttributes(), zodSchemaEmailAttributes() ])
+        .union([ WebhookAttributes, EmailAttributes ])
         .optional()
         .nullable(),
-        type: z.intersection(
-            zodSchemaEndpointType(),
-            z.enum([ 'webhook', 'email', 'default' ])
-        ),
-        updated: zodSchemaDate().optional().nullable()
+        type: z.intersection(EndpointType, z.enum([ 'webhook', 'email', 'default' ])),
+        updated: Date.optional().nullable()
     });
 }
 
 export function zodSchemaApplication() {
     return z.object({
-        created: zodSchemaDate().optional().nullable(),
+        created: Date.optional().nullable(),
         description: z.string(),
-        eventTypes: zodSchemaSetEventType().optional().nullable(),
-        id: zodSchemaUUID().optional().nullable(),
+        eventTypes: SetEventType.optional().nullable(),
+        id: UUID.optional().nullable(),
         name: z.string(),
-        updated: zodSchemaDate().optional().nullable()
+        updated: Date.optional().nullable()
     });
 }
 
 export function zodSchemaSetEndpoint() {
-    return z.array(zodSchemaEndpoint());
+    return z.array(Endpoint);
 }
 
 export function zodSchemaEventType() {
     return z.object({
-        application: z.unknown().optional().nullable(),
+        application: z
+        .lazy(() => Application)
+        .optional()
+        .nullable(),
         description: z.string(),
-        endpoints: zodSchemaSetEndpoint().optional().nullable(),
+        endpoints: SetEndpoint.optional().nullable(),
         id: z.number().int().optional().nullable(),
         name: z.string()
     });
 }
 
 export function zodSchemaSetEventType() {
-    return z.array(zodSchemaEventType());
+    return z.array(EventType);
 }
 
 export function zodSchemaNotification() {
     return z.object({
-        endpoint: zodSchemaEndpoint().optional().nullable(),
+        endpoint: Endpoint.optional().nullable(),
         payload: z.unknown().optional().nullable(),
         tenant: z.string().optional().nullable()
     });
@@ -1446,9 +1442,9 @@ export function zodSchemaJsonObject() {
 
 export function zodSchemaNotificationHistory() {
     return z.object({
-        created: zodSchemaDate().optional().nullable(),
-        details: zodSchemaJsonObject().optional().nullable(),
-        endpointId: zodSchemaUUID().optional().nullable(),
+        created: Date.optional().nullable(),
+        details: JsonObject.optional().nullable(),
+        endpointId: UUID.optional().nullable(),
         id: z.number().int().optional().nullable(),
         invocationResult: z.boolean().optional().nullable(),
         invocationTime: z.number().int().optional().nullable()
@@ -1578,7 +1574,7 @@ export type NotificationHistory = z.infer<typeof NotificationHistory>;
 
 // GET /notifications/defaults
 const NotificationServiceGetEndpointsForDefaultsParamResponse200 = z.array(
-    zodSchemaEndpoint()
+    Endpoint
 );
 type NotificationServiceGetEndpointsForDefaultsParamResponse200 = z.infer<
   typeof NotificationServiceGetEndpointsForDefaultsParamResponse200
@@ -1684,9 +1680,7 @@ const NotificationServiceGetEventTypesParamSortBy = z.string();
 type NotificationServiceGetEventTypesParamSortBy = z.infer<
   typeof NotificationServiceGetEventTypesParamSortBy
 >;
-const NotificationServiceGetEventTypesParamResponse200 = z.array(
-    zodSchemaEventType()
-);
+const NotificationServiceGetEventTypesParamResponse200 = z.array(EventType);
 type NotificationServiceGetEventTypesParamResponse200 = z.infer<
   typeof NotificationServiceGetEventTypesParamResponse200
 >;
@@ -1764,9 +1758,7 @@ const NotificationServiceGetLinkedEndpointsParamSortBy = z.string();
 type NotificationServiceGetLinkedEndpointsParamSortBy = z.infer<
   typeof NotificationServiceGetLinkedEndpointsParamSortBy
 >;
-const NotificationServiceGetLinkedEndpointsParamResponse200 = z.array(
-    zodSchemaEndpoint()
-);
+const NotificationServiceGetLinkedEndpointsParamResponse200 = z.array(Endpoint);
 type NotificationServiceGetLinkedEndpointsParamResponse200 = z.infer<
   typeof NotificationServiceGetLinkedEndpointsParamResponse200
 >;
@@ -1911,7 +1903,7 @@ export const actionNotificationServiceUnlinkEndpointFromEventType = (
 
 // GET /notifications/updates
 const NotificationServiceGetNotificationUpdatesParamResponse200 = z.array(
-    zodSchemaNotification()
+    Notification
 );
 type NotificationServiceGetNotificationUpdatesParamResponse200 = z.infer<
   typeof NotificationServiceGetNotificationUpdatesParamResponse200
@@ -1990,7 +1982,7 @@ export function zodSchemaNewCookie() {
         value: z.string().optional().nullable(),
         version: z.number().int().optional().nullable(),
         comment: z.string().optional().nullable(),
-        expiry: zodSchemaDate().optional().nullable(),
+        expiry: Date.optional().nullable(),
         httpOnly: z.boolean().optional().nullable(),
         maxAge: z.number().int().optional().nullable(),
         secure: z.boolean().optional().nullable()
@@ -1998,7 +1990,7 @@ export function zodSchemaNewCookie() {
 }
 
 export function zodSchemaMapStringNewCookie() {
-    return z.record(zodSchemaNewCookie());
+    return z.record(NewCookie);
 }
 
 export function zodSchemaDate() {
@@ -2024,31 +2016,31 @@ export function zodSchemaLocale() {
         displayName: z.string().optional().nullable(),
         displayScript: z.string().optional().nullable(),
         displayVariant: z.string().optional().nullable(),
-        extensionKeys: zodSchemaSetCharacter().optional().nullable(),
+        extensionKeys: SetCharacter.optional().nullable(),
         iSO3Country: z.string().optional().nullable(),
         iSO3Language: z.string().optional().nullable(),
         language: z.string().optional().nullable(),
         script: z.string().optional().nullable(),
-        unicodeLocaleAttributes: zodSchemaSetString().optional().nullable(),
-        unicodeLocaleKeys: zodSchemaSetString().optional().nullable(),
+        unicodeLocaleAttributes: SetString.optional().nullable(),
+        unicodeLocaleKeys: SetString.optional().nullable(),
         variant: z.string().optional().nullable()
     });
 }
 
 export function zodSchemaLink() {
     return z.object({
-        params: zodSchemaMapStringString().optional().nullable(),
+        params: MapStringString.optional().nullable(),
         rel: z.string().optional().nullable(),
-        rels: zodSchemaListString().optional().nullable(),
+        rels: ListString.optional().nullable(),
         title: z.string().optional().nullable(),
         type: z.string().optional().nullable(),
-        uri: zodSchemaURI().optional().nullable(),
-        uriBuilder: zodSchemaUriBuilder().optional().nullable()
+        uri: URI.optional().nullable(),
+        uriBuilder: UriBuilder.optional().nullable()
     });
 }
 
 export function zodSchemaSetLink() {
-    return z.array(zodSchemaLink());
+    return z.array(Link);
 }
 
 export function zodSchemaURI() {
@@ -2057,7 +2049,7 @@ export function zodSchemaURI() {
 
 export function zodSchemaMediaType() {
     return z.object({
-        parameters: zodSchemaMapStringString().optional().nullable(),
+        parameters: MapStringString.optional().nullable(),
         subtype: z.string().optional().nullable(),
         type: z.string().optional().nullable(),
         wildcardSubtype: z.boolean().optional().nullable(),
@@ -2067,7 +2059,7 @@ export function zodSchemaMediaType() {
 
 export function zodSchemaStatusType() {
     return z.object({
-        family: zodSchemaFamily().optional().nullable(),
+        family: Family.optional().nullable(),
         reasonPhrase: z.string().optional().nullable(),
         statusCode: z.number().int().optional().nullable()
     });
@@ -2106,22 +2098,22 @@ export function zodSchemaSetCharacter() {
 
 export function zodSchemaResponse() {
     return z.object({
-        allowedMethods: zodSchemaSetString().optional().nullable(),
-        cookies: zodSchemaMapStringNewCookie().optional().nullable(),
-        date: zodSchemaDate().optional().nullable(),
+        allowedMethods: SetString.optional().nullable(),
+        cookies: MapStringNewCookie.optional().nullable(),
+        date: Date.optional().nullable(),
         entity: z.unknown().optional().nullable(),
-        entityTag: zodSchemaEntityTag().optional().nullable(),
-        headers: zodSchemaMultivaluedMapStringObject().optional().nullable(),
-        language: zodSchemaLocale().optional().nullable(),
-        lastModified: zodSchemaDate().optional().nullable(),
+        entityTag: EntityTag.optional().nullable(),
+        headers: MultivaluedMapStringObject.optional().nullable(),
+        language: Locale.optional().nullable(),
+        lastModified: Date.optional().nullable(),
         length: z.number().int().optional().nullable(),
-        links: zodSchemaSetLink().optional().nullable(),
-        location: zodSchemaURI().optional().nullable(),
-        mediaType: zodSchemaMediaType().optional().nullable(),
-        metadata: zodSchemaMultivaluedMapStringObject().optional().nullable(),
+        links: SetLink.optional().nullable(),
+        location: URI.optional().nullable(),
+        mediaType: MediaType.optional().nullable(),
+        metadata: MultivaluedMapStringObject.optional().nullable(),
         status: z.number().int().optional().nullable(),
-        statusInfo: zodSchemaStatusType().optional().nullable(),
-        stringHeaders: zodSchemaMultivaluedMapStringString().optional().nullable()
+        statusInfo: StatusType.optional().nullable(),
+        stringHeaders: MultivaluedMapStringString.optional().nullable()
     });
 }
 
@@ -2142,9 +2134,9 @@ export function zodSchemaHttpType() {
 
 export function zodSchemaWebhookAttributes() {
     return z.object({
-        basic_authentication: zodSchemaBasicAuthentication().optional().nullable(),
+        basic_authentication: BasicAuthentication.optional().nullable(),
         disable_ssl_verification: z.boolean().optional().nullable(),
-        method: z.intersection(zodSchemaHttpType(), z.enum([ 'GET', 'POST', 'PUT' ])),
+        method: z.intersection(HttpType, z.enum([ 'GET', 'POST', 'PUT' ])),
         secret_token: z.string().optional().nullable(),
         url: z.string()
     });
@@ -2160,55 +2152,55 @@ export function zodSchemaEndpointType() {
 
 export function zodSchemaEndpoint() {
     return z.object({
-        created: zodSchemaDate().optional().nullable(),
+        created: Date.optional().nullable(),
         description: z.string(),
         enabled: z.boolean().optional().nullable(),
-        id: zodSchemaUUID().optional().nullable(),
+        id: UUID.optional().nullable(),
         name: z.string(),
         properties: z
-        .union([ zodSchemaWebhookAttributes(), zodSchemaEmailAttributes() ])
+        .union([ WebhookAttributes, EmailAttributes ])
         .optional()
         .nullable(),
-        type: z.intersection(
-            zodSchemaEndpointType(),
-            z.enum([ 'webhook', 'email', 'default' ])
-        ),
-        updated: zodSchemaDate().optional().nullable()
+        type: z.intersection(EndpointType, z.enum([ 'webhook', 'email', 'default' ])),
+        updated: Date.optional().nullable()
     });
 }
 
 export function zodSchemaApplication() {
     return z.object({
-        created: zodSchemaDate().optional().nullable(),
+        created: Date.optional().nullable(),
         description: z.string(),
-        eventTypes: zodSchemaSetEventType().optional().nullable(),
-        id: zodSchemaUUID().optional().nullable(),
+        eventTypes: SetEventType.optional().nullable(),
+        id: UUID.optional().nullable(),
         name: z.string(),
-        updated: zodSchemaDate().optional().nullable()
+        updated: Date.optional().nullable()
     });
 }
 
 export function zodSchemaSetEndpoint() {
-    return z.array(zodSchemaEndpoint());
+    return z.array(Endpoint);
 }
 
 export function zodSchemaEventType() {
     return z.object({
-        application: z.unknown().optional().nullable(),
+        application: z
+        .lazy(() => Application)
+        .optional()
+        .nullable(),
         description: z.string(),
-        endpoints: zodSchemaSetEndpoint().optional().nullable(),
+        endpoints: SetEndpoint.optional().nullable(),
         id: z.number().int().optional().nullable(),
         name: z.string()
     });
 }
 
 export function zodSchemaSetEventType() {
-    return z.array(zodSchemaEventType());
+    return z.array(EventType);
 }
 
 export function zodSchemaNotification() {
     return z.object({
-        endpoint: zodSchemaEndpoint().optional().nullable(),
+        endpoint: Endpoint.optional().nullable(),
         payload: z.unknown().optional().nullable(),
         tenant: z.string().optional().nullable()
     });
@@ -2220,9 +2212,9 @@ export function zodSchemaJsonObject() {
 
 export function zodSchemaNotificationHistory() {
     return z.object({
-        created: zodSchemaDate().optional().nullable(),
-        details: zodSchemaJsonObject().optional().nullable(),
-        endpointId: zodSchemaUUID().optional().nullable(),
+        created: Date.optional().nullable(),
+        details: JsonObject.optional().nullable(),
+        endpointId: UUID.optional().nullable(),
         id: z.number().int().optional().nullable(),
         invocationResult: z.boolean().optional().nullable(),
         invocationTime: z.number().int().optional().nullable()
@@ -2309,7 +2301,7 @@ export const NotificationHistory = zodSchemaNotificationHistory();
 
 // GET /notifications/defaults
 const NotificationServiceGetEndpointsForDefaultsParamResponse200 = z.array(
-    zodSchemaEndpoint()
+    Endpoint
 );
 export const actionNotificationServiceGetEndpointsForDefaults = () => {
     const path = '/api/notifications/v1.0/notifications/defaults';
@@ -2371,9 +2363,7 @@ const NotificationServiceGetEventTypesParamLimit = z.number().int();
 const NotificationServiceGetEventTypesParamOffset = z.number().int();
 const NotificationServiceGetEventTypesParamPageNumber = z.number().int();
 const NotificationServiceGetEventTypesParamSortBy = z.string();
-const NotificationServiceGetEventTypesParamResponse200 = z.array(
-    zodSchemaEventType()
-);
+const NotificationServiceGetEventTypesParamResponse200 = z.array(EventType);
 /*
  Params
 'limit'?:NotificationServiceGetEventTypesParamLimit,
@@ -2420,9 +2410,7 @@ const NotificationServiceGetLinkedEndpointsParamLimit = z.number().int();
 const NotificationServiceGetLinkedEndpointsParamOffset = z.number().int();
 const NotificationServiceGetLinkedEndpointsParamPageNumber = z.number().int();
 const NotificationServiceGetLinkedEndpointsParamSortBy = z.string();
-const NotificationServiceGetLinkedEndpointsParamResponse200 = z.array(
-    zodSchemaEndpoint()
-);
+const NotificationServiceGetLinkedEndpointsParamResponse200 = z.array(Endpoint);
 /*
  Params
 'eventTypeId':NotificationServiceGetLinkedEndpointsParamEventTypeId,
@@ -2522,7 +2510,7 @@ export const actionNotificationServiceUnlinkEndpointFromEventType = (
 
 // GET /notifications/updates
 const NotificationServiceGetNotificationUpdatesParamResponse200 = z.array(
-    zodSchemaNotification()
+    Notification
 );
 export const actionNotificationServiceGetNotificationUpdates = () => {
     const path = '/api/notifications/v1.0/notifications/updates';
@@ -2543,9 +2531,6 @@ export const actionNotificationServiceGetNotificationUpdates = () => {
 
 // DELETE /notifications/{id}
 const NotificationServiceMarkReadParamBody = z.number().int();
-type NotificationServiceMarkReadParamBody = z.infer<
-  typeof NotificationServiceMarkReadParamBody
->;
 /*
  Params
 body: NotificationServiceMarkReadParamBody
@@ -2578,7 +2563,7 @@ export function zodSchemaNewCookie() {
         value: z.string().optional().nullable(),
         version: z.number().int().optional().nullable(),
         comment: z.string().optional().nullable(),
-        expiry: zodSchemaDate().optional().nullable(),
+        expiry: Date.optional().nullable(),
         httpOnly: z.boolean().optional().nullable(),
         maxAge: z.number().int().optional().nullable(),
         secure: z.boolean().optional().nullable()
@@ -2586,7 +2571,7 @@ export function zodSchemaNewCookie() {
 }
 
 export function zodSchemaMapStringNewCookie() {
-    return z.record(zodSchemaNewCookie());
+    return z.record(NewCookie);
 }
 
 export function zodSchemaDate() {
@@ -2612,31 +2597,31 @@ export function zodSchemaLocale() {
         displayName: z.string().optional().nullable(),
         displayScript: z.string().optional().nullable(),
         displayVariant: z.string().optional().nullable(),
-        extensionKeys: zodSchemaSetCharacter().optional().nullable(),
+        extensionKeys: SetCharacter.optional().nullable(),
         iSO3Country: z.string().optional().nullable(),
         iSO3Language: z.string().optional().nullable(),
         language: z.string().optional().nullable(),
         script: z.string().optional().nullable(),
-        unicodeLocaleAttributes: zodSchemaSetString().optional().nullable(),
-        unicodeLocaleKeys: zodSchemaSetString().optional().nullable(),
+        unicodeLocaleAttributes: SetString.optional().nullable(),
+        unicodeLocaleKeys: SetString.optional().nullable(),
         variant: z.string().optional().nullable()
     });
 }
 
 export function zodSchemaLink() {
     return z.object({
-        params: zodSchemaMapStringString().optional().nullable(),
+        params: MapStringString.optional().nullable(),
         rel: z.string().optional().nullable(),
-        rels: zodSchemaListString().optional().nullable(),
+        rels: ListString.optional().nullable(),
         title: z.string().optional().nullable(),
         type: z.string().optional().nullable(),
-        uri: zodSchemaURI().optional().nullable(),
-        uriBuilder: zodSchemaUriBuilder().optional().nullable()
+        uri: URI.optional().nullable(),
+        uriBuilder: UriBuilder.optional().nullable()
     });
 }
 
 export function zodSchemaSetLink() {
-    return z.array(zodSchemaLink());
+    return z.array(Link);
 }
 
 export function zodSchemaURI() {
@@ -2645,7 +2630,7 @@ export function zodSchemaURI() {
 
 export function zodSchemaMediaType() {
     return z.object({
-        parameters: zodSchemaMapStringString().optional().nullable(),
+        parameters: MapStringString.optional().nullable(),
         subtype: z.string().optional().nullable(),
         type: z.string().optional().nullable(),
         wildcardSubtype: z.boolean().optional().nullable(),
@@ -2655,7 +2640,7 @@ export function zodSchemaMediaType() {
 
 export function zodSchemaStatusType() {
     return z.object({
-        family: zodSchemaFamily().optional().nullable(),
+        family: Family.optional().nullable(),
         reasonPhrase: z.string().optional().nullable(),
         statusCode: z.number().int().optional().nullable()
     });
@@ -2694,22 +2679,22 @@ export function zodSchemaSetCharacter() {
 
 export function zodSchemaResponse() {
     return z.object({
-        allowedMethods: zodSchemaSetString().optional().nullable(),
-        cookies: zodSchemaMapStringNewCookie().optional().nullable(),
-        date: zodSchemaDate().optional().nullable(),
+        allowedMethods: SetString.optional().nullable(),
+        cookies: MapStringNewCookie.optional().nullable(),
+        date: Date.optional().nullable(),
         entity: z.unknown().optional().nullable(),
-        entityTag: zodSchemaEntityTag().optional().nullable(),
-        headers: zodSchemaMultivaluedMapStringObject().optional().nullable(),
-        language: zodSchemaLocale().optional().nullable(),
-        lastModified: zodSchemaDate().optional().nullable(),
+        entityTag: EntityTag.optional().nullable(),
+        headers: MultivaluedMapStringObject.optional().nullable(),
+        language: Locale.optional().nullable(),
+        lastModified: Date.optional().nullable(),
         length: z.number().int().optional().nullable(),
-        links: zodSchemaSetLink().optional().nullable(),
-        location: zodSchemaURI().optional().nullable(),
-        mediaType: zodSchemaMediaType().optional().nullable(),
-        metadata: zodSchemaMultivaluedMapStringObject().optional().nullable(),
+        links: SetLink.optional().nullable(),
+        location: URI.optional().nullable(),
+        mediaType: MediaType.optional().nullable(),
+        metadata: MultivaluedMapStringObject.optional().nullable(),
         status: z.number().int().optional().nullable(),
-        statusInfo: zodSchemaStatusType().optional().nullable(),
-        stringHeaders: zodSchemaMultivaluedMapStringString().optional().nullable()
+        statusInfo: StatusType.optional().nullable(),
+        stringHeaders: MultivaluedMapStringString.optional().nullable()
     });
 }
 
@@ -2730,9 +2715,9 @@ export function zodSchemaHttpType() {
 
 export function zodSchemaWebhookAttributes() {
     return z.object({
-        basic_authentication: zodSchemaBasicAuthentication().optional().nullable(),
+        basic_authentication: BasicAuthentication.optional().nullable(),
         disable_ssl_verification: z.boolean().optional().nullable(),
-        method: z.intersection(zodSchemaHttpType(), z.enum([ 'GET', 'POST', 'PUT' ])),
+        method: z.intersection(HttpType, z.enum([ 'GET', 'POST', 'PUT' ])),
         secret_token: z.string().optional().nullable(),
         url: z.string()
     });
@@ -2748,55 +2733,55 @@ export function zodSchemaEndpointType() {
 
 export function zodSchemaEndpoint() {
     return z.object({
-        created: zodSchemaDate().optional().nullable(),
+        created: Date.optional().nullable(),
         description: z.string(),
         enabled: z.boolean().optional().nullable(),
-        id: zodSchemaUUID().optional().nullable(),
+        id: UUID.optional().nullable(),
         name: z.string(),
         properties: z
-        .union([ zodSchemaWebhookAttributes(), zodSchemaEmailAttributes() ])
+        .union([ WebhookAttributes, EmailAttributes ])
         .optional()
         .nullable(),
-        type: z.intersection(
-            zodSchemaEndpointType(),
-            z.enum([ 'webhook', 'email', 'default' ])
-        ),
-        updated: zodSchemaDate().optional().nullable()
+        type: z.intersection(EndpointType, z.enum([ 'webhook', 'email', 'default' ])),
+        updated: Date.optional().nullable()
     });
 }
 
 export function zodSchemaApplication() {
     return z.object({
-        created: zodSchemaDate().optional().nullable(),
+        created: Date.optional().nullable(),
         description: z.string(),
-        eventTypes: zodSchemaSetEventType().optional().nullable(),
-        id: zodSchemaUUID().optional().nullable(),
+        eventTypes: SetEventType.optional().nullable(),
+        id: UUID.optional().nullable(),
         name: z.string(),
-        updated: zodSchemaDate().optional().nullable()
+        updated: Date.optional().nullable()
     });
 }
 
 export function zodSchemaSetEndpoint() {
-    return z.array(zodSchemaEndpoint());
+    return z.array(Endpoint);
 }
 
 export function zodSchemaEventType() {
     return z.object({
-        application: z.unknown().optional().nullable(),
+        application: z
+        .lazy(() => Application)
+        .optional()
+        .nullable(),
         description: z.string(),
-        endpoints: zodSchemaSetEndpoint().optional().nullable(),
+        endpoints: SetEndpoint.optional().nullable(),
         id: z.number().int().optional().nullable(),
         name: z.string()
     });
 }
 
 export function zodSchemaSetEventType() {
-    return z.array(zodSchemaEventType());
+    return z.array(EventType);
 }
 
 export function zodSchemaNotification() {
     return z.object({
-        endpoint: zodSchemaEndpoint().optional().nullable(),
+        endpoint: Endpoint.optional().nullable(),
         payload: z.unknown().optional().nullable(),
         tenant: z.string().optional().nullable()
     });
@@ -2808,9 +2793,9 @@ export function zodSchemaJsonObject() {
 
 export function zodSchemaNotificationHistory() {
     return z.object({
-        created: zodSchemaDate().optional().nullable(),
-        details: zodSchemaJsonObject().optional().nullable(),
-        endpointId: zodSchemaUUID().optional().nullable(),
+        created: Date.optional().nullable(),
+        details: JsonObject.optional().nullable(),
+        endpointId: UUID.optional().nullable(),
         id: z.number().int().optional().nullable(),
         invocationResult: z.boolean().optional().nullable(),
         invocationTime: z.number().int().optional().nullable()
@@ -2980,7 +2965,7 @@ export const actionPostPoliciesIdsEnabled = (
 
 // GET /facts
 // Retrieve a list of fact (keys) along with their data types
-const GetFactsParamResponse200 = z.array(zodSchemaFact());
+const GetFactsParamResponse200 = z.array(Fact);
 type GetFactsParamResponse200 = z.infer<typeof GetFactsParamResponse200>;
 export type GetFactsPayload =
   | ValidatedResponse<'GetFactsParamResponse200', 200, GetFactsParamResponse200>
@@ -3470,7 +3455,7 @@ export const actionGetPoliciesIds = (
 
 // DELETE /policies/ids
 // Delete policies for a customer by the ids passed in the body. Result will be a list of deleted UUIDs
-const DeletePoliciesIdsParamResponse200 = z.array(zodSchemaUUID());
+const DeletePoliciesIdsParamResponse200 = z.array(UUID);
 type DeletePoliciesIdsParamResponse200 = z.infer<
   typeof DeletePoliciesIdsParamResponse200
 >;
@@ -3698,7 +3683,7 @@ export function zodSchemaPolicy() {
         conditions: z.string(),
         ctime: z.string().optional().nullable(),
         description: z.string().optional().nullable(),
-        id: zodSchemaUUID().optional().nullable(),
+        id: UUID.optional().nullable(),
         isEnabled: z.boolean().optional().nullable(),
         lastTriggered: z.number().int().optional().nullable(),
         mtime: z.string().optional().nullable(),
@@ -3728,15 +3713,15 @@ export function zodSchemaFact() {
     return z.object({
         id: z.number().int().optional().nullable(),
         name: z.string().optional().nullable(),
-        type: zodSchemaFactType().optional().nullable()
+        type: FactType.optional().nullable()
     });
 }
 
 export function zodSchemaPagedResponseOfHistoryItem() {
     return z.object({
-        links: zodSchemaMapStringString().optional().nullable(),
-        meta: zodSchemaMeta().optional().nullable(),
-        data: zodSchemaListHistoryItem().optional().nullable()
+        links: MapStringString.optional().nullable(),
+        meta: Meta.optional().nullable(),
+        data: ListHistoryItem.optional().nullable()
     });
 }
 
@@ -3750,9 +3735,9 @@ export function zodSchemaListUUID() {
 
 export function zodSchemaPagedResponseOfPolicy() {
     return z.object({
-        links: zodSchemaMapStringString().optional().nullable(),
-        meta: zodSchemaMeta().optional().nullable(),
-        data: zodSchemaListPolicy().optional().nullable()
+        links: MapStringString.optional().nullable(),
+        meta: Meta.optional().nullable(),
+        data: ListPolicy.optional().nullable()
     });
 }
 
@@ -3761,7 +3746,7 @@ export function zodSchemaList() {
 }
 
 export function zodSchemaListPolicy() {
-    return z.array(zodSchemaPolicy());
+    return z.array(Policy);
 }
 
 export function zodSchemaUUID() {
@@ -3769,7 +3754,7 @@ export function zodSchemaUUID() {
 }
 
 export function zodSchemaListHistoryItem() {
-    return z.array(zodSchemaHistoryItem());
+    return z.array(HistoryItem);
 }
 
 export function zodSchema__Empty() {
@@ -3886,7 +3871,7 @@ export const actionPostPoliciesIdsEnabled = (params) => {
 
 // GET /facts
 // Retrieve a list of fact (keys) along with their data types
-const GetFactsParamResponse200 = z.array(zodSchemaFact());
+const GetFactsParamResponse200 = z.array(Fact);
 export const actionGetFacts = () => {
     const path = '/api/policies/v1.0/facts';
     const query = {} as Record<string, any>;
@@ -4135,9 +4120,6 @@ export const actionPutPoliciesByPolicyId = (params) => {
 // POST /policies/validate-name
 // Validates the Policy.name and verifies if it is unique.
 const PostPoliciesValidateNameParamBody = z.string();
-type PostPoliciesValidateNameParamBody = z.infer<
-  typeof PostPoliciesValidateNameParamBody
->;
 /*
  Params
 'id'?:UUID,
@@ -4228,7 +4210,7 @@ export const actionGetPoliciesIds = (params) => {
 
 // DELETE /policies/ids
 // Delete policies for a customer by the ids passed in the body. Result will be a list of deleted UUIDs
-const DeletePoliciesIdsParamResponse200 = z.array(zodSchemaUUID());
+const DeletePoliciesIdsParamResponse200 = z.array(UUID);
 /*
  Params
 body: ListUUID
@@ -4383,7 +4365,7 @@ export function zodSchemaPolicy() {
         conditions: z.string(),
         ctime: z.string().optional().nullable(),
         description: z.string().optional().nullable(),
-        id: zodSchemaUUID().optional().nullable(),
+        id: UUID.optional().nullable(),
         isEnabled: z.boolean().optional().nullable(),
         lastTriggered: z.number().int().optional().nullable(),
         mtime: z.string().optional().nullable(),
@@ -4413,15 +4395,15 @@ export function zodSchemaFact() {
     return z.object({
         id: z.number().int().optional().nullable(),
         name: z.string().optional().nullable(),
-        type: zodSchemaFactType().optional().nullable()
+        type: FactType.optional().nullable()
     });
 }
 
 export function zodSchemaPagedResponseOfHistoryItem() {
     return z.object({
-        links: zodSchemaMapStringString().optional().nullable(),
-        meta: zodSchemaMeta().optional().nullable(),
-        data: zodSchemaListHistoryItem().optional().nullable()
+        links: MapStringString.optional().nullable(),
+        meta: Meta.optional().nullable(),
+        data: ListHistoryItem.optional().nullable()
     });
 }
 
@@ -4435,9 +4417,9 @@ export function zodSchemaListUUID() {
 
 export function zodSchemaPagedResponseOfPolicy() {
     return z.object({
-        links: zodSchemaMapStringString().optional().nullable(),
-        meta: zodSchemaMeta().optional().nullable(),
-        data: zodSchemaListPolicy().optional().nullable()
+        links: MapStringString.optional().nullable(),
+        meta: Meta.optional().nullable(),
+        data: ListPolicy.optional().nullable()
     });
 }
 
@@ -4446,7 +4428,7 @@ export function zodSchemaList() {
 }
 
 export function zodSchemaListPolicy() {
-    return z.array(zodSchemaPolicy());
+    return z.array(Policy);
 }
 
 export function zodSchemaUUID() {
@@ -4454,7 +4436,7 @@ export function zodSchemaUUID() {
 }
 
 export function zodSchemaListHistoryItem() {
-    return z.array(zodSchemaHistoryItem());
+    return z.array(HistoryItem);
 }
 
 export function zodSchema__Empty() {
@@ -4556,7 +4538,7 @@ export function zodSchemaFruit() {
 }
 
 export function zodSchemaSetFruit() {
-    return z.array(zodSchemaFruit());
+    return z.array(Fruit);
 }
 "
 `;
@@ -4627,7 +4609,7 @@ export function zodSchemaFruit() {
 }
 
 export function zodSchemaSetFruit() {
-    return z.array(zodSchemaFruit());
+    return z.array(Fruit);
 }
 "
 `;

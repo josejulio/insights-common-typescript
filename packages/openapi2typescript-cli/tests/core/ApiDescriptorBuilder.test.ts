@@ -419,12 +419,4 @@ describe('src/core/ApiDescriptorBuilder', () => {
             paths: []
         });
     });
-
-    it.only('Only first component is marked for a loop', () => {
-        const json = JSON.parse(readFileSync('./tests/__fixtures__/notifications-openapi.json').toString());
-        const descriptor = buildApiDescriptor(json);
-        console.log(descriptor.components.schemas?.EventType);
-        console.log((descriptor.components.schemas?.Application as any).properties.eventTypes.referred);
-
-    });
 });

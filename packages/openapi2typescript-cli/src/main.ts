@@ -20,6 +20,7 @@ export interface Options {
     addEslintDisable: boolean;
     skipTypes: boolean;
     strict: boolean;
+    explicitTypes: boolean;
 }
 
 export const execute = async (options: Options) => {
