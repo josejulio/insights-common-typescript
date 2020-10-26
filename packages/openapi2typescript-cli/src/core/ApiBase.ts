@@ -15,6 +15,7 @@ import assertNever from 'assert-never';
 export interface Options {
     skipTypes: boolean;
     strict: boolean;
+    explicitTypes: boolean;
 }
 
 export class ApiBase {
@@ -29,10 +30,171 @@ export class ApiBase {
         this.options = {
             skipTypes: false,
             strict: true,
+            explicitTypes: false,
             ...options
         };
         this.localBuffer = [];
     }
+
+    // Types related methods
+
+    protected propertiesTypes(properties: Record<string, SchemaOrType>) {
+        Object.entries(properties).forEach(([ key, schema ], index, array) => {
+            this.appendTemp(`${key}`);
+            if (schema.isOptional) {
+                this.appendTemp('?');
+            }
+
+            this.appendTemp(': ');
+
+            this.schemaTypes(schema);
+
+            if (array.length !== index + 1) {
+                this.appendTemp(',\n');
+            }
+        });
+    }
+
+    protected objectTypes(schema: SchemaObject) {
+        if (schema.properties || schema.additionalProperties) {
+            this.appendTemp('{\n');
+            if (schema.properties) {
+                this.propertiesTypes(schema.properties);
+            }
+
+            if (schema.properties && schema.additionalProperties) {
+                this.appendTemp(', \n');
+            }
+
+            if (schema.additionalProperties) {
+                this.appendTemp('[x: string]: ');
+                this.schemaTypes(schema.additionalProperties);
+                this.appendTemp('\n');
+            }
+
+            this.appendTemp('}\n');
+        } else {
+            this.appendTemp('unknown');
+        }
+    }
+
+    protected arrayTypes(schema: SchemaArray) {
+        this.appendTemp('Array<\n');
+        this.schemaTypes(schema.items);
+        this.appendTemp('>\n');
+    }
+
+    protected schemaTypes(schema: SchemaOrType, doNotUseModifiers?: boolean) {
+        if (isType(schema)) {
+            this.appendTemp(schema.typeName);
+        } else {
+            switch (schema.type) {
+                case SchemaType.ALL_OF:
+                    if (schema.allOf.length) {
+                        this.appendTemp('(');
+                    }
+
+                    schema.allOf.filter(schema => !this.isUnknown(schema)).forEach((localSchema, index, array) => {
+                        this.schemaTypes(localSchema);
+                        if (array.length !== index + 1) {
+                            this.appendTemp('& ');
+                        }
+                    });
+
+                    if (schema.allOf.length) {
+                        this.appendTemp(')');
+                    }
+
+                    break;
+                case SchemaType.ONE_OF:
+                    this.appendTemp('(');
+                    schema.oneOf.forEach((s, index, array) => {
+                        this.schemaTypes(s);
+                        if (array.length !== index + 1) {
+                            this.appendTemp('| ');
+                        }
+                    });
+                    this.appendTemp(')');
+                    break;
+                case SchemaType.ANY_OF:
+                    schema.anyOf.forEach((s) => {
+                        this.schemaTypes(s);
+
+                        if (schema.anyOf.length > 1) {
+                            this.appendTemp('& Partial<');
+                        }
+
+                        schema.anyOf.filter(v => v !== s).forEach((s2, index2, array2) => {
+                            this.schemaTypes(s2);
+                            if (array2.length !== index2 + 1) {
+                                this.appendTemp('& ');
+                            }
+                        });
+
+                        if (schema.anyOf.length > 1) {
+                            this.appendTemp('> ');
+                        }
+                    });
+                    break;
+                case SchemaType.ENUM:
+                    if (schema.enum.length > 0) {
+                        this.appendTemp('(');
+                    }
+
+                    schema.enum.forEach((e, index, array) => {
+                        this.appendTemp(`'${e}'`);
+                        if (array.length !== index + 1) {
+                            this.appendTemp('| ');
+                        }
+                    });
+
+                    if (schema.enum.length > 0) {
+                        this.appendTemp(')');
+                    }
+
+                    break;
+                case SchemaType.ARRAY:
+                    this.arrayTypes(schema);
+                    break;
+                case SchemaType.NUMBER:
+                    this.appendTemp('number');
+                    break;
+                case SchemaType.INTEGER:
+                    this.appendTemp('number');
+                    break;
+                case SchemaType.STRING:
+                    this.appendTemp('string');
+                    break;
+                case SchemaType.BOOLEAN:
+                    this.appendTemp('boolean');
+                    break;
+                case SchemaType.NULL:
+                    this.appendTemp('null');
+                    break;
+                case SchemaType.OBJECT:
+                    this.objectTypes(schema);
+                    break;
+                case SchemaType.UNKNOWN:
+                    this.appendTemp('unknown');
+                    break;
+                default:
+                    console.log(schema);
+                    assertNever(schema);
+            }
+        }
+
+        if (!doNotUseModifiers) {
+            if (schema.isOptional) {
+                this.appendTemp(' | undefined');
+            }
+
+            if (schema.isNullable) {
+                this.appendTemp(' | null');
+            }
+        }
+    }
+
+    // Zod related methods
 
     protected properties(properties: Record<string, SchemaOrType>) {
         Object.entries(properties).forEach(([ key, schema ], index, array) => {
@@ -86,8 +248,15 @@ export class ApiBase {
 
     protected schema(schema: SchemaOrType, doNotUseModifiers?: boolean) {
         if (isType(schema)) {
-            // Todo: Check if we can use the type instead of the function name
-            this.appendTemp(`${this.functionName(schema)}()`);
+            if (schema.hasLoop) {
+                this.appendTemp('z.lazy(() => ');
+            }
+
+            this.appendTemp(schema.typeName);
+
+            if (schema.hasLoop) {
+                this.appendTemp(')');
+            }
         } else {
             switch (schema.type) {
                 case SchemaType.ALL_OF:
@@ -99,6 +268,7 @@ export class ApiBase {
 
                         if (array.length !== index + 1) {
                             ++open;
+                            // Todo: Intersection is not the proper zod-way to do it. Need to change to schema.merge() to chain all the objects.
                             this.appendTemp('z.intersection(\n');
                         }
 
@@ -185,14 +355,6 @@ export class ApiBase {
                 this.appendTemp('.nullable()');
             }
         }
-    }
-
-    protected deType<T>(type: T | Type<T>): T {
-        if (isType(type)) {
-            return type.referred as T;
-        }
-
-        return type;
     }
 
     protected appendTemp(...lines: Array<string>) {

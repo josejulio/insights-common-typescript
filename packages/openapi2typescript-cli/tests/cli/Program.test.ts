@@ -8,7 +8,8 @@ describe('src/Program', () => {
             actionGenerator: ActionGeneratorType.NONE,
             addEslintDisable: false,
             skipTypes: false,
-            strict: true
+            strict: true,
+            explicitTypes: false
         });
     });
 
@@ -20,6 +21,7 @@ describe('src/Program', () => {
             '--add-eslint-disable',
             '--skip-types',
             '--no-strict',
+            '--explicit-types',
             '-i',
             'input',
             '-o',
@@ -31,7 +33,8 @@ describe('src/Program', () => {
             actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
             addEslintDisable: true,
             skipTypes: true,
-            strict: false
+            strict: false,
+            explicitTypes: true
         });
     });
 });

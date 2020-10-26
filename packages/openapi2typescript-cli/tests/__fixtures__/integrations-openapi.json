@@ -1,9 +1,35 @@
 {
   "openapi": "3.0.3",
   "paths": {
-    "/notifications/defaults": {
+    "/endpoints": {
       "get": {
-        "operationId": "NotificationService_getEndpointsForDefaults",
+        "operationId": "EndpointService_getEndpoints",
+        "parameters": [
+          {
+            "name": "active",
+            "in": "query",
+            "schema": { "default": false, "type": "boolean" }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of items per page, if not specified or 0 is used, returns all elements",
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": { "format": "int32", "type": "integer" }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number. Starts at first page (0), if not specified starts at first page.",
+            "schema": { "type": "integer" }
+          },
+          { "name": "sort_by", "in": "query", "schema": { "type": "string" } },
+          { "name": "type", "in": "query", "schema": { "type": "string" } }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -13,39 +39,38 @@
                   "type": "array",
                   "items": { "$ref": "#/components/schemas/Endpoint" }
                 }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/notifications/defaults/{endpointId}": {
-      "put": {
-        "operationId": "NotificationService_addEndpointToDefaults",
-        "parameters": [
-          {
-            "name": "endpointId",
-            "in": "path",
-            "required": true,
-            "schema": { "$ref": "#/components/schemas/UUID" }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/Response" }
               }
             }
           }
         }
       },
-      "delete": {
-        "operationId": "NotificationService_deleteEndpointFromDefaults",
+      "post": {
+        "operationId": "EndpointService_createEndpoint",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Endpoint" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Endpoint" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/endpoints/{id}": {
+      "get": {
+        "operationId": "EndpointService_getEndpoint",
         "parameters": [
           {
-            "name": "endpointId",
+            "name": "id",
             "in": "path",
             "required": true,
             "schema": { "$ref": "#/components/schemas/UUID" }
@@ -56,106 +81,67 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Response" }
+                "schema": { "$ref": "#/components/schemas/Endpoint" }
               }
             }
           }
         }
-      }
-    },
-    "/notifications/eventTypes": {
-      "get": {
-        "operationId": "NotificationService_getEventTypes",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "schema": { "format": "int32", "type": "integer" }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "schema": { "format": "int32", "type": "integer" }
-          },
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "schema": { "format": "int32", "type": "integer" }
-          },
-          { "name": "sort_by", "in": "query", "schema": { "type": "string" } }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": { "$ref": "#/components/schemas/EventType" }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/notifications/eventTypes/{eventTypeId}": {
-      "get": {
-        "operationId": "NotificationService_getLinkedEndpoints",
-        "parameters": [
-          {
-            "name": "eventTypeId",
-            "in": "path",
-            "required": true,
-            "schema": { "format": "int32", "type": "integer" }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "schema": { "format": "int32", "type": "integer" }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "schema": { "format": "int32", "type": "integer" }
-          },
-          {
-            "name": "pageNumber",
-            "in": "query",
-            "schema": { "format": "int32", "type": "integer" }
-          },
-          { "name": "sort_by", "in": "query", "schema": { "type": "string" } }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": { "$ref": "#/components/schemas/Endpoint" }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/notifications/eventTypes/{eventTypeId}/{endpointId}": {
+      },
       "put": {
-        "operationId": "NotificationService_linkEndpointToEventType",
+        "operationId": "EndpointService_updateEndpoint",
         "parameters": [
           {
-            "name": "endpointId",
+            "name": "id",
             "in": "path",
             "required": true,
             "schema": { "$ref": "#/components/schemas/UUID" }
-          },
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Endpoint" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { "schema": { "type": "string" } }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "EndpointService_deleteEndpoint",
+        "parameters": [
           {
-            "name": "eventTypeId",
+            "name": "id",
             "in": "path",
             "required": true,
-            "schema": { "format": "int32", "type": "integer" }
+            "schema": { "$ref": "#/components/schemas/UUID" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { "schema": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "/endpoints/{id}/enable": {
+      "put": {
+        "operationId": "EndpointService_enableEndpoint",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/UUID" }
           }
         ],
         "responses": {
@@ -168,19 +154,34 @@
         }
       },
       "delete": {
-        "operationId": "NotificationService_unlinkEndpointFromEventType",
+        "operationId": "EndpointService_disableEndpoint",
         "parameters": [
           {
-            "name": "endpointId",
+            "name": "id",
             "in": "path",
             "required": true,
             "schema": { "$ref": "#/components/schemas/UUID" }
-          },
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": { "schema": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "/endpoints/{id}/history": {
+      "get": {
+        "operationId": "EndpointService_getEndpointHistory",
+        "parameters": [
           {
-            "name": "eventTypeId",
+            "name": "id",
             "in": "path",
             "required": true,
-            "schema": { "format": "int32", "type": "integer" }
+            "schema": { "$ref": "#/components/schemas/UUID" }
           }
         ],
         "responses": {
@@ -188,24 +189,11 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Response" }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/notifications/updates": {
-      "get": {
-        "operationId": "NotificationService_getNotificationUpdates",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/event-stream": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/Notification" }
+                  "items": {
+                    "$ref": "#/components/schemas/NotificationHistory"
+                  }
                 }
               }
             }
@@ -213,23 +201,51 @@
         }
       }
     },
-    "/notifications/{id}": {
-      "delete": {
-        "operationId": "NotificationService_markRead",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": { "format": "int32", "type": "integer" }
-            }
-          }
-        },
+    "/endpoints/{id}/history/{history_id}/details": {
+      "get": {
+        "operationId": "EndpointService_getDetailedEndpointHistory",
+        "parameters": [
+          {
+            "name": "history_id",
+            "in": "path",
+            "required": true,
+            "schema": { "format": "int32", "type": "integer" }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "$ref": "#/components/schemas/UUID" }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": { "format": "int32", "type": "integer" }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": { "format": "int32", "type": "integer" }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "description": "Page number. Starts at first page (0), if not specified starts at first page.",
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Number of items per page, if not specified or 0 is used, returns all elements",
+            "schema": { "type": "integer" }
+          },
+          { "name": "sort_by", "in": "query", "schema": { "type": "string" } }
+        ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/Response" }
-              }
+              "application/json": { "schema": { "type": "string" } }
             }
           }
         }
@@ -506,21 +522,21 @@
     }
   },
   "info": {
-    "description": "The API for Notifications",
+    "description": "The API for Integrations",
     "version": "1.0",
-    "title": "Notifications"
+    "title": "Integrations"
   },
   "servers": [
     {
       "url": "https://cloud.redhat.com",
       "description": "Production Server",
-      "variables": { "basePath": { "default": "/api/notifications/v1.0" } }
+      "variables": { "basePath": { "default": "/api/integrations/v1.0" } }
     },
     {
       "url": "http://localhost:{port}",
       "description": "Development Server",
       "variables": {
-        "basePath": { "default": "/api/notifications/v1.0" },
+        "basePath": { "default": "/api/integrations/v1.0" },
         "port": { "default": "8080" }
       }
     }

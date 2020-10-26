@@ -13,6 +13,7 @@ export interface Components {
 export interface Type<T> extends TypeModifiers {
     typeName: string;
     referred: T;
+    hasLoop?: boolean;
 }
 
 export type SchemaOrType = Schema | Type<Schema>;
@@ -31,6 +32,14 @@ export interface TypeModifiers {
 
 export const isType = <T>(schemaOrType: T | Type<T>): schemaOrType is Type<T> => {
     return (schemaOrType as any).typeName !== undefined && (schemaOrType as any).referred !== undefined;
+};
+
+export const deType = <T>(type: T | Type<T>): T => {
+    if (isType(type)) {
+        return type.referred as T;
+    }
+
+    return type;
 };
 
 export enum SchemaType {

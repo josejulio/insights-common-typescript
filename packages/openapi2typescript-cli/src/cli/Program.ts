@@ -49,6 +49,13 @@ export const getProgram = () => {
         'If --no-strict is set, the unknown keys are ignored instead of counting as an error.\n' +
         'This could be useful to avoid failing if a new schema adds new properties to objects.'
     )
+    .option(
+        '--explicit-types',
+        '(Experimental) Whether or not to use explicit types instead of inferring from zod schema. \n' +
+        'This generates the typescript `Type` instead of inferring. Makes the types more human readable and in \n' +
+        'some cases it could help the IDE when dealing with recursion.',
+        false
+    )
     .requiredOption(
         '-i, --input <openapijson-file-or-url>',
         'URL or local path to the openapi.json file.'
