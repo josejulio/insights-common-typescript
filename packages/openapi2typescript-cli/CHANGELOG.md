@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript-cli@0.2.2...openapi2typescript-cli@0.2.3) (2020-10-27)
+
+
+### Bug Fixes
+
+* fixes a bug when having circular types and using react-fetching-library ([03a6cd2](https://github.com/RedHatInsights/insights-common-typescript/commit/03a6cd2ea00d7c2382fe9ca457858a8c21235fff))
+
+
+
+
+
 ## [0.2.2](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript-cli@0.2.1...openapi2typescript-cli@0.2.2) (2020-10-27)
 
 
