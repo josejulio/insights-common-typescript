@@ -7,10 +7,24 @@ export interface ValidatedResponse<Type extends string, Status extends number | 
     errors: Record<number, z.ZodError>;
 }
 
-export interface ValidateRule {
-    zod: z.ZodTypeAny;
-    type: string;
-    status: number;
+export class ValidateRule {
+    readonly zod: z.ZodTypeAny;
+    readonly type: string;
+    readonly status: number;
+
+    constructor(zod: z.ZodTypeAny, type: string, status: number) {
+        this.zod = zod;
+        this.type = type;
+        this.status = status;
+    }
+
+    public toJSON() {
+        return {
+            type: this.type,
+            status: this.status
+        };
+    }
+
 }
 
 export const validatedResponse = <

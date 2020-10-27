@@ -12,6 +12,8 @@ export class ReactFetchingLibraryApiActionBuilder extends ApiActionBuilder {
             buffer.write('import { Action } from \'react-fetching-library\';\n', BufferType.HEADER);
         }
 
+        buffer.write('import { ValidateRule } from \'openapi2typescript\';\n', BufferType.HEADER);
+
         buffer.write('import { actionBuilder' +
             (this.options.skipTypes ? '' : ', ActionValidatableConfig')
             + ' } from \'openapi2typescript/react-fetching-library\';\n', BufferType.HEADER);
@@ -79,7 +81,7 @@ export class ReactFetchingLibraryApiActionBuilder extends ApiActionBuilder {
             const responses = Object.values(operation.responses);
             responses.forEach((response, index, array) => {
                 const responseType = this.responseTypeName(operation.id, response);
-                this.appendTemp(`{ status: ${response.status}, zod: ${responseType}, type: '${responseType}' }\n`);
+                this.appendTemp(`new ValidateRule(${responseType}, '${responseType}', ${response.status})\n`);
                 if (array.length !== index + 1) {
                     this.appendTemp(',\n');
                 }
