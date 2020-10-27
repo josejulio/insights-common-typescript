@@ -8,6 +8,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/integrations-openapi.js
 import * as z from 'zod';
 import { ValidatedResponse } from 'openapi2typescript';
 import { Action } from 'react-fetching-library';
+import { ValidateRule } from 'openapi2typescript';
 import {
     actionBuilder,
     ActionValidatableConfig
@@ -203,11 +204,11 @@ export const actionEndpointServiceGetEndpoints = (
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: EndpointServiceGetEndpointsParamResponse200,
-                type: 'EndpointServiceGetEndpointsParamResponse200'
-            }
+            new ValidateRule(
+                EndpointServiceGetEndpointsParamResponse200,
+                'EndpointServiceGetEndpointsParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -234,7 +235,7 @@ export const actionEndpointServiceCreateEndpoint = (
     .queryParams(query)
     .data(params.body)
     .config({
-        rules: [{ status: 200, zod: Endpoint, type: 'Endpoint' }]
+        rules: [ new ValidateRule(Endpoint, 'Endpoint', 200) ]
     })
     .build();
 };
@@ -262,7 +263,7 @@ export const actionEndpointServiceGetEndpoint = (
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
-        rules: [{ status: 200, zod: Endpoint, type: 'Endpoint' }]
+        rules: [ new ValidateRule(Endpoint, 'Endpoint', 200) ]
     })
     .build();
 };
@@ -301,11 +302,11 @@ export const actionEndpointServiceUpdateEndpoint = (
     .data(params.body)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: EndpointServiceUpdateEndpointParamResponse200,
-                type: 'EndpointServiceUpdateEndpointParamResponse200'
-            }
+            new ValidateRule(
+                EndpointServiceUpdateEndpointParamResponse200,
+                'EndpointServiceUpdateEndpointParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -343,11 +344,11 @@ export const actionEndpointServiceDeleteEndpoint = (
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: EndpointServiceDeleteEndpointParamResponse200,
-                type: 'EndpointServiceDeleteEndpointParamResponse200'
-            }
+            new ValidateRule(
+                EndpointServiceDeleteEndpointParamResponse200,
+                'EndpointServiceDeleteEndpointParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -385,11 +386,11 @@ export const actionEndpointServiceEnableEndpoint = (
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: EndpointServiceEnableEndpointParamResponse200,
-                type: 'EndpointServiceEnableEndpointParamResponse200'
-            }
+            new ValidateRule(
+                EndpointServiceEnableEndpointParamResponse200,
+                'EndpointServiceEnableEndpointParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -427,11 +428,11 @@ export const actionEndpointServiceDisableEndpoint = (
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: EndpointServiceDisableEndpointParamResponse200,
-                type: 'EndpointServiceDisableEndpointParamResponse200'
-            }
+            new ValidateRule(
+                EndpointServiceDisableEndpointParamResponse200,
+                'EndpointServiceDisableEndpointParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -471,11 +472,11 @@ export const actionEndpointServiceGetEndpointHistory = (
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: EndpointServiceGetEndpointHistoryParamResponse200,
-                type: 'EndpointServiceGetEndpointHistoryParamResponse200'
-            }
+            new ValidateRule(
+                EndpointServiceGetEndpointHistoryParamResponse200,
+                'EndpointServiceGetEndpointHistoryParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -566,11 +567,11 @@ export const actionEndpointServiceGetDetailedEndpointHistory = (
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: EndpointServiceGetDetailedEndpointHistoryParamResponse200,
-                type: 'EndpointServiceGetDetailedEndpointHistoryParamResponse200'
-            }
+            new ValidateRule(
+                EndpointServiceGetDetailedEndpointHistoryParamResponse200,
+                'EndpointServiceGetDetailedEndpointHistoryParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -842,6 +843,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/integrations-openapi.js
  * Generated code, DO NOT modify directly.
  */
 import * as z from 'zod';
+import { ValidateRule } from 'openapi2typescript';
 import { actionBuilder } from 'openapi2typescript/react-fetching-library';
 
 export const UUID = zodSchemaUUID();
@@ -962,11 +964,11 @@ export const actionEndpointServiceGetEndpoints = (params) => {
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: EndpointServiceGetEndpointsParamResponse200,
-                type: 'EndpointServiceGetEndpointsParamResponse200'
-            }
+            new ValidateRule(
+                EndpointServiceGetEndpointsParamResponse200,
+                'EndpointServiceGetEndpointsParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -984,7 +986,7 @@ export const actionEndpointServiceCreateEndpoint = (params) => {
     .queryParams(query)
     .data(params.body)
     .config({
-        rules: [{ status: 200, zod: Endpoint, type: 'Endpoint' }]
+        rules: [ new ValidateRule(Endpoint, 'Endpoint', 200) ]
     })
     .build();
 };
@@ -1003,7 +1005,7 @@ export const actionEndpointServiceGetEndpoint = (params) => {
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
-        rules: [{ status: 200, zod: Endpoint, type: 'Endpoint' }]
+        rules: [ new ValidateRule(Endpoint, 'Endpoint', 200) ]
     })
     .build();
 };
@@ -1026,11 +1028,11 @@ export const actionEndpointServiceUpdateEndpoint = (params) => {
     .data(params.body)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: EndpointServiceUpdateEndpointParamResponse200,
-                type: 'EndpointServiceUpdateEndpointParamResponse200'
-            }
+            new ValidateRule(
+                EndpointServiceUpdateEndpointParamResponse200,
+                'EndpointServiceUpdateEndpointParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -1052,11 +1054,11 @@ export const actionEndpointServiceDeleteEndpoint = (params) => {
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: EndpointServiceDeleteEndpointParamResponse200,
-                type: 'EndpointServiceDeleteEndpointParamResponse200'
-            }
+            new ValidateRule(
+                EndpointServiceDeleteEndpointParamResponse200,
+                'EndpointServiceDeleteEndpointParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -1078,11 +1080,11 @@ export const actionEndpointServiceEnableEndpoint = (params) => {
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: EndpointServiceEnableEndpointParamResponse200,
-                type: 'EndpointServiceEnableEndpointParamResponse200'
-            }
+            new ValidateRule(
+                EndpointServiceEnableEndpointParamResponse200,
+                'EndpointServiceEnableEndpointParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -1104,11 +1106,11 @@ export const actionEndpointServiceDisableEndpoint = (params) => {
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: EndpointServiceDisableEndpointParamResponse200,
-                type: 'EndpointServiceDisableEndpointParamResponse200'
-            }
+            new ValidateRule(
+                EndpointServiceDisableEndpointParamResponse200,
+                'EndpointServiceDisableEndpointParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -1132,11 +1134,11 @@ export const actionEndpointServiceGetEndpointHistory = (params) => {
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: EndpointServiceGetEndpointHistoryParamResponse200,
-                type: 'EndpointServiceGetEndpointHistoryParamResponse200'
-            }
+            new ValidateRule(
+                EndpointServiceGetEndpointHistoryParamResponse200,
+                'EndpointServiceGetEndpointHistoryParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -1193,11 +1195,11 @@ export const actionEndpointServiceGetDetailedEndpointHistory = (params) => {
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: EndpointServiceGetDetailedEndpointHistoryParamResponse200,
-                type: 'EndpointServiceGetDetailedEndpointHistoryParamResponse200'
-            }
+            new ValidateRule(
+                EndpointServiceGetDetailedEndpointHistoryParamResponse200,
+                'EndpointServiceGetDetailedEndpointHistoryParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -1471,6 +1473,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/notifications-openapi.j
 import * as z from 'zod';
 import { ValidatedResponse } from 'openapi2typescript';
 import { Action } from 'react-fetching-library';
+import { ValidateRule } from 'openapi2typescript';
 import {
     actionBuilder,
     ActionValidatableConfig
@@ -1607,11 +1610,11 @@ export const actionNotificationServiceGetEndpointsForDefaults = (): ActionNotifi
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: NotificationServiceGetEndpointsForDefaultsParamResponse200,
-                type: 'NotificationServiceGetEndpointsForDefaultsParamResponse200'
-            }
+            new ValidateRule(
+                NotificationServiceGetEndpointsForDefaultsParamResponse200,
+                'NotificationServiceGetEndpointsForDefaultsParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -1640,7 +1643,7 @@ export const actionNotificationServiceAddEndpointToDefaults = (
     return actionBuilder('PUT', path)
     .queryParams(query)
     .config({
-        rules: [{ status: 200, zod: Response, type: 'Response' }]
+        rules: [ new ValidateRule(Response, 'Response', 200) ]
     })
     .build();
 };
@@ -1668,7 +1671,7 @@ export const actionNotificationServiceDeleteEndpointFromDefaults = (
     return actionBuilder('DELETE', path)
     .queryParams(query)
     .config({
-        rules: [{ status: 200, zod: Response, type: 'Response' }]
+        rules: [ new ValidateRule(Response, 'Response', 200) ]
     })
     .build();
 };
@@ -1739,11 +1742,11 @@ export const actionNotificationServiceGetEventTypes = (
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: NotificationServiceGetEventTypesParamResponse200,
-                type: 'NotificationServiceGetEventTypesParamResponse200'
-            }
+            new ValidateRule(
+                NotificationServiceGetEventTypesParamResponse200,
+                'NotificationServiceGetEventTypesParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -1823,11 +1826,11 @@ export const actionNotificationServiceGetLinkedEndpoints = (
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: NotificationServiceGetLinkedEndpointsParamResponse200,
-                type: 'NotificationServiceGetLinkedEndpointsParamResponse200'
-            }
+            new ValidateRule(
+                NotificationServiceGetLinkedEndpointsParamResponse200,
+                'NotificationServiceGetLinkedEndpointsParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -1871,11 +1874,11 @@ export const actionNotificationServiceLinkEndpointToEventType = (
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: NotificationServiceLinkEndpointToEventTypeParamResponse200,
-                type: 'NotificationServiceLinkEndpointToEventTypeParamResponse200'
-            }
+            new ValidateRule(
+                NotificationServiceLinkEndpointToEventTypeParamResponse200,
+                'NotificationServiceLinkEndpointToEventTypeParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -1910,7 +1913,7 @@ export const actionNotificationServiceUnlinkEndpointFromEventType = (
     return actionBuilder('DELETE', path)
     .queryParams(query)
     .config({
-        rules: [{ status: 200, zod: Response, type: 'Response' }]
+        rules: [ new ValidateRule(Response, 'Response', 200) ]
     })
     .build();
 };
@@ -1940,11 +1943,11 @@ export const actionNotificationServiceGetNotificationUpdates = (): ActionNotific
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: NotificationServiceGetNotificationUpdatesParamResponse200,
-                type: 'NotificationServiceGetNotificationUpdatesParamResponse200'
-            }
+            new ValidateRule(
+                NotificationServiceGetNotificationUpdatesParamResponse200,
+                'NotificationServiceGetNotificationUpdatesParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -1975,7 +1978,7 @@ export const actionNotificationServiceMarkRead = (
     .queryParams(query)
     .data(params.body)
     .config({
-        rules: [{ status: 200, zod: Response, type: 'Response' }]
+        rules: [ new ValidateRule(Response, 'Response', 200) ]
     })
     .build();
 };
@@ -2246,6 +2249,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/notifications-openapi.j
  * Generated code, DO NOT modify directly.
  */
 import * as z from 'zod';
+import { ValidateRule } from 'openapi2typescript';
 import { actionBuilder } from 'openapi2typescript/react-fetching-library';
 
 export const UUID = zodSchemaUUID();
@@ -2327,11 +2331,11 @@ export const actionNotificationServiceGetEndpointsForDefaults = () => {
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: NotificationServiceGetEndpointsForDefaultsParamResponse200,
-                type: 'NotificationServiceGetEndpointsForDefaultsParamResponse200'
-            }
+            new ValidateRule(
+                NotificationServiceGetEndpointsForDefaultsParamResponse200,
+                'NotificationServiceGetEndpointsForDefaultsParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -2351,7 +2355,7 @@ export const actionNotificationServiceAddEndpointToDefaults = (params) => {
     return actionBuilder('PUT', path)
     .queryParams(query)
     .config({
-        rules: [{ status: 200, zod: Response, type: 'Response' }]
+        rules: [ new ValidateRule(Response, 'Response', 200) ]
     })
     .build();
 };
@@ -2370,7 +2374,7 @@ export const actionNotificationServiceDeleteEndpointFromDefaults = (params) => {
     return actionBuilder('DELETE', path)
     .queryParams(query)
     .config({
-        rules: [{ status: 200, zod: Response, type: 'Response' }]
+        rules: [ new ValidateRule(Response, 'Response', 200) ]
     })
     .build();
 };
@@ -2413,11 +2417,11 @@ export const actionNotificationServiceGetEventTypes = (params) => {
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: NotificationServiceGetEventTypesParamResponse200,
-                type: 'NotificationServiceGetEventTypesParamResponse200'
-            }
+            new ValidateRule(
+                NotificationServiceGetEventTypesParamResponse200,
+                'NotificationServiceGetEventTypesParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -2466,11 +2470,11 @@ export const actionNotificationServiceGetLinkedEndpoints = (params) => {
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: NotificationServiceGetLinkedEndpointsParamResponse200,
-                type: 'NotificationServiceGetLinkedEndpointsParamResponse200'
-            }
+            new ValidateRule(
+                NotificationServiceGetLinkedEndpointsParamResponse200,
+                'NotificationServiceGetLinkedEndpointsParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -2495,11 +2499,11 @@ export const actionNotificationServiceLinkEndpointToEventType = (params) => {
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: NotificationServiceLinkEndpointToEventTypeParamResponse200,
-                type: 'NotificationServiceLinkEndpointToEventTypeParamResponse200'
-            }
+            new ValidateRule(
+                NotificationServiceLinkEndpointToEventTypeParamResponse200,
+                'NotificationServiceLinkEndpointToEventTypeParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -2524,7 +2528,7 @@ export const actionNotificationServiceUnlinkEndpointFromEventType = (
     return actionBuilder('DELETE', path)
     .queryParams(query)
     .config({
-        rules: [{ status: 200, zod: Response, type: 'Response' }]
+        rules: [ new ValidateRule(Response, 'Response', 200) ]
     })
     .build();
 };
@@ -2540,11 +2544,11 @@ export const actionNotificationServiceGetNotificationUpdates = () => {
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: NotificationServiceGetNotificationUpdatesParamResponse200,
-                type: 'NotificationServiceGetNotificationUpdatesParamResponse200'
-            }
+            new ValidateRule(
+                NotificationServiceGetNotificationUpdatesParamResponse200,
+                'NotificationServiceGetNotificationUpdatesParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -2563,7 +2567,7 @@ export const actionNotificationServiceMarkRead = (params) => {
     .queryParams(query)
     .data(params.body)
     .config({
-        rules: [{ status: 200, zod: Response, type: 'Response' }]
+        rules: [ new ValidateRule(Response, 'Response', 200) ]
     })
     .build();
 };
@@ -2836,6 +2840,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/policies-openapi.json e
 import * as z from 'zod';
 import { ValidatedResponse } from 'openapi2typescript';
 import { Action } from 'react-fetching-library';
+import { ValidateRule } from 'openapi2typescript';
 import {
     actionBuilder,
     ActionValidatableConfig
@@ -2922,10 +2927,10 @@ export const actionPostPoliciesByIdEnabled = (
     .queryParams(query)
     .config({
         rules: [
-            { status: 200, zod: __Empty, type: '__Empty' },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            { status: 404, zod: __Empty, type: '__Empty' },
-            { status: 500, zod: __Empty, type: '__Empty' }
+            new ValidateRule(__Empty, '__Empty', 200),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(__Empty, '__Empty', 404),
+            new ValidateRule(__Empty, '__Empty', 500)
         ]
     })
     .build();
@@ -2942,7 +2947,7 @@ export const actionGetStatus = (): ActionGetStatus => {
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
-        rules: [{ status: 200, zod: __Empty, type: '__Empty' }]
+        rules: [ new ValidateRule(__Empty, '__Empty', 200) ]
     })
     .build();
 };
@@ -2980,8 +2985,8 @@ export const actionPostPoliciesIdsEnabled = (
     .data(params.body)
     .config({
         rules: [
-            { status: 200, zod: __Empty, type: '__Empty' },
-            { status: 403, zod: __Empty, type: '__Empty' }
+            new ValidateRule(__Empty, '__Empty', 200),
+            new ValidateRule(__Empty, '__Empty', 403)
         ]
     })
     .build();
@@ -3002,11 +3007,11 @@ export const actionGetFacts = (): ActionGetFacts => {
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: GetFactsParamResponse200,
-                type: 'GetFactsParamResponse200'
-            }
+            new ValidateRule(
+                GetFactsParamResponse200,
+                'GetFactsParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -3122,14 +3127,10 @@ export const actionGetPolicies = (params: GetPolicies): ActionGetPolicies => {
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: PagedResponseOfPolicy,
-                type: 'PagedResponseOfPolicy'
-            },
-            { status: 400, zod: __Empty, type: '__Empty' },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            { status: 404, zod: __Empty, type: '__Empty' }
+            new ValidateRule(PagedResponseOfPolicy, 'PagedResponseOfPolicy', 200),
+            new ValidateRule(__Empty, '__Empty', 400),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(__Empty, '__Empty', 404)
         ]
     })
     .build();
@@ -3190,20 +3191,20 @@ export const actionPostPolicies = (
     .data(params.body)
     .config({
         rules: [
-            { status: 200, zod: __Empty, type: '__Empty' },
-            { status: 201, zod: Policy, type: 'Policy' },
-            {
-                status: 400,
-                zod: PostPoliciesParamResponse400,
-                type: 'PostPoliciesParamResponse400'
-            },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            {
-                status: 409,
-                zod: PostPoliciesParamResponse409,
-                type: 'PostPoliciesParamResponse409'
-            },
-            { status: 500, zod: __Empty, type: '__Empty' }
+            new ValidateRule(__Empty, '__Empty', 200),
+            new ValidateRule(Policy, 'Policy', 201),
+            new ValidateRule(
+                PostPoliciesParamResponse400,
+                'PostPoliciesParamResponse400',
+                400
+            ),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(
+                PostPoliciesParamResponse409,
+                'PostPoliciesParamResponse409',
+                409
+            ),
+            new ValidateRule(__Empty, '__Empty', 500)
         ]
     })
     .build();
@@ -3236,9 +3237,9 @@ export const actionGetPoliciesById = (
     .queryParams(query)
     .config({
         rules: [
-            { status: 200, zod: Policy, type: 'Policy' },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            { status: 404, zod: __Empty, type: '__Empty' }
+            new ValidateRule(Policy, 'Policy', 200),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(__Empty, '__Empty', 404)
         ]
     })
     .build();
@@ -3271,9 +3272,9 @@ export const actionDeletePoliciesById = (
     .queryParams(query)
     .config({
         rules: [
-            { status: 200, zod: __Empty, type: '__Empty' },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            { status: 404, zod: __Empty, type: '__Empty' }
+            new ValidateRule(__Empty, '__Empty', 200),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(__Empty, '__Empty', 404)
         ]
     })
     .build();
@@ -3329,15 +3330,15 @@ export const actionPutPoliciesByPolicyId = (
     .data(params.body)
     .config({
         rules: [
-            { status: 200, zod: __Empty, type: '__Empty' },
-            { status: 400, zod: __Empty, type: '__Empty' },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            { status: 404, zod: __Empty, type: '__Empty' },
-            {
-                status: 409,
-                zod: PutPoliciesByPolicyIdParamResponse409,
-                type: 'PutPoliciesByPolicyIdParamResponse409'
-            }
+            new ValidateRule(__Empty, '__Empty', 200),
+            new ValidateRule(__Empty, '__Empty', 400),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(__Empty, '__Empty', 404),
+            new ValidateRule(
+                PutPoliciesByPolicyIdParamResponse409,
+                'PutPoliciesByPolicyIdParamResponse409',
+                409
+            )
         ]
     })
     .build();
@@ -3379,11 +3380,11 @@ export const actionPostPoliciesValidateName = (
     .data(params.body)
     .config({
         rules: [
-            { status: 200, zod: __Empty, type: '__Empty' },
-            { status: 400, zod: __Empty, type: '__Empty' },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            { status: 409, zod: __Empty, type: '__Empty' },
-            { status: 500, zod: __Empty, type: '__Empty' }
+            new ValidateRule(__Empty, '__Empty', 200),
+            new ValidateRule(__Empty, '__Empty', 400),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(__Empty, '__Empty', 409),
+            new ValidateRule(__Empty, '__Empty', 500)
         ]
     })
     .build();
@@ -3468,10 +3469,10 @@ export const actionGetPoliciesIds = (
     .queryParams(query)
     .config({
         rules: [
-            { status: 200, zod: List, type: 'List' },
-            { status: 400, zod: __Empty, type: '__Empty' },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            { status: 404, zod: __Empty, type: '__Empty' }
+            new ValidateRule(List, 'List', 200),
+            new ValidateRule(__Empty, '__Empty', 400),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(__Empty, '__Empty', 404)
         ]
     })
     .build();
@@ -3509,12 +3510,12 @@ export const actionDeletePoliciesIds = (
     .data(params.body)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: DeletePoliciesIdsParamResponse200,
-                type: 'DeletePoliciesIdsParamResponse200'
-            },
-            { status: 403, zod: __Empty, type: '__Empty' }
+            new ValidateRule(
+                DeletePoliciesIdsParamResponse200,
+                'DeletePoliciesIdsParamResponse200',
+                200
+            ),
+            new ValidateRule(__Empty, '__Empty', 403)
         ]
     })
     .build();
@@ -3545,9 +3546,9 @@ export const actionPostPoliciesValidate = (
     .data(params.body)
     .config({
         rules: [
-            { status: 200, zod: __Empty, type: '__Empty' },
-            { status: 400, zod: __Empty, type: '__Empty' },
-            { status: 500, zod: __Empty, type: '__Empty' }
+            new ValidateRule(__Empty, '__Empty', 200),
+            new ValidateRule(__Empty, '__Empty', 400),
+            new ValidateRule(__Empty, '__Empty', 500)
         ]
     })
     .build();
@@ -3565,7 +3566,7 @@ export const actionGet = (): ActionGet => {
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
-        rules: [{ status: 404, zod: __Empty, type: '__Empty' }]
+        rules: [ new ValidateRule(__Empty, '__Empty', 404) ]
     })
     .build();
 };
@@ -3687,15 +3688,15 @@ export const actionGetPoliciesByIdHistoryTrigger = (
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: PagedResponseOfHistoryItem,
-                type: 'PagedResponseOfHistoryItem'
-            },
-            { status: 400, zod: __Empty, type: '__Empty' },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            { status: 404, zod: __Empty, type: '__Empty' },
-            { status: 500, zod: __Empty, type: '__Empty' }
+            new ValidateRule(
+                PagedResponseOfHistoryItem,
+                'PagedResponseOfHistoryItem',
+                200
+            ),
+            new ValidateRule(__Empty, '__Empty', 400),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(__Empty, '__Empty', 404),
+            new ValidateRule(__Empty, '__Empty', 500)
         ]
     })
     .build();
@@ -3793,6 +3794,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/policies-openapi.json e
  * Generated code, DO NOT modify directly.
  */
 import * as z from 'zod';
+import { ValidateRule } from 'openapi2typescript';
 import { actionBuilder } from 'openapi2typescript/react-fetching-library';
 
 export const Policy = zodSchemaPolicy();
@@ -3845,10 +3847,10 @@ export const actionPostPoliciesByIdEnabled = (params) => {
     .queryParams(query)
     .config({
         rules: [
-            { status: 200, zod: __Empty, type: '__Empty' },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            { status: 404, zod: __Empty, type: '__Empty' },
-            { status: 500, zod: __Empty, type: '__Empty' }
+            new ValidateRule(__Empty, '__Empty', 200),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(__Empty, '__Empty', 404),
+            new ValidateRule(__Empty, '__Empty', 500)
         ]
     })
     .build();
@@ -3861,7 +3863,7 @@ export const actionGetStatus = () => {
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
-        rules: [{ status: 200, zod: __Empty, type: '__Empty' }]
+        rules: [ new ValidateRule(__Empty, '__Empty', 200) ]
     })
     .build();
 };
@@ -3886,8 +3888,8 @@ export const actionPostPoliciesIdsEnabled = (params) => {
     .data(params.body)
     .config({
         rules: [
-            { status: 200, zod: __Empty, type: '__Empty' },
-            { status: 403, zod: __Empty, type: '__Empty' }
+            new ValidateRule(__Empty, '__Empty', 200),
+            new ValidateRule(__Empty, '__Empty', 403)
         ]
     })
     .build();
@@ -3903,11 +3905,11 @@ export const actionGetFacts = () => {
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: GetFactsParamResponse200,
-                type: 'GetFactsParamResponse200'
-            }
+            new ValidateRule(
+                GetFactsParamResponse200,
+                'GetFactsParamResponse200',
+                200
+            )
         ]
     })
     .build();
@@ -3994,14 +3996,10 @@ export const actionGetPolicies = (params) => {
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: PagedResponseOfPolicy,
-                type: 'PagedResponseOfPolicy'
-            },
-            { status: 400, zod: __Empty, type: '__Empty' },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            { status: 404, zod: __Empty, type: '__Empty' }
+            new ValidateRule(PagedResponseOfPolicy, 'PagedResponseOfPolicy', 200),
+            new ValidateRule(__Empty, '__Empty', 400),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(__Empty, '__Empty', 404)
         ]
     })
     .build();
@@ -4033,20 +4031,20 @@ export const actionPostPolicies = (params) => {
     .data(params.body)
     .config({
         rules: [
-            { status: 200, zod: __Empty, type: '__Empty' },
-            { status: 201, zod: Policy, type: 'Policy' },
-            {
-                status: 400,
-                zod: PostPoliciesParamResponse400,
-                type: 'PostPoliciesParamResponse400'
-            },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            {
-                status: 409,
-                zod: PostPoliciesParamResponse409,
-                type: 'PostPoliciesParamResponse409'
-            },
-            { status: 500, zod: __Empty, type: '__Empty' }
+            new ValidateRule(__Empty, '__Empty', 200),
+            new ValidateRule(Policy, 'Policy', 201),
+            new ValidateRule(
+                PostPoliciesParamResponse400,
+                'PostPoliciesParamResponse400',
+                400
+            ),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(
+                PostPoliciesParamResponse409,
+                'PostPoliciesParamResponse409',
+                409
+            ),
+            new ValidateRule(__Empty, '__Empty', 500)
         ]
     })
     .build();
@@ -4068,9 +4066,9 @@ export const actionGetPoliciesById = (params) => {
     .queryParams(query)
     .config({
         rules: [
-            { status: 200, zod: Policy, type: 'Policy' },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            { status: 404, zod: __Empty, type: '__Empty' }
+            new ValidateRule(Policy, 'Policy', 200),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(__Empty, '__Empty', 404)
         ]
     })
     .build();
@@ -4092,9 +4090,9 @@ export const actionDeletePoliciesById = (params) => {
     .queryParams(query)
     .config({
         rules: [
-            { status: 200, zod: __Empty, type: '__Empty' },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            { status: 404, zod: __Empty, type: '__Empty' }
+            new ValidateRule(__Empty, '__Empty', 200),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(__Empty, '__Empty', 404)
         ]
     })
     .build();
@@ -4127,15 +4125,15 @@ export const actionPutPoliciesByPolicyId = (params) => {
     .data(params.body)
     .config({
         rules: [
-            { status: 200, zod: __Empty, type: '__Empty' },
-            { status: 400, zod: __Empty, type: '__Empty' },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            { status: 404, zod: __Empty, type: '__Empty' },
-            {
-                status: 409,
-                zod: PutPoliciesByPolicyIdParamResponse409,
-                type: 'PutPoliciesByPolicyIdParamResponse409'
-            }
+            new ValidateRule(__Empty, '__Empty', 200),
+            new ValidateRule(__Empty, '__Empty', 400),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(__Empty, '__Empty', 404),
+            new ValidateRule(
+                PutPoliciesByPolicyIdParamResponse409,
+                'PutPoliciesByPolicyIdParamResponse409',
+                409
+            )
         ]
     })
     .build();
@@ -4161,11 +4159,11 @@ export const actionPostPoliciesValidateName = (params) => {
     .data(params.body)
     .config({
         rules: [
-            { status: 200, zod: __Empty, type: '__Empty' },
-            { status: 400, zod: __Empty, type: '__Empty' },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            { status: 409, zod: __Empty, type: '__Empty' },
-            { status: 500, zod: __Empty, type: '__Empty' }
+            new ValidateRule(__Empty, '__Empty', 200),
+            new ValidateRule(__Empty, '__Empty', 400),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(__Empty, '__Empty', 409),
+            new ValidateRule(__Empty, '__Empty', 500)
         ]
     })
     .build();
@@ -4223,10 +4221,10 @@ export const actionGetPoliciesIds = (params) => {
     .queryParams(query)
     .config({
         rules: [
-            { status: 200, zod: List, type: 'List' },
-            { status: 400, zod: __Empty, type: '__Empty' },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            { status: 404, zod: __Empty, type: '__Empty' }
+            new ValidateRule(List, 'List', 200),
+            new ValidateRule(__Empty, '__Empty', 400),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(__Empty, '__Empty', 404)
         ]
     })
     .build();
@@ -4247,12 +4245,12 @@ export const actionDeletePoliciesIds = (params) => {
     .data(params.body)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: DeletePoliciesIdsParamResponse200,
-                type: 'DeletePoliciesIdsParamResponse200'
-            },
-            { status: 403, zod: __Empty, type: '__Empty' }
+            new ValidateRule(
+                DeletePoliciesIdsParamResponse200,
+                'DeletePoliciesIdsParamResponse200',
+                200
+            ),
+            new ValidateRule(__Empty, '__Empty', 403)
         ]
     })
     .build();
@@ -4272,9 +4270,9 @@ export const actionPostPoliciesValidate = (params) => {
     .data(params.body)
     .config({
         rules: [
-            { status: 200, zod: __Empty, type: '__Empty' },
-            { status: 400, zod: __Empty, type: '__Empty' },
-            { status: 500, zod: __Empty, type: '__Empty' }
+            new ValidateRule(__Empty, '__Empty', 200),
+            new ValidateRule(__Empty, '__Empty', 400),
+            new ValidateRule(__Empty, '__Empty', 500)
         ]
     })
     .build();
@@ -4288,7 +4286,7 @@ export const actionGet = () => {
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
-        rules: [{ status: 404, zod: __Empty, type: '__Empty' }]
+        rules: [ new ValidateRule(__Empty, '__Empty', 404) ]
     })
     .build();
 };
@@ -4369,15 +4367,15 @@ export const actionGetPoliciesByIdHistoryTrigger = (params) => {
     .queryParams(query)
     .config({
         rules: [
-            {
-                status: 200,
-                zod: PagedResponseOfHistoryItem,
-                type: 'PagedResponseOfHistoryItem'
-            },
-            { status: 400, zod: __Empty, type: '__Empty' },
-            { status: 403, zod: __Empty, type: '__Empty' },
-            { status: 404, zod: __Empty, type: '__Empty' },
-            { status: 500, zod: __Empty, type: '__Empty' }
+            new ValidateRule(
+                PagedResponseOfHistoryItem,
+                'PagedResponseOfHistoryItem',
+                200
+            ),
+            new ValidateRule(__Empty, '__Empty', 400),
+            new ValidateRule(__Empty, '__Empty', 403),
+            new ValidateRule(__Empty, '__Empty', 404),
+            new ValidateRule(__Empty, '__Empty', 500)
         ]
     })
     .build();
@@ -4477,6 +4475,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/simple-openapi.json exe
 import * as z from 'zod';
 import { ValidatedResponse } from 'openapi2typescript';
 import { Action } from 'react-fetching-library';
+import { ValidateRule } from 'openapi2typescript';
 import {
     actionBuilder,
     ActionValidatableConfig
@@ -4502,7 +4501,7 @@ export const actionGetFruits = (): ActionGetFruits => {
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
-        rules: [{ status: 200, zod: SetFruit, type: 'SetFruit' }]
+        rules: [ new ValidateRule(SetFruit, 'SetFruit', 200) ]
     })
     .build();
 };
@@ -4526,7 +4525,7 @@ export const actionPostFruits = (params: PostFruits): ActionPostFruits => {
     .queryParams(query)
     .data(params.body)
     .config({
-        rules: [{ status: 200, zod: SetFruit, type: 'SetFruit' }]
+        rules: [ new ValidateRule(SetFruit, 'SetFruit', 200) ]
     })
     .build();
 };
@@ -4554,8 +4553,8 @@ export const actionDeleteFruits = (
     .data(params.body)
     .config({
         rules: [
-            { status: 200, zod: SetFruit, type: 'SetFruit' },
-            { status: 400, zod: Message, type: 'Message' }
+            new ValidateRule(SetFruit, 'SetFruit', 200),
+            new ValidateRule(Message, 'Message', 400)
         ]
     })
     .build();
@@ -4586,6 +4585,7 @@ exports[`src/cli/schema execute for ./tests/__fixtures__/simple-openapi.json exe
  * Generated code, DO NOT modify directly.
  */
 import * as z from 'zod';
+import { ValidateRule } from 'openapi2typescript';
 import { actionBuilder } from 'openapi2typescript/react-fetching-library';
 
 export const Fruit = zodSchemaFruit();
@@ -4601,7 +4601,7 @@ export const actionGetFruits = () => {
     return actionBuilder('GET', path)
     .queryParams(query)
     .config({
-        rules: [{ status: 200, zod: SetFruit, type: 'SetFruit' }]
+        rules: [ new ValidateRule(SetFruit, 'SetFruit', 200) ]
     })
     .build();
 };
@@ -4618,7 +4618,7 @@ export const actionPostFruits = (params) => {
     .queryParams(query)
     .data(params.body)
     .config({
-        rules: [{ status: 200, zod: SetFruit, type: 'SetFruit' }]
+        rules: [ new ValidateRule(SetFruit, 'SetFruit', 200) ]
     })
     .build();
 };
@@ -4636,8 +4636,8 @@ export const actionDeleteFruits = (params) => {
     .data(params.body)
     .config({
         rules: [
-            { status: 200, zod: SetFruit, type: 'SetFruit' },
-            { status: 400, zod: Message, type: 'Message' }
+            new ValidateRule(SetFruit, 'SetFruit', 200),
+            new ValidateRule(Message, 'Message', 400)
         ]
     })
     .build();
