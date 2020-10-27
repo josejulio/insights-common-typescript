@@ -252,7 +252,8 @@ export class ApiBase {
                 this.appendTemp('z.lazy(() => ');
             }
 
-            this.appendTemp(schema.typeName);
+            // This allows to use an schema that hasn't been defined yet
+            this.appendTemp(`${this.functionName(schema)}()`);
 
             if (schema.hasLoop) {
                 this.appendTemp(')');
