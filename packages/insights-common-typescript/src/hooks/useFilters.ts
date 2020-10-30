@@ -1,6 +1,15 @@
 import { useCallback, useMemo, useState } from 'react';
 import { useDebouncedState } from './useDebouncedState';
-import { ClearFilters, EnumElement, FilterBase, Filters, SetFilters, StandardFilterEnum } from '../types/Filters';
+import {
+    ClearFilterElement,
+    ClearFilters,
+    EnumElement,
+    FilterBase,
+    FilterContent,
+    Filters,
+    SetFilters,
+    StandardFilterEnum
+} from '../types';
 
 const DEFAULT_DEBOUNCE_MS = 250;
 
@@ -41,8 +50,8 @@ export const useFilters = <FilterColumn extends StandardFilterEnum<any>>(
     for (const column of columns) {
         // We ensure that this loop is always the same length with the same contents, thus not breaking the rules of hook.
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        const [ value, setter, debouncedValue ] = useDebouncedState<string>(
-            '', debounce, useStateFunctions ? useStateFunctions[column] : undefined
+        const [ value, setter, debouncedValue ] = useDebouncedState<FilterContent>(
+            undefined, debounce, useStateFunctions ? useStateFunctions[column] : undefined
         );
         elements.filters[column] = value;
         elements.setFilters[column] = setter;
@@ -58,10 +67,18 @@ export const useFilters = <FilterColumn extends StandardFilterEnum<any>>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const debouncedFilters = useMemo(() => elements.debouncedFilters, [ ...Object.values(elements.debouncedFilters) ]);
 
-    const clearFilter: ClearFilters<FilterColumn> = useCallback((columns: Array<string>) => {
-        for (const column of columns) {
+    const clearFilter: ClearFilters<FilterColumn> = useCallback((columns: ClearFilterElement<FilterColumn>) => {
+        for (const [ column, value ] of Object.entries(columns)) {
             if (setFilters[column]) {
-                setFilters[column]('');
+                setFilters[column](prev => {
+                    if (typeof prev === 'string') {
+                        if ((value as any).includes(prev)) {
+                            return '';
+                        }
+                    } else {
+                        return prev.filter(p => !(value as any).includes(p));
+                    }
+                });
             } else {
                 throw new Error(`Unexpected column ${column}`);
             }

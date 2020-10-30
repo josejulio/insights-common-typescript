@@ -19,14 +19,14 @@ describe('src/hooks/useFilter', () => {
             initialProps: Foo
         });
         expect(result.current.filters).toEqual({
-            A: '',
-            b: '',
-            y: ''
+            A: undefined,
+            b: undefined,
+            y: undefined
         });
         expect(result.current.filters).toEqual({
-            [Foo.A]: '',
-            [Foo.B]: '',
-            [Foo.c]: ''
+            [Foo.A]: undefined,
+            [Foo.B]: undefined,
+            [Foo.c]: undefined
         });
     });
 
@@ -52,14 +52,14 @@ describe('src/hooks/useFilter', () => {
             initialProps: Foo
         });
         expect(result.current.debouncedFilters).toEqual({
-            A: '',
-            b: '',
-            y: ''
+            A: undefined,
+            b: undefined,
+            y: undefined
         });
         expect(result.current.debouncedFilters).toEqual({
-            [Foo.A]: '',
-            [Foo.B]: '',
-            [Foo.c]: ''
+            [Foo.A]: undefined,
+            [Foo.B]: undefined,
+            [Foo.c]: undefined
         });
     });
 
@@ -79,9 +79,9 @@ describe('src/hooks/useFilter', () => {
         });
         expect(result.current.filters.b).toEqual('im b');
         act(() => {
-            result.current.clearFilter([ Foo.B ]);
+            result.current.clearFilter({ [Foo.B]: '' });
         });
-        expect(result.current.filters.b).toEqual('');
+        expect(result.current.filters.b).toEqual(undefined);
     });
 
     it ('clearFilter throws error when sending an unknown column', () => {
@@ -90,7 +90,9 @@ describe('src/hooks/useFilter', () => {
         });
 
         act(() => {
-            expect(() => result.current.clearFilter([ 'moo' as Foo ])).toThrowError('Unexpected column moo');
+            expect(() => result.current.clearFilter({
+                ['moo' as Foo]: ''
+            })).toThrowError('Unexpected column moo');
         });
     });
 
@@ -102,14 +104,14 @@ describe('src/hooks/useFilter', () => {
         rerender(Foo);
 
         expect(result.current.debouncedFilters).toEqual({
-            A: '',
-            b: '',
-            y: ''
+            A: undefined,
+            b: undefined,
+            y: undefined
         });
         expect(result.current.debouncedFilters).toEqual({
-            [Foo.A]: '',
-            [Foo.B]: '',
-            [Foo.c]: ''
+            [Foo.A]: undefined,
+            [Foo.B]: undefined,
+            [Foo.c]: undefined
         });
     });
 
@@ -157,7 +159,7 @@ describe('src/hooks/useFilter', () => {
         expect(result.current.filters.A).toEqual('foobar');
     });
 
-    it ('debouncedFilter changes when calling a setter after the debounce delay', () => {
+    it('debouncedFilter changes when calling a setter after the debounce delay', () => {
         jest.useFakeTimers();
         const { result } = renderHook((Enum) => useFilters(Enum, 500), {
             initialProps: Foo
@@ -168,13 +170,13 @@ describe('src/hooks/useFilter', () => {
             // eslint-disable-next-line new-cap
             result.current.setFilters.A('foobar');
         });
-        expect(result.current.debouncedFilters.A).toBe('');
+        expect(result.current.debouncedFilters.A).toBe(undefined);
         expect(prev).toBe(result.current.debouncedFilters);
 
         act(() => {
             jest.advanceTimersByTime(300);
         });
-        expect(result.current.debouncedFilters.A).toBe('');
+        expect(result.current.debouncedFilters.A).toBe(undefined);
         expect(prev).toBe(result.current.debouncedFilters);
 
         act(() => {
@@ -215,14 +217,14 @@ describe('src/hooks/useFilter', () => {
         });
 
         expect(result.current.filters).toEqual({
-            A: '',
-            b: '',
-            y: ''
+            A: undefined,
+            b: undefined,
+            y: undefined
         });
         expect(result.current.filters).toEqual({
-            [Foo.A]: '',
-            [Foo.B]: '',
-            [Foo.c]: ''
+            [Foo.A]: undefined,
+            [Foo.B]: undefined,
+            [Foo.c]: undefined
         });
 
         expect(Object.keys(result.current.setFilters)).toEqual([
@@ -232,14 +234,14 @@ describe('src/hooks/useFilter', () => {
         rerender(Bar);
 
         expect(result.current.filters).toEqual({
-            A: '',
-            b: '',
-            y: ''
+            A: undefined,
+            b: undefined,
+            y: undefined
         });
         expect(result.current.filters).toEqual({
-            [Foo.A]: '',
-            [Foo.B]: '',
-            [Foo.c]: ''
+            [Foo.A]: undefined,
+            [Foo.B]: undefined,
+            [Foo.c]: undefined
         });
 
         expect(Object.keys(result.current.setFilters)).toEqual([

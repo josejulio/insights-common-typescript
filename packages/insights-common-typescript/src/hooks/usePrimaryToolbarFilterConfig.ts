@@ -1,5 +1,14 @@
 import { useCallback, useMemo, useState, ReactNode } from 'react';
-import { ClearFilters, EnumElement, FilterBase, Filters, SetFilters, StandardFilterEnum } from '../types/Filters';
+import {
+    ClearFilterElement,
+    ClearFilters,
+    EnumElement,
+    FilterBase,
+    FilterContent,
+    Filters,
+    SetFilters,
+    StandardFilterEnum
+} from '../types';
 
 const getFilterItemType = <FilterColumn extends StandardFilterEnum<any>>(
     column: EnumElement<FilterColumn>,
@@ -10,7 +19,7 @@ const getFilterItemType = <FilterColumn extends StandardFilterEnum<any>>(
         if (options.exclusive) {
             return 'radio';
         } else {
-            throw new Error('Inclusive options are not yet implemented');
+            return 'checkbox';
         }
     }
 
@@ -23,14 +32,28 @@ const getFilterItemValue = <FilterColumn extends StandardFilterEnum<any>>(
     meta: ColumnsMetada<FilterColumn>
 ) => {
     const options = meta[column].options;
-    let value = filters[column];
+    let value: FilterContent = filters[column];
     if (options) {
-        if (options.exclude && options.exclude.includes(value)) {
-            value = '';
+        if (options.exclude) {
+            if (typeof value === 'string') {
+                if (options.exclude.includes(value)) {
+                    value = '';
+                }
+            } else {
+                if (value) {
+                    value = value.filter(v => !options?.exclude?.includes(v));
+                }
+            }
         }
 
-        if (options.default && (value === undefined || value === '')) {
-            return options.default;
+        if (options.default) {
+            if (value === undefined || value === '' || value === []) {
+                value = options.default;
+            }
+        }
+
+        if (value === undefined || value === '') {
+            value = options.exclusive === false ? [] : '';
         }
     }
 
@@ -49,19 +72,17 @@ const filterItem = <FilterColumn extends StandardFilterEnum<any>>(
             id: `filter-${column}`,
             value: getFilterItemValue(column, filters, meta),
             placeholder: meta[column].placeholder,
-            onChange: (_event, value: string) => {
+            onChange: (_event, value: string | Array<string>) => {
                 const options = meta[column].options;
                 if (options) {
                     if (options.exclusive) {
-                        if (options.exclude?.includes(value)) {
+                        if (options.exclude?.includes(value as string)) {
                             setFilters[column]('');
                         } else if (options.items.find(i => i.value === value)) {
                             setFilters[column](value);
                         }
                     } else {
-                        // Wont reach this point as there is other error before, ignore from coverage
-                        /* istanbul ignore next */
-                        throw new Error('Inclusive options are not yet implemented');
+                        setFilters[column]((value as Array<string>).filter(v => options.items.find(i => i.value === v)));
                     }
                 } else {
                     setFilters[column](value);
@@ -76,35 +97,65 @@ const getActiveFilterConfigItem = <FilterColumn extends StandardFilterEnum<any>>
     column: EnumElement<FilterColumn>,
     meta: ColumnsMetada<FilterColumn>
 ) => {
-    const value = filters[column]?.trim();
+    const value: FilterContent = filters[column];
+    let chipsValues: Array<string> = [];
     const options = meta[column].options;
-    if (value === undefined || value === '' || options?.exclude?.includes(value)) {
+    if (value === undefined || value === '') {
         return undefined;
     }
 
+    if (typeof value === 'string') {
+        if (options?.exclude?.includes(value)) {
+            return undefined;
+        } else {
+            chipsValues = [ value ];
+        }
+    } else {
+        if (options?.exclude) {
+            chipsValues = value.filter(v => !options?.exclude?.includes(v));
+        } else {
+            chipsValues = value;
+        }
+    }
+
+    if (chipsValues.length === 0) {
+        return undefined;
+    }
+
+    const chips: Array<{ name: string, isRead: true }> = [];
+    chipsValues.forEach(v => chips.push({
+        name: v,
+        isRead: true
+    }));
+
     return {
         category: meta[column].label,
-        chips: [
-            {
-                name: value,
-                isRead: true
-            }
-        ]
+        chips
     };
 };
+
+interface FilterColumnMetadataOptionsBase<T> {
+    exclude?: Array<string>;
+    default?: T;
+    exclusive?: boolean;
+    items: Array<{
+        value: string;
+        label: ReactNode
+    }>
+}
+
+interface FilterColumnMetadataOptionsSingleValue extends FilterColumnMetadataOptionsBase<string> {
+    exclusive?: true,
+}
+
+interface FilterColumnMetadataOptionsMultipleValue extends FilterColumnMetadataOptionsBase<Array<string>> {
+    exclusive?: false,
+}
 
 export interface FilterColumnMetadata {
     label: string;
     placeholder: string;
-    options?: {
-        exclusive?: boolean;
-        items: Array<{
-            value: string;
-            label: ReactNode;
-        }>;
-        default?: string;
-        exclude?: Array<string>;
-    };
+    options?: FilterColumnMetadataOptionsSingleValue | FilterColumnMetadataOptionsMultipleValue;
 }
 
 export type ColumnsMetada<Enum extends StandardFilterEnum<any>> = FilterBase<Enum, FilterColumnMetadata>;
@@ -126,7 +177,7 @@ export const usePrimaryToolbarFilterConfig = <FilterColumn extends StandardFilte
     }), [ filters, setFilters, meta, Enum ]);
 
     const onFilterDelete = useCallback((_event, rawFilterConfigs: any[]) => {
-        const toClear: Array<EnumElement<FilterColumn>> = [];
+        const toClear: ClearFilterElement<FilterColumn> = {};
         for (const element of rawFilterConfigs) {
             const key = Object.keys(
                 meta
@@ -134,7 +185,7 @@ export const usePrimaryToolbarFilterConfig = <FilterColumn extends StandardFilte
                 key => meta[key].label === element.category
             ) as undefined | EnumElement<FilterColumn>;
             if (key && Object.values(Enum).includes(key)) {
-                toClear.push(key);
+                toClear[key] = element.chips.map(c => c.name);
             } else {
                 throw new Error(`Unexpected filter column label found: ${element.category}`);
             }

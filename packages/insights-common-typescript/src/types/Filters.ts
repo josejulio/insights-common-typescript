@@ -1,8 +1,14 @@
-type Setter<T> = (val: T) => void;
+type Setter<T> = (val: T | ((prev: T) => T)) => void;
 
 export type StandardFilterEnum<T> = Record<keyof T, string>;
+export type FilterContent = string | Array<string> | undefined;
+
 export type EnumElement<Enum> = Enum[keyof Enum];
+
 export type FilterBase<Enum extends StandardFilterEnum<any>, T> = Record<EnumElement<Enum>, T>;
-export type Filters<Enum extends StandardFilterEnum<any>> = FilterBase<Enum, string>;
-export type SetFilters<Enum extends StandardFilterEnum<any>> = FilterBase<Enum, Setter<string>>;
-export type ClearFilters<Enum> = (columns: Array<EnumElement<Enum>>) => void;
+export type Filters<Enum extends StandardFilterEnum<any>> = FilterBase<Enum, FilterContent>;
+export type SetFilters<Enum extends StandardFilterEnum<any>> = FilterBase<Enum, Setter<FilterContent>>;
+export type ClearFilterElement<Enum extends StandardFilterEnum<any>> = {
+    [P in EnumElement<Enum>]?: FilterContent;
+};
+export type ClearFilters<Enum extends StandardFilterEnum<any>> = (columns: ClearFilterElement<Enum>) => void;
