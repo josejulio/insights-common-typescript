@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript@0.0.7...openapi2typescript@0.1.0) (2020-11-04)
+
+
+### Features
+
+* action builder now supports array of strings in the query arguments ([4d843e1](https://github.com/RedHatInsights/insights-common-typescript/commit/4d843e1f59e7dfab45b0f7aa96fc7b4ddf229cc7))
+
+
+
+
+
 ## [0.0.7](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript@0.0.6...openapi2typescript@0.0.7) (2020-10-27)
 
 

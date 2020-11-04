@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript-cli@0.2.3...openapi2typescript-cli@0.3.0) (2020-11-04)
+
+
+### Features
+
+* groups generated code into modules / namespaces ([a0ad81d](https://github.com/RedHatInsights/insights-common-typescript/commit/a0ad81d5fe3e223eb164f28d5a3723349b3b8f05))
+
+
+
+
+
 ## [0.2.3](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript-cli@0.2.2...openapi2typescript-cli@0.2.3) (2020-10-27)
 
 
