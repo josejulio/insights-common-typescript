@@ -12,3 +12,27 @@ export type ClearFilterElement<Enum extends StandardFilterEnum<any>> = {
     [P in EnumElement<Enum>]?: FilterContent;
 };
 export type ClearFilters<Enum extends StandardFilterEnum<any>> = (columns: ClearFilterElement<Enum>) => void;
+
+export const stringValue = (val: string | Array<string> | undefined, separator = ','): string => {
+    if (val) {
+        if (typeof val === 'string') {
+            return val;
+        }
+
+        return val.join(separator);
+    }
+
+    return '';
+};
+
+export const arrayValue = (val: string | Array<string> | undefined, separator = ','): Array<string> => {
+    if (val) {
+        if (typeof val === 'string') {
+            return val.split(separator);
+        }
+
+        return val;
+    }
+
+    return [];
+};

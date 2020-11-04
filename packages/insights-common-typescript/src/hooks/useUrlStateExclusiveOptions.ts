@@ -1,18 +1,21 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useUrlState } from './useUrlState';
 
 type Unpacked<T> = T extends (infer U)[]  ? U : T;
 
-export const useUrlStateExclusiveOptions = <T extends string, AT extends Array<T>>(name: string, initialOptions: AT, defaultValue?: Unpacked<AT>) => {
-    const [ options ] = useState(initialOptions);
-    const lowerCaseOptions = useMemo(() => options.map(o => o.trim().toLowerCase()), [ options ]);
+export const useUrlStateExclusiveOptions = <T extends string, AT extends Array<T>>(name: string, options?: AT, defaultValue?: Unpacked<AT>) => {
+    const lowerCaseOptions = useMemo(() => options?.map(o => o.trim().toLowerCase()), [ options ]);
 
     const serializer = useCallback((val: Unpacked<AT> | undefined) => {
         const value = val?.trim().toLowerCase();
         if (value) {
-            const index = lowerCaseOptions.indexOf(value);
-            if (index !== -1) {
-                return options[index];
+            if (lowerCaseOptions && options) {
+                const index = lowerCaseOptions.indexOf(value);
+                if (index !== -1) {
+                    return options[index];
+                }
+            } else {
+                return val;
             }
         }
 
@@ -20,11 +23,15 @@ export const useUrlStateExclusiveOptions = <T extends string, AT extends Array<T
     }, [ lowerCaseOptions, options ]);
 
     const deserializer = useCallback((val: string | undefined) => {
-        const value = val?.trim().toLowerCase();
+        const value = val?.trim();
         if (value) {
-            const index = lowerCaseOptions.indexOf(value);
-            if (index !== -1) {
-                return options[index] as Unpacked<AT>;
+            if (options && lowerCaseOptions) {
+                const index = lowerCaseOptions.indexOf(value.toLowerCase());
+                if (index !== -1) {
+                    return options[index] as Unpacked<AT>;
+                }
+            } else {
+                return value as Unpacked<AT>;
             }
         }
 

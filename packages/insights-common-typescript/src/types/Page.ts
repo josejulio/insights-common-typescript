@@ -43,8 +43,8 @@ export class Page {
         return Page.of(this.index, this.size, this.filter, sort);
     }
 
-    public toQuery(): Record<string, string> {
-        const queryParams = {} as Record<string, string>;
+    public toQuery(): Record<string, string | ReadonlyArray<string>> {
+        const queryParams = {} as Record<string, string | ReadonlyArray<string>>;
 
         if (this.size === Page.NO_SIZE) {
             queryParams.offset = this.index.toString();
@@ -85,9 +85,9 @@ export class Page {
 class FilterElement {
     readonly column: string;
     readonly operator: Operator;
-    readonly value: string;
+    readonly value: string | Array<string>;
 
-    public constructor(column: string, operator: Operator, value: string) {
+    public constructor(column: string, operator: Operator, value: string | Array<string>) {
         this.column = column;
         this.operator = operator;
         this.value = value;
@@ -102,7 +102,7 @@ export class Filter {
         this.elements = this._elements = [];
     }
 
-    public and(column: string, operator: Operator, value: string) {
+    public and(column: string, operator: Operator, value: string | Array<string>) {
         this._elements.push(new FilterElement(column, operator, value));
         return this;
     }
