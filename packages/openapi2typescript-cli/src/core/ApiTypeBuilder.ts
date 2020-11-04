@@ -1,5 +1,5 @@
 import { ApiBase, Options } from './ApiBase';
-import { APIDescriptor, SchemaWithTypeName, StringMap } from './types/ApiDescriptor';
+import { APIDescriptor, SchemaWithTypeName } from './types/ApiDescriptor';
 import { BufferType, Buffer } from './types/Buffer';
 
 export class ApiTypeBuilder extends ApiBase {
@@ -10,16 +10,20 @@ export class ApiTypeBuilder extends ApiBase {
 
     public build() {
         if (this.api.components?.schemas) {
-            const schemas = this.api.components.schemas;
-            this.types(schemas);
-            this.functionTypes(schemas);
+            const schemas = Object.values(this.api.components.schemas);
+            if (schemas.length > 0) {
+                this.appendTemp('export module Schemas {\n');
+                this.types(schemas);
+                this.functionTypes(schemas);
+                this.appendTemp('}\n');
+                this.writeTempToBuffer(BufferType.COMPONENTS);
+            }
         }
     }
 
-    private types(schemas: StringMap<SchemaWithTypeName>) {
-        for (const schema of Object.values(schemas)) {
+    private types(schemas: Array<SchemaWithTypeName>) {
+        for (const schema of schemas) {
             this.appendTemp(`export const ${schema.typeName} = ${this.functionName(schema)}();\n`);
-            this.writeTempToBuffer(BufferType.TYPES);
             if (!this.options.skipTypes) {
                 this.appendTemp(`export type ${schema.typeName} = `);
                 if (this.options.explicitTypes) {
@@ -32,16 +36,14 @@ export class ApiTypeBuilder extends ApiBase {
             }
 
             this.appendTemp('\n');
-            this.writeTempToBuffer(BufferType.TYPES);
         }
     }
 
-    private functionTypes(schemas: StringMap<SchemaWithTypeName>) {
-        for (const schema of Object.values(schemas)) {
-            this.appendTemp(`export function ${this.functionName(schema)}() {\nreturn `);
+    private functionTypes(schemas: Array<SchemaWithTypeName>) {
+        for (const schema of schemas) {
+            this.appendTemp(`function ${this.functionName(schema)}() {\nreturn `);
             this.schema(schema);
             this.appendTemp(';\n}\n\n');
-            this.writeTempToBuffer(BufferType.FUNCTIONS);
         }
     }
 }
