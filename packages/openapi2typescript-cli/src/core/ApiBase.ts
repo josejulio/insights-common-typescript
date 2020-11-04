@@ -16,6 +16,8 @@ export interface Options {
     skipTypes: boolean;
     strict: boolean;
     explicitTypes: boolean;
+    useFunctionTypeGenerator: boolean;
+    schemasPrefix: string;
 }
 
 export class ApiBase {
@@ -31,6 +33,8 @@ export class ApiBase {
             skipTypes: false,
             strict: true,
             explicitTypes: false,
+            useFunctionTypeGenerator: true,
+            schemasPrefix: '',
             ...options
         };
         this.localBuffer = [];
@@ -86,7 +90,7 @@ export class ApiBase {
 
     protected schemaTypes(schema: SchemaOrType, doNotUseModifiers?: boolean) {
         if (isType(schema)) {
-            this.appendTemp(schema.typeName);
+            this.appendTemp(this.fullTypeName(schema));
         } else {
             switch (schema.type) {
                 case SchemaType.ALL_OF:
@@ -253,7 +257,11 @@ export class ApiBase {
             }
 
             // This allows to use an schema that hasn't been defined yet
-            this.appendTemp(`${this.functionName(schema)}()`);
+            if (this.options.useFunctionTypeGenerator) {
+                this.appendTemp(`${this.functionName(schema)}()`);
+            } else {
+                this.appendTemp(this.fullTypeName(schema));
+            }
 
             if (schema.hasLoop) {
                 this.appendTemp(')');
@@ -371,6 +379,10 @@ export class ApiBase {
 
     protected functionName(type: Type<Schema> | SchemaWithTypeName) {
         return `zodSchema${type.typeName}`;
+    }
+
+    protected  fullTypeName(schema: Type<Schema>) {
+        return `${this.options.schemasPrefix}${schema.typeName}`;
     }
 
     protected isUnknown(schemaOrType: SchemaOrType): boolean {

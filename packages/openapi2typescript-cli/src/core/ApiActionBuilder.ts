@@ -17,7 +17,11 @@ export abstract class ApiActionBuilder extends ApiBase {
     private unknownTypeFound: boolean;
 
     constructor(api: APIDescriptor, buffer: Buffer, options?: Partial<Options>) {
-        super(api, buffer, options);
+        super(api, buffer, {
+            ...options,
+            useFunctionTypeGenerator: false,
+            schemasPrefix: 'Schemas.'
+        });
         this.unknownTypeFound = false;
         if (!this.options.skipTypes) {
             buffer.write('import { ValidatedResponse } from \'openapi2typescript\';\n', BufferType.HEADER);
@@ -31,6 +35,7 @@ export abstract class ApiActionBuilder extends ApiBase {
 
         if (this.api.paths) {
             const paths = this.api.paths;
+            this.appendTemp('export module Operations {\n');
             for (const path of paths) {
                 for (const operation of path.operations) {
                     this.appendTemp(`// ${operation.verb} ${operation.path}\n`);
@@ -40,14 +45,18 @@ export abstract class ApiActionBuilder extends ApiBase {
                         );
                     }
 
+                    this.appendTemp(`export module ${operation.id} {\n`);
                     this.anonymousTypes(operation);
                     this.params(operation);
                     this.actions(operation);
                     this.appendTemp('\n');
 
-                    this.writeTempToBuffer(BufferType.OPERATIONS);
+                    this.appendTemp('}\n');
                 }
             }
+
+            this.appendTemp('}\n');
+            this.writeTempToBuffer(BufferType.OPERATIONS);
         }
     }
 
@@ -59,7 +68,7 @@ export abstract class ApiActionBuilder extends ApiBase {
         if (operation.parameters) {
             this.filteredParameters(operation.parameters).forEach(p => {
                 if (!isType(p.schema)) {
-                    const propName = this.anonymousParamTypeName(operation.id, p.name);
+                    const propName = this.anonymousParamTypeName(p.name);
                     this.appendTemp(`const ${propName} = `);
                     this.schema(p.schema, true);
                     this.appendTemp(';\n');
@@ -80,7 +89,7 @@ export abstract class ApiActionBuilder extends ApiBase {
 
         if (operation.requestBody) {
             if (!isType(operation.requestBody.schema)) {
-                const propName = this.anonymousParamTypeName(operation.id, 'body');
+                const propName = this.anonymousParamTypeName('body');
                 this.appendTemp(`const ${propName} = `);
                 this.schema(operation.requestBody.schema, true);
                 this.appendTemp(';\n');
@@ -99,7 +108,7 @@ export abstract class ApiActionBuilder extends ApiBase {
 
         for (const response of operation.responses) {
             if (!isType(response.schema)) {
-                const propName = this.responseTypeName(operation.id, response);
+                const propName = this.responseTypeName(response, false);
                 this.appendTemp(`const ${propName} = `);
                 this.schema(response.schema, true);
                 this.appendTemp(';\n');
@@ -122,7 +131,7 @@ export abstract class ApiActionBuilder extends ApiBase {
             if (this.options.skipTypes) {
                 this.appendTemp(`/*\n Params\n`);
             } else {
-                this.appendTemp(`export interface ${operation.id} {\n`);
+                this.appendTemp(`export interface Params {\n`);
             }
 
             if (operation.parameters.length > 0) {
@@ -130,9 +139,9 @@ export abstract class ApiActionBuilder extends ApiBase {
                     const isRequired = !p.schema.isOptional;
                     this.appendTemp(`'${this.paramName(p.name)}'${isRequired ? '' : '?'}:`);
                     if (isType(p.schema)) {
-                        this.appendTemp(p.schema.typeName);
+                        this.appendTemp(this.fullTypeName(p.schema));
                     } else {
-                        this.appendTemp(this.anonymousParamTypeName(operation.id, p.name));
+                        this.appendTemp(this.anonymousParamTypeName(p.name));
                     }
 
                     if (operation.requestBody || array.length !== index + 1) {
@@ -142,7 +151,7 @@ export abstract class ApiActionBuilder extends ApiBase {
             }
 
             if (operation.requestBody) {
-                const typeName = this.requestBodySchemaTypeName(operation.id, operation.requestBody);
+                const typeName = this.requestBodySchemaTypeName(operation.requestBody);
                 this.appendTemp('body');
 
                 if (isType(operation.requestBody.schema) && operation.requestBody.schema.isOptional) {
@@ -163,12 +172,13 @@ export abstract class ApiActionBuilder extends ApiBase {
     protected actions(operation: Operation) {
         if (operation.responses.length) {
             if (!this.options.skipTypes) {
-                const payloadType = this.payloadEndpointType(operation.id);
+                const payloadType = this.payloadEndpointType();
                 this.appendTemp(`export type ${payloadType} = `);
 
                 for (const response of operation.responses) {
-                    const responseType = this.responseTypeName(operation.id, response);
-                    this.appendTemp(`ValidatedResponse<'${responseType}', ${response.status}, ${responseType}> | `);
+                    const responseType = this.responseTypeName(response, true);
+                    const responseTypeString = this.responseTypeName(response, false);
+                    this.appendTemp(`ValidatedResponse<'${responseTypeString}', ${response.status}, ${responseType}> | `);
                 }
 
                 this.appendTemp('ValidatedResponse<\'unknown\', undefined, unknown>;\n');
@@ -178,40 +188,44 @@ export abstract class ApiActionBuilder extends ApiBase {
         }
     }
 
-    protected requestBodySchemaTypeName(operationId: string, requestBody: RequestBody): string {
+    protected requestBodySchemaTypeName(requestBody: RequestBody): string {
         if (isType(requestBody.schema)) {
-            return requestBody.schema.typeName;
+            return this.fullTypeName(requestBody.schema);
         } else {
-            return this.anonymousParamTypeName(operationId, 'body');
+            return this.anonymousParamTypeName('body');
         }
     }
 
-    protected responseTypeName(operationId: string, response: Response): string {
+    protected responseTypeName(response: Response, fullName: boolean): string {
         if (isType(response.schema)) {
-            return response.schema.typeName;
+            if (fullName) {
+                return this.fullTypeName(response.schema);
+            } else {
+                return response.schema.typeName;
+            }
         } else {
-            return this.anonymousParamTypeName(operationId, `Response${response.status}`);
+            return this.anonymousParamTypeName(`Response${response.status}`);
         }
     }
 
-    protected anonymousParamTypeName(operationId: string, name: string) {
+    protected anonymousParamTypeName(name: string) {
         const filteredName = name.replace(/[/{}\[\]:]/g, '_');
         const propertyName = camelcase(filteredName, {
             pascalCase: true
         });
-        return `${operationId}Param${propertyName}`;
+        return `${propertyName}`;
     }
 
-    protected actionEndpointType(operationId: string) {
-        return `Action${operationId}`;
+    protected actionEndpointType() {
+        return `ActionCreator`;
     }
 
-    protected payloadEndpointType(operationId: string) {
-        return `${operationId}Payload`;
+    protected payloadEndpointType() {
+        return 'Payload';
     }
 
-    protected functionEndpointType(operationId: string) {
-        return `action${operationId}`;
+    protected functionEndpointType() {
+        return `actionCreator`;
     }
 
     protected absolutePath(path: string) {

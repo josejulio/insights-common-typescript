@@ -1,8 +1,7 @@
 export enum BufferType {
     HEADER,
-    TYPES,
+    COMPONENTS,
     OPERATIONS,
-    FUNCTIONS,
     FOOTER
 }
 

@@ -2,7 +2,7 @@ interface HasToString {
     toString: () => string;
 }
 
-type HasToStringOrUndefined = HasToString | undefined;
+type HasToStringOrUndefined = HasToString | Array<HasToString> | undefined;
 export type QueryParamsType = Record<string, HasToStringOrUndefined>;
 
 export type Method = 'GET' | 'HEAD' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'OPTIONS';
@@ -58,8 +58,7 @@ export abstract class ActionBuilder<T> {
         const queryParams = this.getQueryParams();
 
         if (queryParams) {
-            const stringParams = this.stringParams(queryParams);
-            const queryString = new URLSearchParams(stringParams).toString();
+            const queryString = this.urlSearchParams(queryParams).toString();
             if (queryString !== '') {
                 return querySeparator + queryString;
             }
@@ -68,14 +67,19 @@ export abstract class ActionBuilder<T> {
         return '';
     }
 
-    protected stringParams(params: QueryParamsType): Record<string, string> {
-        return Object.keys(params).reduce((prev, key) => {
-            const value = params[key];
-            if (value !== undefined) {
-                prev[key] = value.toString();
-            }
+    protected urlSearchParams(params: QueryParamsType): URLSearchParams {
+        const searchParams = new URLSearchParams();
 
-            return prev;
-        }, {} as Record<string, string>);
+        for (const [ key, value ] of Object.entries(params)) {
+            if (value !== undefined) {
+                if (Array.isArray(value)) {
+                    value.forEach(v => searchParams.append(key, v.toString()));
+                } else {
+                    searchParams.append(key, value.toString());
+                }
+            }
+        }
+
+        return searchParams;
     }
 }

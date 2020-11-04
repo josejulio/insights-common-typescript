@@ -53,7 +53,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-a`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.A',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -64,7 +64,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-b`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.B',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -75,7 +75,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-c`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'I find your lack of foo disturbing',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -86,7 +86,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-x`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.Z',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -146,7 +146,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-b`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.B',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -157,7 +157,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-c`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'I find your lack of foo disturbing',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -168,7 +168,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-x`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.Z',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -178,7 +178,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
         }));
     });
 
-    it('Filter config with exclusive options throws error', () => {
+    it('Filter config with exclusive false works', () => {
         const { result } = renderHook(() => {
             const { filters, setFilters, clearFilter } = useFilters(Foo);
             return usePrimaryToolbarFilterConfig(
@@ -200,7 +200,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
             );
         });
 
-        expect(() => result.current.filterConfig).toThrowError();
+        expect(() => result.current.filterConfig).not.toThrowError();
     });
 
     it('Filter config only sets options', () => {
@@ -260,7 +260,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-b`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.B',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -271,7 +271,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-c`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'I find your lack of foo disturbing',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -282,7 +282,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-x`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.Z',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -323,7 +323,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-b`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.B',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -334,7 +334,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-c`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'I find your lack of foo disturbing',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -345,7 +345,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-x`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.Z',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -413,7 +413,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-b`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.B',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -424,7 +424,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-c`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'I find your lack of foo disturbing',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -435,7 +435,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-x`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.Z',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -497,7 +497,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-b`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.B',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -508,7 +508,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-c`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'I find your lack of foo disturbing',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -519,7 +519,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-x`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.Z',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -583,7 +583,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-b`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.B',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -594,7 +594,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-c`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'I find your lack of foo disturbing',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -605,7 +605,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-x`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.Z',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -636,7 +636,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-a`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.A',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -647,7 +647,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-b`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.B',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -658,7 +658,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-c`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'I find your lack of foo disturbing',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -669,7 +669,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-x`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.Z',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -703,7 +703,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-a`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.A',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -725,7 +725,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-c`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'I find your lack of foo disturbing',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -736,7 +736,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-x`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.Z',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -770,7 +770,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-a`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.A',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -792,7 +792,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-c`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'I find your lack of foo disturbing',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -803,7 +803,7 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
                     type: 'text',
                     filterValues: {
                         id: `filter-x`,
-                        value: '',
+                        value: undefined,
                         placeholder: 'Im Foo.Z',
                         // eslint-disable-next-line @typescript-eslint/no-empty-function
                         onChange() {}
@@ -886,7 +886,14 @@ describe('src/hooks/usePrimaryToolbarFilterConfig', () => {
             result.current.activeFiltersConfig.onDelete(
                 undefined,
                 [
-                    { category: 'Foo.A' }
+                    {
+                        category: 'Foo.A',
+                        chips: [
+                            {
+                                name: 'Foo'
+                            }
+                        ]
+                    }
                 ]);
         });
 

@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "build": "rollup --config",
+    "start": "rollup --config --watch --cache",
     "lint": "eslint --ext js,ts,tsx config src",
     "lint:fix": "eslint --ext js,ts,tsx config src --fix",
     "test": "jest --verbose",

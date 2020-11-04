@@ -20,18 +20,18 @@ export class ReactFetchingLibraryApiActionBuilder extends ApiActionBuilder {
     }
 
     protected buildActionFunction(operation: Operation) {
-        const actionType = this.actionEndpointType(operation.id);
-        const payloadType = this.payloadEndpointType(operation.id);
+        const actionType = this.actionEndpointType();
+        const payloadType = this.payloadEndpointType();
 
         if (!this.options.skipTypes) {
             this.appendTemp(`export type ${actionType} = Action<${payloadType}, ActionValidatableConfig>;\n`);
         }
 
-        this.appendTemp(`export const ${this.functionEndpointType(operation.id)} = (`);
+        this.appendTemp(`export const ${this.functionEndpointType()} = (`);
         if ((operation.parameters && operation.parameters.length > 0) || operation.requestBody) {
             this.appendTemp('params');
             if (!this.options.skipTypes) {
-                this.appendTemp(`: ${operation.id}`);
+                this.appendTemp(': Params');
             }
         }
 
@@ -64,7 +64,7 @@ export class ReactFetchingLibraryApiActionBuilder extends ApiActionBuilder {
         if (operation.parameters) {
             this.filteredParameters(operation.parameters).filter(p => p.type === ParamType.QUERY).forEach(param => {
                 this.appendTemp(`if (params['${this.paramName(param.name)}'] !== undefined) {\n`);
-                this.appendTemp(`query['${param.name}'] = params['${this.paramName(param.name)}'].toString();\n`);
+                this.appendTemp(`query['${param.name}'] = params['${this.paramName(param.name)}'];\n`);
                 this.appendTemp('}\n\n');
             });
         }
@@ -80,8 +80,9 @@ export class ReactFetchingLibraryApiActionBuilder extends ApiActionBuilder {
             this.appendTemp('.config({\nrules:[\n');
             const responses = Object.values(operation.responses);
             responses.forEach((response, index, array) => {
-                const responseType = this.responseTypeName(operation.id, response);
-                this.appendTemp(`new ValidateRule(${responseType}, '${responseType}', ${response.status})\n`);
+                const responseType = this.responseTypeName(response, false);
+                const responseTypeName = this.responseTypeName(response, true);
+                this.appendTemp(`new ValidateRule(${responseTypeName}, '${responseType}', ${response.status})\n`);
                 if (array.length !== index + 1) {
                     this.appendTemp(',\n');
                 }
