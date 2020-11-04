@@ -3,22 +3,30 @@ import json from '@rollup/plugin-json';
 import typescript from '@rollup/plugin-typescript';
 import compiler from '@ampproject/rollup-plugin-closure-compiler';
 import dts from 'rollup-plugin-dts';
+import execute from 'rollup-plugin-execute';
 
 const extensions = [ '.js', '.ts' ];
 
-const config = [
-    {
-        input: 'src/index.ts',
-        output: [
-            {
-                file: 'index.js',
-                format: 'umd',
-                name: 'index',
-                sourcemap: true,
-                globals: {
-                    'jest-mock': 'jestMock'
-                }
-            },
+export default function makeConfig(params) {
+
+    const outputs = [
+        {
+            file: 'index.js',
+            format: 'umd',
+            name: 'index',
+            sourcemap: true,
+            globals: {
+                'jest-mock': 'jestMock'
+            }
+        }
+    ];
+
+    const dtsPlugin = [
+        dts(execute('which yalc > /dev/null && yalc publish --changed --push'))
+    ];
+
+    if (!params.watch) {
+        outputs.push(
             {
                 file: 'esm/index.js',
                 format: 'esm',
@@ -29,30 +37,35 @@ const config = [
                 format: 'cjs',
                 sourcemap: true
             }
-        ],
-        plugins: [
-            json(),
-            typescript({
-                allowSyntheticDefaultImports: true,
-                exclude: /__tests__/ig
-            }),
-            commonjs({
-                extensions
-            }),
-            compiler()
-        ]
-    },
-    {
-        input: 'src/index.ts',
-        output: [
-            {
-                file: 'index.d.ts'
-            }
-        ],
-        plugins: [
-            dts()
-        ]
+        )
+    } else {
+        dtsPlugin.push()
     }
-];
 
-export default config;
+    return [
+        {
+            input: 'src/index.ts',
+            output: outputs,
+            plugins: [
+                json(),
+                typescript({
+                    allowSyntheticDefaultImports: true,
+                    exclude: /__tests__/ig
+                }),
+                commonjs({
+                    extensions
+                }),
+                compiler()
+            ]
+        },
+        {
+            input: 'src/index.ts',
+            output: [
+                {
+                    file: 'index.d.ts'
+                }
+            ],
+            plugins: dtsPlugin
+        }
+    ];
+}

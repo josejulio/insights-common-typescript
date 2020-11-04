@@ -2,20 +2,38 @@ import typescript from '@rollup/plugin-typescript';
 import dts from 'rollup-plugin-dts';
 import compiler from '@ampproject/rollup-plugin-closure-compiler';
 import wildcardExternal from '@oat-sa/rollup-plugin-wildcard-external';
+import execute from 'rollup-plugin-execute';
 import pkg from './package.json';
 import mainPkg from './../../package.json';
 
-const getDependencies = () => {
-    return Object.keys(pkg.peerDependencies)
-    .concat(Object.keys(pkg.dependencies))
-    .concat(Object.keys(mainPkg.devDependencies))
-    .map(path => `${path}`);
-};
+export default function makeConfig(params) {
+    const getDependencies = () => {
+        return Object.keys(pkg.peerDependencies)
+        .concat(Object.keys(pkg.dependencies))
+        .concat(Object.keys(mainPkg.devDependencies))
+        .map(path => `${path}`);
+    };
 
-const configEntriesForTsFile = (source, output) => [
-    {
-        input: source,
-        output: [
+    const getPlugins = () => {
+        const plugins = [
+            wildcardExternal([ '@redhat-cloud-services/frontend-components-utilities/**' ]),
+            typescript({
+                sourceMap: true,
+                declaration: false,
+                exclude: /__tests__/
+            })
+        ];
+
+        if (!params.watch) {
+            plugins.push(compiler());
+        }
+
+        return plugins;
+    };
+
+    const configEntriesForTsFile = (source, output) => {
+
+        const jsOutput = [
             {
                 file: `${output}.js`,
                 name: output,
@@ -43,38 +61,44 @@ const configEntriesForTsFile = (source, output) => [
                     camelcase: 'camelcase'
 
                 }
-            },
-            {
-                file: `esm/${output}.js`,
-                format: 'esm',
-                sourcemap: true
-            },
-            {
-                file: `cjs/${output}.js`,
-                format: 'cjs',
-                sourcemap: true
             }
-        ],
-        plugins: [
-            wildcardExternal([ '@redhat-cloud-services/frontend-components-utilities/**' ]),
-            typescript({
-                sourceMap: true,
-                declaration: false,
-                exclude: /__tests__/
-            }),
-            compiler()
-        ],
-        external: getDependencies()
-    },
-    {
-        input: source,
-        output: [{ file: `${output}.d.ts`, format: 'cjs' }],
-        plugins: [
+        ];
+
+        const dtsPlugins = [
             dts()
-        ]
-    }
-];
+        ];
 
-const config = configEntriesForTsFile('src/index.ts', 'index');
+        if (!params.watch) {
+            jsOutput.push(
+                {
+                    file: `esm/${output}.js`,
+                    format: 'esm',
+                    sourcemap: true
+                },
+                {
+                    file: `cjs/${output}.js`,
+                    format: 'cjs',
+                    sourcemap: true
+                }
+            );
+        } else {
+            dtsPlugins.push(execute('which yalc > /dev/null && yalc publish --changed --push'));
+        }
 
-export default config;
+        return [
+            {
+                input: source,
+                output: jsOutput,
+                plugins: getPlugins(),
+                external: getDependencies()
+            },
+            {
+                input: source,
+                output: [{ file: `${output}.d.ts`, format: 'cjs' }],
+                plugins: dtsPlugins
+            }
+        ];
+    };
+
+    return configEntriesForTsFile('src/index.ts', 'index');
+}
