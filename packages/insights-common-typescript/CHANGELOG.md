@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.0.0...@redhat-cloud-services/insights-common-typescript@4.1.0) (2020-11-13)
+
+
+### Features
+
+* add support for more feature flags ([85cb915](https://github.com/RedHatInsights/insights-common-typescript/commit/85cb91536636f6a933749d47c7a9d66e7e2713b2))
+
+
+
+
+
 # [4.0.0](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@3.0.7...@redhat-cloud-services/insights-common-typescript@4.0.0) (2020-11-04)
 
 
