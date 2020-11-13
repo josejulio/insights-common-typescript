@@ -12,7 +12,7 @@ describe('src/components/Beta', () => {
                 </BetaIf>
             </BetaDetector>
         );
-        expect(screen.queryByText('hello')).toBeTruthy();
+        expect(screen.getByText('hello')).toBeTruthy();
     });
 
     it('BetaIf does not render in non-beta', () => {
@@ -63,25 +63,6 @@ describe('src/components/Beta', () => {
         expect(screen.queryByText('hello')).toBeFalsy();
     });
 
-    it('Duplicating throws an error', () => {
-        const error = jest.spyOn(console, 'error');
-        error.mockImplementation(() => '');
-
-        expect(() => {
-            render(
-                <BetaDetector isBeta={ true }>
-                    <BetaIf>
-                        <div>foo</div>
-                    </BetaIf>
-                    <BetaIf>
-                        <div>hello</div>
-                    </BetaIf>
-                </BetaDetector>
-            );
-        }).toThrowError('Only one of each BetaIf and BetaIfNot is allowed on each BetaDetector');
-        error.mockRestore();
-    });
-
     it('Using BetaIf without BetaDetector throws error', () => {
         const error = jest.spyOn(console, 'error');
         error.mockImplementation(() => '');
@@ -92,7 +73,7 @@ describe('src/components/Beta', () => {
                     <div>foo</div>
                 </BetaIf>
             );
-        }).toThrowError('Invalid usage of BetaIf*, must be surrounded by a BetaDetector');
+        }).toThrowError();
         error.mockRestore();
     });
 
@@ -106,7 +87,7 @@ describe('src/components/Beta', () => {
                     <div>hello</div>
                 </BetaDetector>
             );
-        }).toThrowError('Only BetaIf and BetaIfNot are accepted Elements in BetaDetector');
+        }).toThrowError();
         error.mockRestore();
     });
 
@@ -115,7 +96,8 @@ describe('src/components/Beta', () => {
             render(
                 <InsightsBetaDetector insights={ {
                     chrome: {
-                        isBeta: () => true
+                        isBeta: () => true,
+                        getEnvironment: () => 'ci'
                     }
                 } as InsightsType }>
                     <BetaIf>
@@ -130,9 +112,10 @@ describe('src/components/Beta', () => {
             render(
                 <InsightsBetaDetector insights={ {
                     chrome: {
-                        isBeta: () => false
+                        isBeta: () => false,
+                        getEnvironment: () => 'ci'
                     }
-                } as InsightsType }>
+                } as unknown as InsightsType }>
                     <BetaIf>
                         <div>hello</div>
                     </BetaIf>

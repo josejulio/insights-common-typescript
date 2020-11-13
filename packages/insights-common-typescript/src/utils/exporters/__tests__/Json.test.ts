@@ -26,7 +26,7 @@ describe('src/utils/exporters/Json', () => {
                 try {
                     const text = (reader.result as string);
                     expect(text).toEqual(JSON.stringify([ foo, foo, foo ]));
-                    done();
+                    done(undefined);
                 } catch (ex) {
                     fail(ex);
                 }

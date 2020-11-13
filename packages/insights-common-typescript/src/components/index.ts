@@ -3,6 +3,8 @@ export * from './Beta/BetaDetector';
 export * from './EmailOptIn/EmailOptIn';
 export * from './EmptyState/EmptyState';
 export * from './ErrorBoundaryPage/ErrorBoundaryPage';
+export * from './FeatureFlag/EnvDetector';
+export * from './FeatureFlag/RenderIf';
 export * from './Formik/Patternfly';
 export * from './FrontendComponents/Section';
 export * from './Modals';

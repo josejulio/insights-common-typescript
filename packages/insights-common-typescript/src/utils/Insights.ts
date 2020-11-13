@@ -41,6 +41,7 @@ export type InsightsType = {
         identifyApp: (appId: string) => Promise<void>;
         getApp: () => string;
         getBundle: () => string;
+        getEnvironment: () => 'ci' | 'qa' | 'prod' | 'staging';
         on: (type: string, callback: ((event: any) => void)) => void;
         auth: {
             getUser: () => Promise<User>;

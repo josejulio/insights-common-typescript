@@ -20,6 +20,7 @@ export const mockInsights = (mock?: InsightsType) => {
             isPenTest: jestMock.fn(() => false),
             isProd: false,
             isBeta: jestMock.fn(() => true),
+            getEnvironment: jestMock.fn(() => 'ci'),
             auth: {
                 getUser: jestMock.fn(() => Promise.resolve({
                     identity: {
