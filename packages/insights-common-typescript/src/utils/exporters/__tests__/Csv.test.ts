@@ -86,7 +86,7 @@ describe('src/utils/exporters/Csv', () => {
                     .on('error', fail)
                     .on('end', (count) => {
                         expect(count).toBe(3);
-                        done();
+                        done(undefined);
                     });
                 } catch (ex) {
                     fail(ex);
