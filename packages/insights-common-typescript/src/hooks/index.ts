@@ -7,3 +7,5 @@ export * from './useSyncInterval';
 export * from './useUrlState';
 export * from './useUrlStateExclusiveOptions';
 export * from './useUrlStateMultipleOptions';
+export * from './useEnvironmentFlag';
+export * from './useFeatureFlag';

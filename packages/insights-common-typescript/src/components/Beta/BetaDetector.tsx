@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { InsightsType } from '../../utils';
 import { RenderIfFalse, RenderIfTrue } from '../FeatureFlag/RenderIf';
-import { EnvDetector, Environments, InsightsEnvDetector } from '../FeatureFlag/EnvDetector';
+import { EnvDetector, InsightsEnvDetector } from '../FeatureFlag/EnvDetector';
+import { Environments } from '../../types';
 
 /**
  * @Deprecated Use RenderIfTrue instead.

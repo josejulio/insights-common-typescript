@@ -1,33 +1,7 @@
 import * as React from 'react';
 import { RenderIf } from './RenderIf';
 import { InsightsType } from '../../utils';
-
-const nonBetaEnvironments = [
-    'ci',
-    'qa',
-    'staging',
-    'prod'
-] as const;
-
-const betaEnvironments = nonBetaEnvironments.map(v => `${v}-beta` as const);
-const environments = [ ...nonBetaEnvironments, ...betaEnvironments ] as const;
-
-const prodEnvironments = [ 'prod', 'prod-beta' ] as const;
-const nonProdEnvironments = environments.filter(v => !v.startsWith('prod' as const));
-
-type NonBetaEnvironment = typeof nonBetaEnvironments[number];
-type BetaEnvironment = typeof betaEnvironments[number];
-
-type Environment = NonBetaEnvironment | BetaEnvironment;
-
-type Environments = Record<'all' | 'beta' | 'nonBeta' | 'prod' | 'nonProd', ReadonlyArray<Environment>>;
-export const Environments: Environments = {
-    all: environments,
-    beta: betaEnvironments,
-    nonBeta: nonBetaEnvironments,
-    prod: prodEnvironments,
-    nonProd: nonProdEnvironments
-};
+import { BetaEnvironment, Environment, NonBetaEnvironment } from '../../types/Environment';
 
 interface EnvDetectorProps {
     onEnvironment: ReadonlyArray<Environment> | Environment;
