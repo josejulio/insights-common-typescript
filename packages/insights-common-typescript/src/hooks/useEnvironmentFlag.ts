@@ -1,7 +1,7 @@
 import { FeatureFlagCallback, useFeatureFlag } from './useFeatureFlag';
 import { Environment, getInsightsEnvironment } from '../types/Environment';
 import { useCallback, useMemo } from 'react';
-import { InsightsType } from '../../index';
+import { InsightsType } from '../utils';
 
 type EnvironmentFlagSignature = {
     <T>(
