@@ -3,7 +3,7 @@ import { InsightsType } from '../utils';
 const nonBetaEnvironments = [
     'ci',
     'qa',
-    'staging',
+    'stage',
     'prod'
 ] as const;
 
