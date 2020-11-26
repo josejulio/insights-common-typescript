@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.1](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.2.0...@redhat-cloud-services/insights-common-typescript@4.2.1) (2020-11-26)
+
+
+### Bug Fixes
+
+* fix stage environment name ([76d7cf7](https://github.com/RedHatInsights/insights-common-typescript/commit/76d7cf78ce7623f226769de0f7140db0fc4e7504))
+
+
+
+
+
 # [4.2.0](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.1.0...@redhat-cloud-services/insights-common-typescript@4.2.0) (2020-11-17)
 
 
