@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript-cli@0.3.0...openapi2typescript-cli@0.3.1) (2020-11-27)
+
+
+### Bug Fixes
+
+* ensure order of elements are stable ([15ee759](https://github.com/RedHatInsights/insights-common-typescript/commit/15ee7598255f48667f43f7e46aa5003ea9f579be))
+
+
+
+
+
 # [0.3.0](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript-cli@0.2.3...openapi2typescript-cli@0.3.0) (2020-11-04)
 
 
