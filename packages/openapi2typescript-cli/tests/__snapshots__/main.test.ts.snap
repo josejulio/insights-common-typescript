@@ -15,69 +15,8 @@ import {
 } from 'openapi2typescript/react-fetching-library';
 
 export namespace Schemas {
-  export const UUID = zodSchemaUUID();
-  export type UUID = z.infer<typeof UUID>;
-
-  export const SetString = zodSchemaSetString();
-  export type SetString = z.infer<typeof SetString>;
-
-  export const NewCookie = zodSchemaNewCookie();
-  export type NewCookie = z.infer<typeof NewCookie>;
-
-  export const MapStringNewCookie = zodSchemaMapStringNewCookie();
-  export type MapStringNewCookie = z.infer<typeof MapStringNewCookie>;
-
-  export const Date = zodSchemaDate();
-  export type Date = z.infer<typeof Date>;
-
-  export const EntityTag = zodSchemaEntityTag();
-  export type EntityTag = z.infer<typeof EntityTag>;
-
-  export const MultivaluedMapStringObject = zodSchemaMultivaluedMapStringObject();
-  export type MultivaluedMapStringObject = z.infer<
-    typeof MultivaluedMapStringObject
-  >;
-
-  export const Locale = zodSchemaLocale();
-  export type Locale = z.infer<typeof Locale>;
-
-  export const Link = zodSchemaLink();
-  export type Link = z.infer<typeof Link>;
-
-  export const SetLink = zodSchemaSetLink();
-  export type SetLink = z.infer<typeof SetLink>;
-
-  export const URI = zodSchemaURI();
-  export type URI = z.infer<typeof URI>;
-
-  export const MediaType = zodSchemaMediaType();
-  export type MediaType = z.infer<typeof MediaType>;
-
-  export const StatusType = zodSchemaStatusType();
-  export type StatusType = z.infer<typeof StatusType>;
-
-  export const MultivaluedMapStringString = zodSchemaMultivaluedMapStringString();
-  export type MultivaluedMapStringString = z.infer<
-    typeof MultivaluedMapStringString
-  >;
-
-  export const Family = zodSchemaFamily();
-  export type Family = z.infer<typeof Family>;
-
-  export const MapStringString = zodSchemaMapStringString();
-  export type MapStringString = z.infer<typeof MapStringString>;
-
-  export const ListString = zodSchemaListString();
-  export type ListString = z.infer<typeof ListString>;
-
-  export const UriBuilder = zodSchemaUriBuilder();
-  export type UriBuilder = z.infer<typeof UriBuilder>;
-
-  export const SetCharacter = zodSchemaSetCharacter();
-  export type SetCharacter = z.infer<typeof SetCharacter>;
-
-  export const Response = zodSchemaResponse();
-  export type Response = z.infer<typeof Response>;
+  export const Application = zodSchemaApplication();
+  export type Application = z.infer<typeof Application>;
 
   export const Attributes = zodSchemaAttributes();
   export type Attributes = z.infer<typeof Attributes>;
@@ -85,71 +24,154 @@ export namespace Schemas {
   export const BasicAuthentication = zodSchemaBasicAuthentication();
   export type BasicAuthentication = z.infer<typeof BasicAuthentication>;
 
-  export const HttpType = zodSchemaHttpType();
-  export type HttpType = z.infer<typeof HttpType>;
-
-  export const WebhookAttributes = zodSchemaWebhookAttributes();
-  export type WebhookAttributes = z.infer<typeof WebhookAttributes>;
+  export const Date = zodSchemaDate();
+  export type Date = z.infer<typeof Date>;
 
   export const EmailAttributes = zodSchemaEmailAttributes();
   export type EmailAttributes = z.infer<typeof EmailAttributes>;
 
-  export const EndpointType = zodSchemaEndpointType();
-  export type EndpointType = z.infer<typeof EndpointType>;
-
   export const Endpoint = zodSchemaEndpoint();
   export type Endpoint = z.infer<typeof Endpoint>;
 
-  export const Application = zodSchemaApplication();
-  export type Application = z.infer<typeof Application>;
+  export const EndpointType = zodSchemaEndpointType();
+  export type EndpointType = z.infer<typeof EndpointType>;
 
-  export const SetEndpoint = zodSchemaSetEndpoint();
-  export type SetEndpoint = z.infer<typeof SetEndpoint>;
+  export const EntityTag = zodSchemaEntityTag();
+  export type EntityTag = z.infer<typeof EntityTag>;
 
   export const EventType = zodSchemaEventType();
   export type EventType = z.infer<typeof EventType>;
 
-  export const SetEventType = zodSchemaSetEventType();
-  export type SetEventType = z.infer<typeof SetEventType>;
+  export const Family = zodSchemaFamily();
+  export type Family = z.infer<typeof Family>;
 
-  export const Notification = zodSchemaNotification();
-  export type Notification = z.infer<typeof Notification>;
+  export const HttpType = zodSchemaHttpType();
+  export type HttpType = z.infer<typeof HttpType>;
 
   export const JsonObject = zodSchemaJsonObject();
   export type JsonObject = z.infer<typeof JsonObject>;
 
+  export const Link = zodSchemaLink();
+  export type Link = z.infer<typeof Link>;
+
+  export const ListString = zodSchemaListString();
+  export type ListString = z.infer<typeof ListString>;
+
+  export const Locale = zodSchemaLocale();
+  export type Locale = z.infer<typeof Locale>;
+
+  export const MapStringNewCookie = zodSchemaMapStringNewCookie();
+  export type MapStringNewCookie = z.infer<typeof MapStringNewCookie>;
+
+  export const MapStringString = zodSchemaMapStringString();
+  export type MapStringString = z.infer<typeof MapStringString>;
+
+  export const MediaType = zodSchemaMediaType();
+  export type MediaType = z.infer<typeof MediaType>;
+
+  export const MultivaluedMapStringObject = zodSchemaMultivaluedMapStringObject();
+  export type MultivaluedMapStringObject = z.infer<
+    typeof MultivaluedMapStringObject
+  >;
+
+  export const MultivaluedMapStringString = zodSchemaMultivaluedMapStringString();
+  export type MultivaluedMapStringString = z.infer<
+    typeof MultivaluedMapStringString
+  >;
+
+  export const NewCookie = zodSchemaNewCookie();
+  export type NewCookie = z.infer<typeof NewCookie>;
+
+  export const Notification = zodSchemaNotification();
+  export type Notification = z.infer<typeof Notification>;
+
   export const NotificationHistory = zodSchemaNotificationHistory();
   export type NotificationHistory = z.infer<typeof NotificationHistory>;
 
-  function zodSchemaUUID() {
-      return z.string();
-  }
+  export const Response = zodSchemaResponse();
+  export type Response = z.infer<typeof Response>;
 
-  function zodSchemaSetString() {
-      return z.array(z.string());
-  }
+  export const SetCharacter = zodSchemaSetCharacter();
+  export type SetCharacter = z.infer<typeof SetCharacter>;
 
-  function zodSchemaNewCookie() {
+  export const SetEndpoint = zodSchemaSetEndpoint();
+  export type SetEndpoint = z.infer<typeof SetEndpoint>;
+
+  export const SetEventType = zodSchemaSetEventType();
+  export type SetEventType = z.infer<typeof SetEventType>;
+
+  export const SetLink = zodSchemaSetLink();
+  export type SetLink = z.infer<typeof SetLink>;
+
+  export const SetString = zodSchemaSetString();
+  export type SetString = z.infer<typeof SetString>;
+
+  export const StatusType = zodSchemaStatusType();
+  export type StatusType = z.infer<typeof StatusType>;
+
+  export const URI = zodSchemaURI();
+  export type URI = z.infer<typeof URI>;
+
+  export const UUID = zodSchemaUUID();
+  export type UUID = z.infer<typeof UUID>;
+
+  export const UriBuilder = zodSchemaUriBuilder();
+  export type UriBuilder = z.infer<typeof UriBuilder>;
+
+  export const WebhookAttributes = zodSchemaWebhookAttributes();
+  export type WebhookAttributes = z.infer<typeof WebhookAttributes>;
+
+  function zodSchemaApplication() {
       return z.object({
-          domain: z.string().optional().nullable(),
-          name: z.string().optional().nullable(),
-          path: z.string().optional().nullable(),
-          value: z.string().optional().nullable(),
-          version: z.number().int().optional().nullable(),
-          comment: z.string().optional().nullable(),
-          expiry: zodSchemaDate().optional().nullable(),
-          httpOnly: z.boolean().optional().nullable(),
-          maxAge: z.number().int().optional().nullable(),
-          secure: z.boolean().optional().nullable()
+          created: zodSchemaDate().optional().nullable(),
+          description: z.string(),
+          eventTypes: zodSchemaSetEventType().optional().nullable(),
+          id: zodSchemaUUID().optional().nullable(),
+          name: z.string(),
+          updated: zodSchemaDate().optional().nullable()
       });
   }
 
-  function zodSchemaMapStringNewCookie() {
-      return z.record(zodSchemaNewCookie());
+  function zodSchemaAttributes() {
+      return z.unknown();
+  }
+
+  function zodSchemaBasicAuthentication() {
+      return z.object({
+          password: z.string().optional().nullable(),
+          username: z.string().optional().nullable()
+      });
   }
 
   function zodSchemaDate() {
       return z.string();
+  }
+
+  function zodSchemaEmailAttributes() {
+      return z.unknown();
+  }
+
+  function zodSchemaEndpoint() {
+      return z.object({
+          created: zodSchemaDate().optional().nullable(),
+          description: z.string(),
+          enabled: z.boolean().optional().nullable(),
+          id: zodSchemaUUID().optional().nullable(),
+          name: z.string(),
+          properties: z
+          .union([ zodSchemaWebhookAttributes(), zodSchemaEmailAttributes() ])
+          .optional()
+          .nullable(),
+          type: z.intersection(
+              zodSchemaEndpointType(),
+              z.enum([ 'webhook', 'email', 'default' ])
+          ),
+          updated: zodSchemaDate().optional().nullable()
+      });
+  }
+
+  function zodSchemaEndpointType() {
+      return z.enum([ 'webhook', 'email', 'default' ]);
   }
 
   function zodSchemaEntityTag() {
@@ -159,8 +181,52 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaMultivaluedMapStringObject() {
-      return z.record(z.unknown());
+  function zodSchemaEventType() {
+      return z.object({
+          application: z
+          .lazy(() => zodSchemaApplication())
+          .optional()
+          .nullable(),
+          description: z.string(),
+          endpoints: zodSchemaSetEndpoint().optional().nullable(),
+          id: z.number().int().optional().nullable(),
+          name: z.string()
+      });
+  }
+
+  function zodSchemaFamily() {
+      return z.enum([
+          'CLIENT_ERROR',
+          'INFORMATIONAL',
+          'OTHER',
+          'REDIRECTION',
+          'SERVER_ERROR',
+          'SUCCESSFUL'
+      ]);
+  }
+
+  function zodSchemaHttpType() {
+      return z.enum([ 'GET', 'POST', 'PUT' ]);
+  }
+
+  function zodSchemaJsonObject() {
+      return z.array(z.unknown());
+  }
+
+  function zodSchemaLink() {
+      return z.object({
+          params: zodSchemaMapStringString().optional().nullable(),
+          rel: z.string().optional().nullable(),
+          rels: zodSchemaListString().optional().nullable(),
+          title: z.string().optional().nullable(),
+          type: z.string().optional().nullable(),
+          uri: zodSchemaURI().optional().nullable(),
+          uriBuilder: zodSchemaUriBuilder().optional().nullable()
+      });
+  }
+
+  function zodSchemaListString() {
+      return z.array(z.string());
   }
 
   function zodSchemaLocale() {
@@ -182,24 +248,12 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaLink() {
-      return z.object({
-          params: zodSchemaMapStringString().optional().nullable(),
-          rel: z.string().optional().nullable(),
-          rels: zodSchemaListString().optional().nullable(),
-          title: z.string().optional().nullable(),
-          type: z.string().optional().nullable(),
-          uri: zodSchemaURI().optional().nullable(),
-          uriBuilder: zodSchemaUriBuilder().optional().nullable()
-      });
+  function zodSchemaMapStringNewCookie() {
+      return z.record(zodSchemaNewCookie());
   }
 
-  function zodSchemaSetLink() {
-      return z.array(zodSchemaLink());
-  }
-
-  function zodSchemaURI() {
-      return z.string();
+  function zodSchemaMapStringString() {
+      return z.record(z.string());
   }
 
   function zodSchemaMediaType() {
@@ -212,43 +266,46 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaStatusType() {
-      return z.object({
-          family: zodSchemaFamily().optional().nullable(),
-          reasonPhrase: z.string().optional().nullable(),
-          statusCode: z.number().int().optional().nullable()
-      });
+  function zodSchemaMultivaluedMapStringObject() {
+      return z.record(z.unknown());
   }
 
   function zodSchemaMultivaluedMapStringString() {
       return z.record(z.string());
   }
 
-  function zodSchemaFamily() {
-      return z.enum([
-          'CLIENT_ERROR',
-          'INFORMATIONAL',
-          'OTHER',
-          'REDIRECTION',
-          'SERVER_ERROR',
-          'SUCCESSFUL'
-      ]);
+  function zodSchemaNewCookie() {
+      return z.object({
+          comment: z.string().optional().nullable(),
+          domain: z.string().optional().nullable(),
+          expiry: zodSchemaDate().optional().nullable(),
+          httpOnly: z.boolean().optional().nullable(),
+          maxAge: z.number().int().optional().nullable(),
+          name: z.string().optional().nullable(),
+          path: z.string().optional().nullable(),
+          secure: z.boolean().optional().nullable(),
+          value: z.string().optional().nullable(),
+          version: z.number().int().optional().nullable()
+      });
   }
 
-  function zodSchemaMapStringString() {
-      return z.record(z.string());
+  function zodSchemaNotification() {
+      return z.object({
+          endpoint: zodSchemaEndpoint().optional().nullable(),
+          payload: z.unknown().optional().nullable(),
+          tenant: z.string().optional().nullable()
+      });
   }
 
-  function zodSchemaListString() {
-      return z.array(z.string());
-  }
-
-  function zodSchemaUriBuilder() {
-      return z.unknown();
-  }
-
-  function zodSchemaSetCharacter() {
-      return z.array(z.string());
+  function zodSchemaNotificationHistory() {
+      return z.object({
+          created: zodSchemaDate().optional().nullable(),
+          details: zodSchemaJsonObject().optional().nullable(),
+          endpointId: zodSchemaUUID().optional().nullable(),
+          id: z.number().int().optional().nullable(),
+          invocationResult: z.boolean().optional().nullable(),
+          invocationTime: z.number().int().optional().nullable()
+      });
   }
 
   function zodSchemaResponse() {
@@ -274,19 +331,44 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaAttributes() {
-      return z.unknown();
+  function zodSchemaSetCharacter() {
+      return z.array(z.string());
   }
 
-  function zodSchemaBasicAuthentication() {
+  function zodSchemaSetEndpoint() {
+      return z.array(zodSchemaEndpoint());
+  }
+
+  function zodSchemaSetEventType() {
+      return z.array(zodSchemaEventType());
+  }
+
+  function zodSchemaSetLink() {
+      return z.array(zodSchemaLink());
+  }
+
+  function zodSchemaSetString() {
+      return z.array(z.string());
+  }
+
+  function zodSchemaStatusType() {
       return z.object({
-          password: z.string().optional().nullable(),
-          username: z.string().optional().nullable()
+          family: zodSchemaFamily().optional().nullable(),
+          reasonPhrase: z.string().optional().nullable(),
+          statusCode: z.number().int().optional().nullable()
       });
   }
 
-  function zodSchemaHttpType() {
-      return z.enum([ 'GET', 'POST', 'PUT' ]);
+  function zodSchemaURI() {
+      return z.string();
+  }
+
+  function zodSchemaUUID() {
+      return z.string();
+  }
+
+  function zodSchemaUriBuilder() {
+      return z.unknown();
   }
 
   function zodSchemaWebhookAttributes() {
@@ -301,88 +383,6 @@ export namespace Schemas {
           ),
           secret_token: z.string().optional().nullable(),
           url: z.string()
-      });
-  }
-
-  function zodSchemaEmailAttributes() {
-      return z.unknown();
-  }
-
-  function zodSchemaEndpointType() {
-      return z.enum([ 'webhook', 'email', 'default' ]);
-  }
-
-  function zodSchemaEndpoint() {
-      return z.object({
-          created: zodSchemaDate().optional().nullable(),
-          description: z.string(),
-          enabled: z.boolean().optional().nullable(),
-          id: zodSchemaUUID().optional().nullable(),
-          name: z.string(),
-          properties: z
-          .union([ zodSchemaWebhookAttributes(), zodSchemaEmailAttributes() ])
-          .optional()
-          .nullable(),
-          type: z.intersection(
-              zodSchemaEndpointType(),
-              z.enum([ 'webhook', 'email', 'default' ])
-          ),
-          updated: zodSchemaDate().optional().nullable()
-      });
-  }
-
-  function zodSchemaApplication() {
-      return z.object({
-          created: zodSchemaDate().optional().nullable(),
-          description: z.string(),
-          eventTypes: zodSchemaSetEventType().optional().nullable(),
-          id: zodSchemaUUID().optional().nullable(),
-          name: z.string(),
-          updated: zodSchemaDate().optional().nullable()
-      });
-  }
-
-  function zodSchemaSetEndpoint() {
-      return z.array(zodSchemaEndpoint());
-  }
-
-  function zodSchemaEventType() {
-      return z.object({
-          application: z
-          .lazy(() => zodSchemaApplication())
-          .optional()
-          .nullable(),
-          description: z.string(),
-          endpoints: zodSchemaSetEndpoint().optional().nullable(),
-          id: z.number().int().optional().nullable(),
-          name: z.string()
-      });
-  }
-
-  function zodSchemaSetEventType() {
-      return z.array(zodSchemaEventType());
-  }
-
-  function zodSchemaNotification() {
-      return z.object({
-          endpoint: zodSchemaEndpoint().optional().nullable(),
-          payload: z.unknown().optional().nullable(),
-          tenant: z.string().optional().nullable()
-      });
-  }
-
-  function zodSchemaJsonObject() {
-      return z.array(z.unknown());
-  }
-
-  function zodSchemaNotificationHistory() {
-      return z.object({
-          created: zodSchemaDate().optional().nullable(),
-          details: zodSchemaJsonObject().optional().nullable(),
-          endpointId: zodSchemaUUID().optional().nullable(),
-          id: z.number().int().optional().nullable(),
-          invocationResult: z.boolean().optional().nullable(),
-          invocationTime: z.number().int().optional().nullable()
       });
   }
 }
@@ -707,103 +707,125 @@ import { ValidateRule } from 'openapi2typescript';
 import { actionBuilder } from 'openapi2typescript/react-fetching-library';
 
 export namespace Schemas {
-  export const UUID = zodSchemaUUID();
-
-  export const SetString = zodSchemaSetString();
-
-  export const NewCookie = zodSchemaNewCookie();
-
-  export const MapStringNewCookie = zodSchemaMapStringNewCookie();
-
-  export const Date = zodSchemaDate();
-
-  export const EntityTag = zodSchemaEntityTag();
-
-  export const MultivaluedMapStringObject = zodSchemaMultivaluedMapStringObject();
-
-  export const Locale = zodSchemaLocale();
-
-  export const Link = zodSchemaLink();
-
-  export const SetLink = zodSchemaSetLink();
-
-  export const URI = zodSchemaURI();
-
-  export const MediaType = zodSchemaMediaType();
-
-  export const StatusType = zodSchemaStatusType();
-
-  export const MultivaluedMapStringString = zodSchemaMultivaluedMapStringString();
-
-  export const Family = zodSchemaFamily();
-
-  export const MapStringString = zodSchemaMapStringString();
-
-  export const ListString = zodSchemaListString();
-
-  export const UriBuilder = zodSchemaUriBuilder();
-
-  export const SetCharacter = zodSchemaSetCharacter();
-
-  export const Response = zodSchemaResponse();
+  export const Application = zodSchemaApplication();
 
   export const Attributes = zodSchemaAttributes();
 
   export const BasicAuthentication = zodSchemaBasicAuthentication();
 
-  export const HttpType = zodSchemaHttpType();
-
-  export const WebhookAttributes = zodSchemaWebhookAttributes();
+  export const Date = zodSchemaDate();
 
   export const EmailAttributes = zodSchemaEmailAttributes();
 
-  export const EndpointType = zodSchemaEndpointType();
-
   export const Endpoint = zodSchemaEndpoint();
 
-  export const Application = zodSchemaApplication();
+  export const EndpointType = zodSchemaEndpointType();
 
-  export const SetEndpoint = zodSchemaSetEndpoint();
+  export const EntityTag = zodSchemaEntityTag();
 
   export const EventType = zodSchemaEventType();
 
-  export const SetEventType = zodSchemaSetEventType();
+  export const Family = zodSchemaFamily();
 
-  export const Notification = zodSchemaNotification();
+  export const HttpType = zodSchemaHttpType();
 
   export const JsonObject = zodSchemaJsonObject();
 
+  export const Link = zodSchemaLink();
+
+  export const ListString = zodSchemaListString();
+
+  export const Locale = zodSchemaLocale();
+
+  export const MapStringNewCookie = zodSchemaMapStringNewCookie();
+
+  export const MapStringString = zodSchemaMapStringString();
+
+  export const MediaType = zodSchemaMediaType();
+
+  export const MultivaluedMapStringObject = zodSchemaMultivaluedMapStringObject();
+
+  export const MultivaluedMapStringString = zodSchemaMultivaluedMapStringString();
+
+  export const NewCookie = zodSchemaNewCookie();
+
+  export const Notification = zodSchemaNotification();
+
   export const NotificationHistory = zodSchemaNotificationHistory();
 
-  function zodSchemaUUID() {
-      return z.string();
-  }
+  export const Response = zodSchemaResponse();
 
-  function zodSchemaSetString() {
-      return z.array(z.string());
-  }
+  export const SetCharacter = zodSchemaSetCharacter();
 
-  function zodSchemaNewCookie() {
+  export const SetEndpoint = zodSchemaSetEndpoint();
+
+  export const SetEventType = zodSchemaSetEventType();
+
+  export const SetLink = zodSchemaSetLink();
+
+  export const SetString = zodSchemaSetString();
+
+  export const StatusType = zodSchemaStatusType();
+
+  export const URI = zodSchemaURI();
+
+  export const UUID = zodSchemaUUID();
+
+  export const UriBuilder = zodSchemaUriBuilder();
+
+  export const WebhookAttributes = zodSchemaWebhookAttributes();
+
+  function zodSchemaApplication() {
       return z.object({
-          domain: z.string().optional().nullable(),
-          name: z.string().optional().nullable(),
-          path: z.string().optional().nullable(),
-          value: z.string().optional().nullable(),
-          version: z.number().int().optional().nullable(),
-          comment: z.string().optional().nullable(),
-          expiry: zodSchemaDate().optional().nullable(),
-          httpOnly: z.boolean().optional().nullable(),
-          maxAge: z.number().int().optional().nullable(),
-          secure: z.boolean().optional().nullable()
+          created: zodSchemaDate().optional().nullable(),
+          description: z.string(),
+          eventTypes: zodSchemaSetEventType().optional().nullable(),
+          id: zodSchemaUUID().optional().nullable(),
+          name: z.string(),
+          updated: zodSchemaDate().optional().nullable()
       });
   }
 
-  function zodSchemaMapStringNewCookie() {
-      return z.record(zodSchemaNewCookie());
+  function zodSchemaAttributes() {
+      return z.unknown();
+  }
+
+  function zodSchemaBasicAuthentication() {
+      return z.object({
+          password: z.string().optional().nullable(),
+          username: z.string().optional().nullable()
+      });
   }
 
   function zodSchemaDate() {
       return z.string();
+  }
+
+  function zodSchemaEmailAttributes() {
+      return z.unknown();
+  }
+
+  function zodSchemaEndpoint() {
+      return z.object({
+          created: zodSchemaDate().optional().nullable(),
+          description: z.string(),
+          enabled: z.boolean().optional().nullable(),
+          id: zodSchemaUUID().optional().nullable(),
+          name: z.string(),
+          properties: z
+          .union([ zodSchemaWebhookAttributes(), zodSchemaEmailAttributes() ])
+          .optional()
+          .nullable(),
+          type: z.intersection(
+              zodSchemaEndpointType(),
+              z.enum([ 'webhook', 'email', 'default' ])
+          ),
+          updated: zodSchemaDate().optional().nullable()
+      });
+  }
+
+  function zodSchemaEndpointType() {
+      return z.enum([ 'webhook', 'email', 'default' ]);
   }
 
   function zodSchemaEntityTag() {
@@ -813,8 +835,52 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaMultivaluedMapStringObject() {
-      return z.record(z.unknown());
+  function zodSchemaEventType() {
+      return z.object({
+          application: z
+          .lazy(() => zodSchemaApplication())
+          .optional()
+          .nullable(),
+          description: z.string(),
+          endpoints: zodSchemaSetEndpoint().optional().nullable(),
+          id: z.number().int().optional().nullable(),
+          name: z.string()
+      });
+  }
+
+  function zodSchemaFamily() {
+      return z.enum([
+          'CLIENT_ERROR',
+          'INFORMATIONAL',
+          'OTHER',
+          'REDIRECTION',
+          'SERVER_ERROR',
+          'SUCCESSFUL'
+      ]);
+  }
+
+  function zodSchemaHttpType() {
+      return z.enum([ 'GET', 'POST', 'PUT' ]);
+  }
+
+  function zodSchemaJsonObject() {
+      return z.array(z.unknown());
+  }
+
+  function zodSchemaLink() {
+      return z.object({
+          params: zodSchemaMapStringString().optional().nullable(),
+          rel: z.string().optional().nullable(),
+          rels: zodSchemaListString().optional().nullable(),
+          title: z.string().optional().nullable(),
+          type: z.string().optional().nullable(),
+          uri: zodSchemaURI().optional().nullable(),
+          uriBuilder: zodSchemaUriBuilder().optional().nullable()
+      });
+  }
+
+  function zodSchemaListString() {
+      return z.array(z.string());
   }
 
   function zodSchemaLocale() {
@@ -836,24 +902,12 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaLink() {
-      return z.object({
-          params: zodSchemaMapStringString().optional().nullable(),
-          rel: z.string().optional().nullable(),
-          rels: zodSchemaListString().optional().nullable(),
-          title: z.string().optional().nullable(),
-          type: z.string().optional().nullable(),
-          uri: zodSchemaURI().optional().nullable(),
-          uriBuilder: zodSchemaUriBuilder().optional().nullable()
-      });
+  function zodSchemaMapStringNewCookie() {
+      return z.record(zodSchemaNewCookie());
   }
 
-  function zodSchemaSetLink() {
-      return z.array(zodSchemaLink());
-  }
-
-  function zodSchemaURI() {
-      return z.string();
+  function zodSchemaMapStringString() {
+      return z.record(z.string());
   }
 
   function zodSchemaMediaType() {
@@ -866,43 +920,46 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaStatusType() {
-      return z.object({
-          family: zodSchemaFamily().optional().nullable(),
-          reasonPhrase: z.string().optional().nullable(),
-          statusCode: z.number().int().optional().nullable()
-      });
+  function zodSchemaMultivaluedMapStringObject() {
+      return z.record(z.unknown());
   }
 
   function zodSchemaMultivaluedMapStringString() {
       return z.record(z.string());
   }
 
-  function zodSchemaFamily() {
-      return z.enum([
-          'CLIENT_ERROR',
-          'INFORMATIONAL',
-          'OTHER',
-          'REDIRECTION',
-          'SERVER_ERROR',
-          'SUCCESSFUL'
-      ]);
+  function zodSchemaNewCookie() {
+      return z.object({
+          comment: z.string().optional().nullable(),
+          domain: z.string().optional().nullable(),
+          expiry: zodSchemaDate().optional().nullable(),
+          httpOnly: z.boolean().optional().nullable(),
+          maxAge: z.number().int().optional().nullable(),
+          name: z.string().optional().nullable(),
+          path: z.string().optional().nullable(),
+          secure: z.boolean().optional().nullable(),
+          value: z.string().optional().nullable(),
+          version: z.number().int().optional().nullable()
+      });
   }
 
-  function zodSchemaMapStringString() {
-      return z.record(z.string());
+  function zodSchemaNotification() {
+      return z.object({
+          endpoint: zodSchemaEndpoint().optional().nullable(),
+          payload: z.unknown().optional().nullable(),
+          tenant: z.string().optional().nullable()
+      });
   }
 
-  function zodSchemaListString() {
-      return z.array(z.string());
-  }
-
-  function zodSchemaUriBuilder() {
-      return z.unknown();
-  }
-
-  function zodSchemaSetCharacter() {
-      return z.array(z.string());
+  function zodSchemaNotificationHistory() {
+      return z.object({
+          created: zodSchemaDate().optional().nullable(),
+          details: zodSchemaJsonObject().optional().nullable(),
+          endpointId: zodSchemaUUID().optional().nullable(),
+          id: z.number().int().optional().nullable(),
+          invocationResult: z.boolean().optional().nullable(),
+          invocationTime: z.number().int().optional().nullable()
+      });
   }
 
   function zodSchemaResponse() {
@@ -928,19 +985,44 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaAttributes() {
-      return z.unknown();
+  function zodSchemaSetCharacter() {
+      return z.array(z.string());
   }
 
-  function zodSchemaBasicAuthentication() {
+  function zodSchemaSetEndpoint() {
+      return z.array(zodSchemaEndpoint());
+  }
+
+  function zodSchemaSetEventType() {
+      return z.array(zodSchemaEventType());
+  }
+
+  function zodSchemaSetLink() {
+      return z.array(zodSchemaLink());
+  }
+
+  function zodSchemaSetString() {
+      return z.array(z.string());
+  }
+
+  function zodSchemaStatusType() {
       return z.object({
-          password: z.string().optional().nullable(),
-          username: z.string().optional().nullable()
+          family: zodSchemaFamily().optional().nullable(),
+          reasonPhrase: z.string().optional().nullable(),
+          statusCode: z.number().int().optional().nullable()
       });
   }
 
-  function zodSchemaHttpType() {
-      return z.enum([ 'GET', 'POST', 'PUT' ]);
+  function zodSchemaURI() {
+      return z.string();
+  }
+
+  function zodSchemaUUID() {
+      return z.string();
+  }
+
+  function zodSchemaUriBuilder() {
+      return z.unknown();
   }
 
   function zodSchemaWebhookAttributes() {
@@ -955,88 +1037,6 @@ export namespace Schemas {
           ),
           secret_token: z.string().optional().nullable(),
           url: z.string()
-      });
-  }
-
-  function zodSchemaEmailAttributes() {
-      return z.unknown();
-  }
-
-  function zodSchemaEndpointType() {
-      return z.enum([ 'webhook', 'email', 'default' ]);
-  }
-
-  function zodSchemaEndpoint() {
-      return z.object({
-          created: zodSchemaDate().optional().nullable(),
-          description: z.string(),
-          enabled: z.boolean().optional().nullable(),
-          id: zodSchemaUUID().optional().nullable(),
-          name: z.string(),
-          properties: z
-          .union([ zodSchemaWebhookAttributes(), zodSchemaEmailAttributes() ])
-          .optional()
-          .nullable(),
-          type: z.intersection(
-              zodSchemaEndpointType(),
-              z.enum([ 'webhook', 'email', 'default' ])
-          ),
-          updated: zodSchemaDate().optional().nullable()
-      });
-  }
-
-  function zodSchemaApplication() {
-      return z.object({
-          created: zodSchemaDate().optional().nullable(),
-          description: z.string(),
-          eventTypes: zodSchemaSetEventType().optional().nullable(),
-          id: zodSchemaUUID().optional().nullable(),
-          name: z.string(),
-          updated: zodSchemaDate().optional().nullable()
-      });
-  }
-
-  function zodSchemaSetEndpoint() {
-      return z.array(zodSchemaEndpoint());
-  }
-
-  function zodSchemaEventType() {
-      return z.object({
-          application: z
-          .lazy(() => zodSchemaApplication())
-          .optional()
-          .nullable(),
-          description: z.string(),
-          endpoints: zodSchemaSetEndpoint().optional().nullable(),
-          id: z.number().int().optional().nullable(),
-          name: z.string()
-      });
-  }
-
-  function zodSchemaSetEventType() {
-      return z.array(zodSchemaEventType());
-  }
-
-  function zodSchemaNotification() {
-      return z.object({
-          endpoint: zodSchemaEndpoint().optional().nullable(),
-          payload: z.unknown().optional().nullable(),
-          tenant: z.string().optional().nullable()
-      });
-  }
-
-  function zodSchemaJsonObject() {
-      return z.array(z.unknown());
-  }
-
-  function zodSchemaNotificationHistory() {
-      return z.object({
-          created: zodSchemaDate().optional().nullable(),
-          details: zodSchemaJsonObject().optional().nullable(),
-          endpointId: zodSchemaUUID().optional().nullable(),
-          id: z.number().int().optional().nullable(),
-          invocationResult: z.boolean().optional().nullable(),
-          invocationTime: z.number().int().optional().nullable()
       });
   }
 }
@@ -1311,69 +1311,8 @@ import {
 } from 'openapi2typescript/react-fetching-library';
 
 export namespace Schemas {
-  export const UUID = zodSchemaUUID();
-  export type UUID = z.infer<typeof UUID>;
-
-  export const SetString = zodSchemaSetString();
-  export type SetString = z.infer<typeof SetString>;
-
-  export const NewCookie = zodSchemaNewCookie();
-  export type NewCookie = z.infer<typeof NewCookie>;
-
-  export const MapStringNewCookie = zodSchemaMapStringNewCookie();
-  export type MapStringNewCookie = z.infer<typeof MapStringNewCookie>;
-
-  export const Date = zodSchemaDate();
-  export type Date = z.infer<typeof Date>;
-
-  export const EntityTag = zodSchemaEntityTag();
-  export type EntityTag = z.infer<typeof EntityTag>;
-
-  export const MultivaluedMapStringObject = zodSchemaMultivaluedMapStringObject();
-  export type MultivaluedMapStringObject = z.infer<
-    typeof MultivaluedMapStringObject
-  >;
-
-  export const Locale = zodSchemaLocale();
-  export type Locale = z.infer<typeof Locale>;
-
-  export const Link = zodSchemaLink();
-  export type Link = z.infer<typeof Link>;
-
-  export const SetLink = zodSchemaSetLink();
-  export type SetLink = z.infer<typeof SetLink>;
-
-  export const URI = zodSchemaURI();
-  export type URI = z.infer<typeof URI>;
-
-  export const MediaType = zodSchemaMediaType();
-  export type MediaType = z.infer<typeof MediaType>;
-
-  export const StatusType = zodSchemaStatusType();
-  export type StatusType = z.infer<typeof StatusType>;
-
-  export const MultivaluedMapStringString = zodSchemaMultivaluedMapStringString();
-  export type MultivaluedMapStringString = z.infer<
-    typeof MultivaluedMapStringString
-  >;
-
-  export const Family = zodSchemaFamily();
-  export type Family = z.infer<typeof Family>;
-
-  export const MapStringString = zodSchemaMapStringString();
-  export type MapStringString = z.infer<typeof MapStringString>;
-
-  export const ListString = zodSchemaListString();
-  export type ListString = z.infer<typeof ListString>;
-
-  export const UriBuilder = zodSchemaUriBuilder();
-  export type UriBuilder = z.infer<typeof UriBuilder>;
-
-  export const SetCharacter = zodSchemaSetCharacter();
-  export type SetCharacter = z.infer<typeof SetCharacter>;
-
-  export const Response = zodSchemaResponse();
-  export type Response = z.infer<typeof Response>;
+  export const Application = zodSchemaApplication();
+  export type Application = z.infer<typeof Application>;
 
   export const Attributes = zodSchemaAttributes();
   export type Attributes = z.infer<typeof Attributes>;
@@ -1381,71 +1320,154 @@ export namespace Schemas {
   export const BasicAuthentication = zodSchemaBasicAuthentication();
   export type BasicAuthentication = z.infer<typeof BasicAuthentication>;
 
-  export const HttpType = zodSchemaHttpType();
-  export type HttpType = z.infer<typeof HttpType>;
-
-  export const WebhookAttributes = zodSchemaWebhookAttributes();
-  export type WebhookAttributes = z.infer<typeof WebhookAttributes>;
+  export const Date = zodSchemaDate();
+  export type Date = z.infer<typeof Date>;
 
   export const EmailAttributes = zodSchemaEmailAttributes();
   export type EmailAttributes = z.infer<typeof EmailAttributes>;
 
-  export const EndpointType = zodSchemaEndpointType();
-  export type EndpointType = z.infer<typeof EndpointType>;
-
   export const Endpoint = zodSchemaEndpoint();
   export type Endpoint = z.infer<typeof Endpoint>;
 
-  export const Application = zodSchemaApplication();
-  export type Application = z.infer<typeof Application>;
+  export const EndpointType = zodSchemaEndpointType();
+  export type EndpointType = z.infer<typeof EndpointType>;
 
-  export const SetEndpoint = zodSchemaSetEndpoint();
-  export type SetEndpoint = z.infer<typeof SetEndpoint>;
+  export const EntityTag = zodSchemaEntityTag();
+  export type EntityTag = z.infer<typeof EntityTag>;
 
   export const EventType = zodSchemaEventType();
   export type EventType = z.infer<typeof EventType>;
 
-  export const SetEventType = zodSchemaSetEventType();
-  export type SetEventType = z.infer<typeof SetEventType>;
+  export const Family = zodSchemaFamily();
+  export type Family = z.infer<typeof Family>;
 
-  export const Notification = zodSchemaNotification();
-  export type Notification = z.infer<typeof Notification>;
+  export const HttpType = zodSchemaHttpType();
+  export type HttpType = z.infer<typeof HttpType>;
 
   export const JsonObject = zodSchemaJsonObject();
   export type JsonObject = z.infer<typeof JsonObject>;
 
+  export const Link = zodSchemaLink();
+  export type Link = z.infer<typeof Link>;
+
+  export const ListString = zodSchemaListString();
+  export type ListString = z.infer<typeof ListString>;
+
+  export const Locale = zodSchemaLocale();
+  export type Locale = z.infer<typeof Locale>;
+
+  export const MapStringNewCookie = zodSchemaMapStringNewCookie();
+  export type MapStringNewCookie = z.infer<typeof MapStringNewCookie>;
+
+  export const MapStringString = zodSchemaMapStringString();
+  export type MapStringString = z.infer<typeof MapStringString>;
+
+  export const MediaType = zodSchemaMediaType();
+  export type MediaType = z.infer<typeof MediaType>;
+
+  export const MultivaluedMapStringObject = zodSchemaMultivaluedMapStringObject();
+  export type MultivaluedMapStringObject = z.infer<
+    typeof MultivaluedMapStringObject
+  >;
+
+  export const MultivaluedMapStringString = zodSchemaMultivaluedMapStringString();
+  export type MultivaluedMapStringString = z.infer<
+    typeof MultivaluedMapStringString
+  >;
+
+  export const NewCookie = zodSchemaNewCookie();
+  export type NewCookie = z.infer<typeof NewCookie>;
+
+  export const Notification = zodSchemaNotification();
+  export type Notification = z.infer<typeof Notification>;
+
   export const NotificationHistory = zodSchemaNotificationHistory();
   export type NotificationHistory = z.infer<typeof NotificationHistory>;
 
-  function zodSchemaUUID() {
-      return z.string();
-  }
+  export const Response = zodSchemaResponse();
+  export type Response = z.infer<typeof Response>;
 
-  function zodSchemaSetString() {
-      return z.array(z.string());
-  }
+  export const SetCharacter = zodSchemaSetCharacter();
+  export type SetCharacter = z.infer<typeof SetCharacter>;
 
-  function zodSchemaNewCookie() {
+  export const SetEndpoint = zodSchemaSetEndpoint();
+  export type SetEndpoint = z.infer<typeof SetEndpoint>;
+
+  export const SetEventType = zodSchemaSetEventType();
+  export type SetEventType = z.infer<typeof SetEventType>;
+
+  export const SetLink = zodSchemaSetLink();
+  export type SetLink = z.infer<typeof SetLink>;
+
+  export const SetString = zodSchemaSetString();
+  export type SetString = z.infer<typeof SetString>;
+
+  export const StatusType = zodSchemaStatusType();
+  export type StatusType = z.infer<typeof StatusType>;
+
+  export const URI = zodSchemaURI();
+  export type URI = z.infer<typeof URI>;
+
+  export const UUID = zodSchemaUUID();
+  export type UUID = z.infer<typeof UUID>;
+
+  export const UriBuilder = zodSchemaUriBuilder();
+  export type UriBuilder = z.infer<typeof UriBuilder>;
+
+  export const WebhookAttributes = zodSchemaWebhookAttributes();
+  export type WebhookAttributes = z.infer<typeof WebhookAttributes>;
+
+  function zodSchemaApplication() {
       return z.object({
-          domain: z.string().optional().nullable(),
-          name: z.string().optional().nullable(),
-          path: z.string().optional().nullable(),
-          value: z.string().optional().nullable(),
-          version: z.number().int().optional().nullable(),
-          comment: z.string().optional().nullable(),
-          expiry: zodSchemaDate().optional().nullable(),
-          httpOnly: z.boolean().optional().nullable(),
-          maxAge: z.number().int().optional().nullable(),
-          secure: z.boolean().optional().nullable()
+          created: zodSchemaDate().optional().nullable(),
+          description: z.string(),
+          eventTypes: zodSchemaSetEventType().optional().nullable(),
+          id: zodSchemaUUID().optional().nullable(),
+          name: z.string(),
+          updated: zodSchemaDate().optional().nullable()
       });
   }
 
-  function zodSchemaMapStringNewCookie() {
-      return z.record(zodSchemaNewCookie());
+  function zodSchemaAttributes() {
+      return z.unknown();
+  }
+
+  function zodSchemaBasicAuthentication() {
+      return z.object({
+          password: z.string().optional().nullable(),
+          username: z.string().optional().nullable()
+      });
   }
 
   function zodSchemaDate() {
       return z.string();
+  }
+
+  function zodSchemaEmailAttributes() {
+      return z.unknown();
+  }
+
+  function zodSchemaEndpoint() {
+      return z.object({
+          created: zodSchemaDate().optional().nullable(),
+          description: z.string(),
+          enabled: z.boolean().optional().nullable(),
+          id: zodSchemaUUID().optional().nullable(),
+          name: z.string(),
+          properties: z
+          .union([ zodSchemaWebhookAttributes(), zodSchemaEmailAttributes() ])
+          .optional()
+          .nullable(),
+          type: z.intersection(
+              zodSchemaEndpointType(),
+              z.enum([ 'webhook', 'email', 'default' ])
+          ),
+          updated: zodSchemaDate().optional().nullable()
+      });
+  }
+
+  function zodSchemaEndpointType() {
+      return z.enum([ 'webhook', 'email', 'default' ]);
   }
 
   function zodSchemaEntityTag() {
@@ -1455,8 +1477,52 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaMultivaluedMapStringObject() {
-      return z.record(z.unknown());
+  function zodSchemaEventType() {
+      return z.object({
+          application: z
+          .lazy(() => zodSchemaApplication())
+          .optional()
+          .nullable(),
+          description: z.string(),
+          endpoints: zodSchemaSetEndpoint().optional().nullable(),
+          id: z.number().int().optional().nullable(),
+          name: z.string()
+      });
+  }
+
+  function zodSchemaFamily() {
+      return z.enum([
+          'CLIENT_ERROR',
+          'INFORMATIONAL',
+          'OTHER',
+          'REDIRECTION',
+          'SERVER_ERROR',
+          'SUCCESSFUL'
+      ]);
+  }
+
+  function zodSchemaHttpType() {
+      return z.enum([ 'GET', 'POST', 'PUT' ]);
+  }
+
+  function zodSchemaJsonObject() {
+      return z.array(z.unknown());
+  }
+
+  function zodSchemaLink() {
+      return z.object({
+          params: zodSchemaMapStringString().optional().nullable(),
+          rel: z.string().optional().nullable(),
+          rels: zodSchemaListString().optional().nullable(),
+          title: z.string().optional().nullable(),
+          type: z.string().optional().nullable(),
+          uri: zodSchemaURI().optional().nullable(),
+          uriBuilder: zodSchemaUriBuilder().optional().nullable()
+      });
+  }
+
+  function zodSchemaListString() {
+      return z.array(z.string());
   }
 
   function zodSchemaLocale() {
@@ -1478,24 +1544,12 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaLink() {
-      return z.object({
-          params: zodSchemaMapStringString().optional().nullable(),
-          rel: z.string().optional().nullable(),
-          rels: zodSchemaListString().optional().nullable(),
-          title: z.string().optional().nullable(),
-          type: z.string().optional().nullable(),
-          uri: zodSchemaURI().optional().nullable(),
-          uriBuilder: zodSchemaUriBuilder().optional().nullable()
-      });
+  function zodSchemaMapStringNewCookie() {
+      return z.record(zodSchemaNewCookie());
   }
 
-  function zodSchemaSetLink() {
-      return z.array(zodSchemaLink());
-  }
-
-  function zodSchemaURI() {
-      return z.string();
+  function zodSchemaMapStringString() {
+      return z.record(z.string());
   }
 
   function zodSchemaMediaType() {
@@ -1508,43 +1562,46 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaStatusType() {
-      return z.object({
-          family: zodSchemaFamily().optional().nullable(),
-          reasonPhrase: z.string().optional().nullable(),
-          statusCode: z.number().int().optional().nullable()
-      });
+  function zodSchemaMultivaluedMapStringObject() {
+      return z.record(z.unknown());
   }
 
   function zodSchemaMultivaluedMapStringString() {
       return z.record(z.string());
   }
 
-  function zodSchemaFamily() {
-      return z.enum([
-          'CLIENT_ERROR',
-          'INFORMATIONAL',
-          'OTHER',
-          'REDIRECTION',
-          'SERVER_ERROR',
-          'SUCCESSFUL'
-      ]);
+  function zodSchemaNewCookie() {
+      return z.object({
+          comment: z.string().optional().nullable(),
+          domain: z.string().optional().nullable(),
+          expiry: zodSchemaDate().optional().nullable(),
+          httpOnly: z.boolean().optional().nullable(),
+          maxAge: z.number().int().optional().nullable(),
+          name: z.string().optional().nullable(),
+          path: z.string().optional().nullable(),
+          secure: z.boolean().optional().nullable(),
+          value: z.string().optional().nullable(),
+          version: z.number().int().optional().nullable()
+      });
   }
 
-  function zodSchemaMapStringString() {
-      return z.record(z.string());
+  function zodSchemaNotification() {
+      return z.object({
+          endpoint: zodSchemaEndpoint().optional().nullable(),
+          payload: z.unknown().optional().nullable(),
+          tenant: z.string().optional().nullable()
+      });
   }
 
-  function zodSchemaListString() {
-      return z.array(z.string());
-  }
-
-  function zodSchemaUriBuilder() {
-      return z.unknown();
-  }
-
-  function zodSchemaSetCharacter() {
-      return z.array(z.string());
+  function zodSchemaNotificationHistory() {
+      return z.object({
+          created: zodSchemaDate().optional().nullable(),
+          details: zodSchemaJsonObject().optional().nullable(),
+          endpointId: zodSchemaUUID().optional().nullable(),
+          id: z.number().int().optional().nullable(),
+          invocationResult: z.boolean().optional().nullable(),
+          invocationTime: z.number().int().optional().nullable()
+      });
   }
 
   function zodSchemaResponse() {
@@ -1570,19 +1627,44 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaAttributes() {
-      return z.unknown();
+  function zodSchemaSetCharacter() {
+      return z.array(z.string());
   }
 
-  function zodSchemaBasicAuthentication() {
+  function zodSchemaSetEndpoint() {
+      return z.array(zodSchemaEndpoint());
+  }
+
+  function zodSchemaSetEventType() {
+      return z.array(zodSchemaEventType());
+  }
+
+  function zodSchemaSetLink() {
+      return z.array(zodSchemaLink());
+  }
+
+  function zodSchemaSetString() {
+      return z.array(z.string());
+  }
+
+  function zodSchemaStatusType() {
       return z.object({
-          password: z.string().optional().nullable(),
-          username: z.string().optional().nullable()
+          family: zodSchemaFamily().optional().nullable(),
+          reasonPhrase: z.string().optional().nullable(),
+          statusCode: z.number().int().optional().nullable()
       });
   }
 
-  function zodSchemaHttpType() {
-      return z.enum([ 'GET', 'POST', 'PUT' ]);
+  function zodSchemaURI() {
+      return z.string();
+  }
+
+  function zodSchemaUUID() {
+      return z.string();
+  }
+
+  function zodSchemaUriBuilder() {
+      return z.unknown();
   }
 
   function zodSchemaWebhookAttributes() {
@@ -1597,88 +1679,6 @@ export namespace Schemas {
           ),
           secret_token: z.string().optional().nullable(),
           url: z.string()
-      });
-  }
-
-  function zodSchemaEmailAttributes() {
-      return z.unknown();
-  }
-
-  function zodSchemaEndpointType() {
-      return z.enum([ 'webhook', 'email', 'default' ]);
-  }
-
-  function zodSchemaEndpoint() {
-      return z.object({
-          created: zodSchemaDate().optional().nullable(),
-          description: z.string(),
-          enabled: z.boolean().optional().nullable(),
-          id: zodSchemaUUID().optional().nullable(),
-          name: z.string(),
-          properties: z
-          .union([ zodSchemaWebhookAttributes(), zodSchemaEmailAttributes() ])
-          .optional()
-          .nullable(),
-          type: z.intersection(
-              zodSchemaEndpointType(),
-              z.enum([ 'webhook', 'email', 'default' ])
-          ),
-          updated: zodSchemaDate().optional().nullable()
-      });
-  }
-
-  function zodSchemaApplication() {
-      return z.object({
-          created: zodSchemaDate().optional().nullable(),
-          description: z.string(),
-          eventTypes: zodSchemaSetEventType().optional().nullable(),
-          id: zodSchemaUUID().optional().nullable(),
-          name: z.string(),
-          updated: zodSchemaDate().optional().nullable()
-      });
-  }
-
-  function zodSchemaSetEndpoint() {
-      return z.array(zodSchemaEndpoint());
-  }
-
-  function zodSchemaEventType() {
-      return z.object({
-          application: z
-          .lazy(() => zodSchemaApplication())
-          .optional()
-          .nullable(),
-          description: z.string(),
-          endpoints: zodSchemaSetEndpoint().optional().nullable(),
-          id: z.number().int().optional().nullable(),
-          name: z.string()
-      });
-  }
-
-  function zodSchemaSetEventType() {
-      return z.array(zodSchemaEventType());
-  }
-
-  function zodSchemaNotification() {
-      return z.object({
-          endpoint: zodSchemaEndpoint().optional().nullable(),
-          payload: z.unknown().optional().nullable(),
-          tenant: z.string().optional().nullable()
-      });
-  }
-
-  function zodSchemaJsonObject() {
-      return z.array(z.unknown());
-  }
-
-  function zodSchemaNotificationHistory() {
-      return z.object({
-          created: zodSchemaDate().optional().nullable(),
-          details: zodSchemaJsonObject().optional().nullable(),
-          endpointId: zodSchemaUUID().optional().nullable(),
-          id: z.number().int().optional().nullable(),
-          invocationResult: z.boolean().optional().nullable(),
-          invocationTime: z.number().int().optional().nullable()
       });
   }
 }
@@ -1968,103 +1968,125 @@ import { ValidateRule } from 'openapi2typescript';
 import { actionBuilder } from 'openapi2typescript/react-fetching-library';
 
 export namespace Schemas {
-  export const UUID = zodSchemaUUID();
-
-  export const SetString = zodSchemaSetString();
-
-  export const NewCookie = zodSchemaNewCookie();
-
-  export const MapStringNewCookie = zodSchemaMapStringNewCookie();
-
-  export const Date = zodSchemaDate();
-
-  export const EntityTag = zodSchemaEntityTag();
-
-  export const MultivaluedMapStringObject = zodSchemaMultivaluedMapStringObject();
-
-  export const Locale = zodSchemaLocale();
-
-  export const Link = zodSchemaLink();
-
-  export const SetLink = zodSchemaSetLink();
-
-  export const URI = zodSchemaURI();
-
-  export const MediaType = zodSchemaMediaType();
-
-  export const StatusType = zodSchemaStatusType();
-
-  export const MultivaluedMapStringString = zodSchemaMultivaluedMapStringString();
-
-  export const Family = zodSchemaFamily();
-
-  export const MapStringString = zodSchemaMapStringString();
-
-  export const ListString = zodSchemaListString();
-
-  export const UriBuilder = zodSchemaUriBuilder();
-
-  export const SetCharacter = zodSchemaSetCharacter();
-
-  export const Response = zodSchemaResponse();
+  export const Application = zodSchemaApplication();
 
   export const Attributes = zodSchemaAttributes();
 
   export const BasicAuthentication = zodSchemaBasicAuthentication();
 
-  export const HttpType = zodSchemaHttpType();
-
-  export const WebhookAttributes = zodSchemaWebhookAttributes();
+  export const Date = zodSchemaDate();
 
   export const EmailAttributes = zodSchemaEmailAttributes();
 
-  export const EndpointType = zodSchemaEndpointType();
-
   export const Endpoint = zodSchemaEndpoint();
 
-  export const Application = zodSchemaApplication();
+  export const EndpointType = zodSchemaEndpointType();
 
-  export const SetEndpoint = zodSchemaSetEndpoint();
+  export const EntityTag = zodSchemaEntityTag();
 
   export const EventType = zodSchemaEventType();
 
-  export const SetEventType = zodSchemaSetEventType();
+  export const Family = zodSchemaFamily();
 
-  export const Notification = zodSchemaNotification();
+  export const HttpType = zodSchemaHttpType();
 
   export const JsonObject = zodSchemaJsonObject();
 
+  export const Link = zodSchemaLink();
+
+  export const ListString = zodSchemaListString();
+
+  export const Locale = zodSchemaLocale();
+
+  export const MapStringNewCookie = zodSchemaMapStringNewCookie();
+
+  export const MapStringString = zodSchemaMapStringString();
+
+  export const MediaType = zodSchemaMediaType();
+
+  export const MultivaluedMapStringObject = zodSchemaMultivaluedMapStringObject();
+
+  export const MultivaluedMapStringString = zodSchemaMultivaluedMapStringString();
+
+  export const NewCookie = zodSchemaNewCookie();
+
+  export const Notification = zodSchemaNotification();
+
   export const NotificationHistory = zodSchemaNotificationHistory();
 
-  function zodSchemaUUID() {
-      return z.string();
-  }
+  export const Response = zodSchemaResponse();
 
-  function zodSchemaSetString() {
-      return z.array(z.string());
-  }
+  export const SetCharacter = zodSchemaSetCharacter();
 
-  function zodSchemaNewCookie() {
+  export const SetEndpoint = zodSchemaSetEndpoint();
+
+  export const SetEventType = zodSchemaSetEventType();
+
+  export const SetLink = zodSchemaSetLink();
+
+  export const SetString = zodSchemaSetString();
+
+  export const StatusType = zodSchemaStatusType();
+
+  export const URI = zodSchemaURI();
+
+  export const UUID = zodSchemaUUID();
+
+  export const UriBuilder = zodSchemaUriBuilder();
+
+  export const WebhookAttributes = zodSchemaWebhookAttributes();
+
+  function zodSchemaApplication() {
       return z.object({
-          domain: z.string().optional().nullable(),
-          name: z.string().optional().nullable(),
-          path: z.string().optional().nullable(),
-          value: z.string().optional().nullable(),
-          version: z.number().int().optional().nullable(),
-          comment: z.string().optional().nullable(),
-          expiry: zodSchemaDate().optional().nullable(),
-          httpOnly: z.boolean().optional().nullable(),
-          maxAge: z.number().int().optional().nullable(),
-          secure: z.boolean().optional().nullable()
+          created: zodSchemaDate().optional().nullable(),
+          description: z.string(),
+          eventTypes: zodSchemaSetEventType().optional().nullable(),
+          id: zodSchemaUUID().optional().nullable(),
+          name: z.string(),
+          updated: zodSchemaDate().optional().nullable()
       });
   }
 
-  function zodSchemaMapStringNewCookie() {
-      return z.record(zodSchemaNewCookie());
+  function zodSchemaAttributes() {
+      return z.unknown();
+  }
+
+  function zodSchemaBasicAuthentication() {
+      return z.object({
+          password: z.string().optional().nullable(),
+          username: z.string().optional().nullable()
+      });
   }
 
   function zodSchemaDate() {
       return z.string();
+  }
+
+  function zodSchemaEmailAttributes() {
+      return z.unknown();
+  }
+
+  function zodSchemaEndpoint() {
+      return z.object({
+          created: zodSchemaDate().optional().nullable(),
+          description: z.string(),
+          enabled: z.boolean().optional().nullable(),
+          id: zodSchemaUUID().optional().nullable(),
+          name: z.string(),
+          properties: z
+          .union([ zodSchemaWebhookAttributes(), zodSchemaEmailAttributes() ])
+          .optional()
+          .nullable(),
+          type: z.intersection(
+              zodSchemaEndpointType(),
+              z.enum([ 'webhook', 'email', 'default' ])
+          ),
+          updated: zodSchemaDate().optional().nullable()
+      });
+  }
+
+  function zodSchemaEndpointType() {
+      return z.enum([ 'webhook', 'email', 'default' ]);
   }
 
   function zodSchemaEntityTag() {
@@ -2074,8 +2096,52 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaMultivaluedMapStringObject() {
-      return z.record(z.unknown());
+  function zodSchemaEventType() {
+      return z.object({
+          application: z
+          .lazy(() => zodSchemaApplication())
+          .optional()
+          .nullable(),
+          description: z.string(),
+          endpoints: zodSchemaSetEndpoint().optional().nullable(),
+          id: z.number().int().optional().nullable(),
+          name: z.string()
+      });
+  }
+
+  function zodSchemaFamily() {
+      return z.enum([
+          'CLIENT_ERROR',
+          'INFORMATIONAL',
+          'OTHER',
+          'REDIRECTION',
+          'SERVER_ERROR',
+          'SUCCESSFUL'
+      ]);
+  }
+
+  function zodSchemaHttpType() {
+      return z.enum([ 'GET', 'POST', 'PUT' ]);
+  }
+
+  function zodSchemaJsonObject() {
+      return z.array(z.unknown());
+  }
+
+  function zodSchemaLink() {
+      return z.object({
+          params: zodSchemaMapStringString().optional().nullable(),
+          rel: z.string().optional().nullable(),
+          rels: zodSchemaListString().optional().nullable(),
+          title: z.string().optional().nullable(),
+          type: z.string().optional().nullable(),
+          uri: zodSchemaURI().optional().nullable(),
+          uriBuilder: zodSchemaUriBuilder().optional().nullable()
+      });
+  }
+
+  function zodSchemaListString() {
+      return z.array(z.string());
   }
 
   function zodSchemaLocale() {
@@ -2097,24 +2163,12 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaLink() {
-      return z.object({
-          params: zodSchemaMapStringString().optional().nullable(),
-          rel: z.string().optional().nullable(),
-          rels: zodSchemaListString().optional().nullable(),
-          title: z.string().optional().nullable(),
-          type: z.string().optional().nullable(),
-          uri: zodSchemaURI().optional().nullable(),
-          uriBuilder: zodSchemaUriBuilder().optional().nullable()
-      });
+  function zodSchemaMapStringNewCookie() {
+      return z.record(zodSchemaNewCookie());
   }
 
-  function zodSchemaSetLink() {
-      return z.array(zodSchemaLink());
-  }
-
-  function zodSchemaURI() {
-      return z.string();
+  function zodSchemaMapStringString() {
+      return z.record(z.string());
   }
 
   function zodSchemaMediaType() {
@@ -2127,43 +2181,46 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaStatusType() {
-      return z.object({
-          family: zodSchemaFamily().optional().nullable(),
-          reasonPhrase: z.string().optional().nullable(),
-          statusCode: z.number().int().optional().nullable()
-      });
+  function zodSchemaMultivaluedMapStringObject() {
+      return z.record(z.unknown());
   }
 
   function zodSchemaMultivaluedMapStringString() {
       return z.record(z.string());
   }
 
-  function zodSchemaFamily() {
-      return z.enum([
-          'CLIENT_ERROR',
-          'INFORMATIONAL',
-          'OTHER',
-          'REDIRECTION',
-          'SERVER_ERROR',
-          'SUCCESSFUL'
-      ]);
+  function zodSchemaNewCookie() {
+      return z.object({
+          comment: z.string().optional().nullable(),
+          domain: z.string().optional().nullable(),
+          expiry: zodSchemaDate().optional().nullable(),
+          httpOnly: z.boolean().optional().nullable(),
+          maxAge: z.number().int().optional().nullable(),
+          name: z.string().optional().nullable(),
+          path: z.string().optional().nullable(),
+          secure: z.boolean().optional().nullable(),
+          value: z.string().optional().nullable(),
+          version: z.number().int().optional().nullable()
+      });
   }
 
-  function zodSchemaMapStringString() {
-      return z.record(z.string());
+  function zodSchemaNotification() {
+      return z.object({
+          endpoint: zodSchemaEndpoint().optional().nullable(),
+          payload: z.unknown().optional().nullable(),
+          tenant: z.string().optional().nullable()
+      });
   }
 
-  function zodSchemaListString() {
-      return z.array(z.string());
-  }
-
-  function zodSchemaUriBuilder() {
-      return z.unknown();
-  }
-
-  function zodSchemaSetCharacter() {
-      return z.array(z.string());
+  function zodSchemaNotificationHistory() {
+      return z.object({
+          created: zodSchemaDate().optional().nullable(),
+          details: zodSchemaJsonObject().optional().nullable(),
+          endpointId: zodSchemaUUID().optional().nullable(),
+          id: z.number().int().optional().nullable(),
+          invocationResult: z.boolean().optional().nullable(),
+          invocationTime: z.number().int().optional().nullable()
+      });
   }
 
   function zodSchemaResponse() {
@@ -2189,19 +2246,44 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaAttributes() {
-      return z.unknown();
+  function zodSchemaSetCharacter() {
+      return z.array(z.string());
   }
 
-  function zodSchemaBasicAuthentication() {
+  function zodSchemaSetEndpoint() {
+      return z.array(zodSchemaEndpoint());
+  }
+
+  function zodSchemaSetEventType() {
+      return z.array(zodSchemaEventType());
+  }
+
+  function zodSchemaSetLink() {
+      return z.array(zodSchemaLink());
+  }
+
+  function zodSchemaSetString() {
+      return z.array(z.string());
+  }
+
+  function zodSchemaStatusType() {
       return z.object({
-          password: z.string().optional().nullable(),
-          username: z.string().optional().nullable()
+          family: zodSchemaFamily().optional().nullable(),
+          reasonPhrase: z.string().optional().nullable(),
+          statusCode: z.number().int().optional().nullable()
       });
   }
 
-  function zodSchemaHttpType() {
-      return z.enum([ 'GET', 'POST', 'PUT' ]);
+  function zodSchemaURI() {
+      return z.string();
+  }
+
+  function zodSchemaUUID() {
+      return z.string();
+  }
+
+  function zodSchemaUriBuilder() {
+      return z.unknown();
   }
 
   function zodSchemaWebhookAttributes() {
@@ -2216,88 +2298,6 @@ export namespace Schemas {
           ),
           secret_token: z.string().optional().nullable(),
           url: z.string()
-      });
-  }
-
-  function zodSchemaEmailAttributes() {
-      return z.unknown();
-  }
-
-  function zodSchemaEndpointType() {
-      return z.enum([ 'webhook', 'email', 'default' ]);
-  }
-
-  function zodSchemaEndpoint() {
-      return z.object({
-          created: zodSchemaDate().optional().nullable(),
-          description: z.string(),
-          enabled: z.boolean().optional().nullable(),
-          id: zodSchemaUUID().optional().nullable(),
-          name: z.string(),
-          properties: z
-          .union([ zodSchemaWebhookAttributes(), zodSchemaEmailAttributes() ])
-          .optional()
-          .nullable(),
-          type: z.intersection(
-              zodSchemaEndpointType(),
-              z.enum([ 'webhook', 'email', 'default' ])
-          ),
-          updated: zodSchemaDate().optional().nullable()
-      });
-  }
-
-  function zodSchemaApplication() {
-      return z.object({
-          created: zodSchemaDate().optional().nullable(),
-          description: z.string(),
-          eventTypes: zodSchemaSetEventType().optional().nullable(),
-          id: zodSchemaUUID().optional().nullable(),
-          name: z.string(),
-          updated: zodSchemaDate().optional().nullable()
-      });
-  }
-
-  function zodSchemaSetEndpoint() {
-      return z.array(zodSchemaEndpoint());
-  }
-
-  function zodSchemaEventType() {
-      return z.object({
-          application: z
-          .lazy(() => zodSchemaApplication())
-          .optional()
-          .nullable(),
-          description: z.string(),
-          endpoints: zodSchemaSetEndpoint().optional().nullable(),
-          id: z.number().int().optional().nullable(),
-          name: z.string()
-      });
-  }
-
-  function zodSchemaSetEventType() {
-      return z.array(zodSchemaEventType());
-  }
-
-  function zodSchemaNotification() {
-      return z.object({
-          endpoint: zodSchemaEndpoint().optional().nullable(),
-          payload: z.unknown().optional().nullable(),
-          tenant: z.string().optional().nullable()
-      });
-  }
-
-  function zodSchemaJsonObject() {
-      return z.array(z.unknown());
-  }
-
-  function zodSchemaNotificationHistory() {
-      return z.object({
-          created: zodSchemaDate().optional().nullable(),
-          details: zodSchemaJsonObject().optional().nullable(),
-          endpointId: zodSchemaUUID().optional().nullable(),
-          id: z.number().int().optional().nullable(),
-          invocationResult: z.boolean().optional().nullable(),
-          invocationTime: z.number().int().optional().nullable()
       });
   }
 }
@@ -2539,49 +2539,111 @@ import {
 } from 'openapi2typescript/react-fetching-library';
 
 export namespace Schemas {
-  export const Policy = zodSchemaPolicy();
-  export type Policy = z.infer<typeof Policy>;
+  export const Fact = zodSchemaFact();
+  export type Fact = z.infer<typeof Fact>;
 
-  export const Meta = zodSchemaMeta();
-  export type Meta = z.infer<typeof Meta>;
-
-  export const MapStringString = zodSchemaMapStringString();
-  export type MapStringString = z.infer<typeof MapStringString>;
+  export const FactType = zodSchemaFactType();
+  export type FactType = z.infer<typeof FactType>;
 
   export const HistoryItem = zodSchemaHistoryItem();
   export type HistoryItem = z.infer<typeof HistoryItem>;
 
-  export const Fact = zodSchemaFact();
-  export type Fact = z.infer<typeof Fact>;
+  export const List = zodSchemaList();
+  export type List = z.infer<typeof List>;
+
+  export const ListHistoryItem = zodSchemaListHistoryItem();
+  export type ListHistoryItem = z.infer<typeof ListHistoryItem>;
+
+  export const ListPolicy = zodSchemaListPolicy();
+  export type ListPolicy = z.infer<typeof ListPolicy>;
+
+  export const ListUUID = zodSchemaListUUID();
+  export type ListUUID = z.infer<typeof ListUUID>;
+
+  export const MapStringString = zodSchemaMapStringString();
+  export type MapStringString = z.infer<typeof MapStringString>;
+
+  export const Meta = zodSchemaMeta();
+  export type Meta = z.infer<typeof Meta>;
 
   export const PagedResponseOfHistoryItem = zodSchemaPagedResponseOfHistoryItem();
   export type PagedResponseOfHistoryItem = z.infer<
     typeof PagedResponseOfHistoryItem
   >;
 
-  export const FactType = zodSchemaFactType();
-  export type FactType = z.infer<typeof FactType>;
-
-  export const ListUUID = zodSchemaListUUID();
-  export type ListUUID = z.infer<typeof ListUUID>;
-
   export const PagedResponseOfPolicy = zodSchemaPagedResponseOfPolicy();
   export type PagedResponseOfPolicy = z.infer<typeof PagedResponseOfPolicy>;
 
-  export const List = zodSchemaList();
-  export type List = z.infer<typeof List>;
-
-  export const ListPolicy = zodSchemaListPolicy();
-  export type ListPolicy = z.infer<typeof ListPolicy>;
+  export const Policy = zodSchemaPolicy();
+  export type Policy = z.infer<typeof Policy>;
 
   export const UUID = zodSchemaUUID();
   export type UUID = z.infer<typeof UUID>;
 
-  export const ListHistoryItem = zodSchemaListHistoryItem();
-  export type ListHistoryItem = z.infer<typeof ListHistoryItem>;
-
   export const __Empty = zodSchema__Empty();
   export type __Empty = z.infer<typeof __Empty>;
+
+  function zodSchemaFact() {
+      return z.object({
+          id: z.number().int().optional().nullable(),
+          name: z.string().optional().nullable(),
+          type: zodSchemaFactType().optional().nullable()
+      });
+  }
+
+  function zodSchemaFactType() {
+      return z.enum([ 'BOOLEAN', 'INT', 'LIST', 'STRING' ]);
+  }
+
+  function zodSchemaHistoryItem() {
+      return z.object({
+          ctime: z.number().int().optional().nullable(),
+          hostName: z.string().optional().nullable(),
+          id: z.string().optional().nullable()
+      });
+  }
+
+  function zodSchemaList() {
+      return z.array(z.unknown());
+  }
+
+  function zodSchemaListHistoryItem() {
+      return z.array(zodSchemaHistoryItem());
+  }
+
+  function zodSchemaListPolicy() {
+      return z.array(zodSchemaPolicy());
+  }
+
+  function zodSchemaListUUID() {
+      return z.array(z.string());
+  }
+
+  function zodSchemaMapStringString() {
+      return z.record(z.string());
+  }
+
+  function zodSchemaMeta() {
+      return z.object({
+          count: z.number().int().optional().nullable()
+      });
+  }
+
+  function zodSchemaPagedResponseOfHistoryItem() {
+      return z.object({
+          data: zodSchemaListHistoryItem().optional().nullable(),
+          links: zodSchemaMapStringString().optional().nullable(),
+          meta: zodSchemaMeta().optional().nullable()
+      });
+  }
+
+  function zodSchemaPagedResponseOfPolicy() {
+      return z.object({
+          data: zodSchemaListPolicy().optional().nullable(),
+          links: zodSchemaMapStringString().optional().nullable(),
+          meta: zodSchemaMeta().optional().nullable()
+      });
+  }
 
   function zodSchemaPolicy() {
       return z.object({
@@ -2597,70 +2659,8 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaMeta() {
-      return z.object({
-          count: z.number().int().optional().nullable()
-      });
-  }
-
-  function zodSchemaMapStringString() {
-      return z.record(z.string());
-  }
-
-  function zodSchemaHistoryItem() {
-      return z.object({
-          ctime: z.number().int().optional().nullable(),
-          hostName: z.string().optional().nullable(),
-          id: z.string().optional().nullable()
-      });
-  }
-
-  function zodSchemaFact() {
-      return z.object({
-          id: z.number().int().optional().nullable(),
-          name: z.string().optional().nullable(),
-          type: zodSchemaFactType().optional().nullable()
-      });
-  }
-
-  function zodSchemaPagedResponseOfHistoryItem() {
-      return z.object({
-          links: zodSchemaMapStringString().optional().nullable(),
-          meta: zodSchemaMeta().optional().nullable(),
-          data: zodSchemaListHistoryItem().optional().nullable()
-      });
-  }
-
-  function zodSchemaFactType() {
-      return z.enum([ 'BOOLEAN', 'INT', 'LIST', 'STRING' ]);
-  }
-
-  function zodSchemaListUUID() {
-      return z.array(z.string());
-  }
-
-  function zodSchemaPagedResponseOfPolicy() {
-      return z.object({
-          links: zodSchemaMapStringString().optional().nullable(),
-          meta: zodSchemaMeta().optional().nullable(),
-          data: zodSchemaListPolicy().optional().nullable()
-      });
-  }
-
-  function zodSchemaList() {
-      return z.array(z.unknown());
-  }
-
-  function zodSchemaListPolicy() {
-      return z.array(zodSchemaPolicy());
-  }
-
   function zodSchemaUUID() {
       return z.string();
-  }
-
-  function zodSchemaListHistoryItem() {
-      return z.array(zodSchemaHistoryItem());
   }
 
   function zodSchema__Empty() {
@@ -2669,93 +2669,20 @@ export namespace Schemas {
 }
 
 export namespace Operations {
-  // POST /policies/{id}/enabled
-  // Enable/disable a policy
-  export namespace PostPoliciesByIdEnabled {
-    const Enabled = z.boolean();
-    type Enabled = z.infer<typeof Enabled>;
-    export interface Params {
-      id: Schemas.UUID;
-      enabled?: Enabled;
-    }
-
+  // GET /
+  // Just a filler to have a defined return code for the base path
+  export namespace Get {
     export type Payload =
-      | ValidatedResponse<'__Empty', 200, Schemas.__Empty>
-      | ValidatedResponse<'__Empty', 403, Schemas.__Empty>
       | ValidatedResponse<'__Empty', 404, Schemas.__Empty>
-      | ValidatedResponse<'__Empty', 500, Schemas.__Empty>
-      | ValidatedResponse<'unknown', undefined, unknown>;
-    export type ActionCreator = Action<Payload, ActionValidatableConfig>;
-    export const actionCreator = (params: Params): ActionCreator => {
-        const path = '/api/policies/v1.0/policies/{id}/enabled'.replace(
-            '{id}',
-            params.id.toString()
-        );
-        const query = {} as Record<string, any>;
-        if (params.enabled !== undefined) {
-            query.enabled = params.enabled;
-        }
-
-        return actionBuilder('POST', path)
-        .queryParams(query)
-        .config({
-            rules: [
-                new ValidateRule(Schemas.__Empty, '__Empty', 200),
-                new ValidateRule(Schemas.__Empty, '__Empty', 403),
-                new ValidateRule(Schemas.__Empty, '__Empty', 404),
-                new ValidateRule(Schemas.__Empty, '__Empty', 500)
-            ]
-        })
-        .build();
-    };
-  }
-  // GET /status
-  export namespace GetStatus {
-    export type Payload =
-      | ValidatedResponse<'__Empty', 200, Schemas.__Empty>
       | ValidatedResponse<'unknown', undefined, unknown>;
     export type ActionCreator = Action<Payload, ActionValidatableConfig>;
     export const actionCreator = (): ActionCreator => {
-        const path = '/api/policies/v1.0/status';
+        const path = '/api/policies/v1.0/';
         const query = {} as Record<string, any>;
         return actionBuilder('GET', path)
         .queryParams(query)
         .config({
-            rules: [ new ValidateRule(Schemas.__Empty, '__Empty', 200) ]
-        })
-        .build();
-    };
-  }
-  // POST /policies/ids/enabled
-  // Enable/disable policies identified by list of uuid in body
-  export namespace PostPoliciesIdsEnabled {
-    const Enabled = z.boolean();
-    type Enabled = z.infer<typeof Enabled>;
-    export interface Params {
-      enabled?: Enabled;
-      body: Schemas.ListUUID;
-    }
-
-    export type Payload =
-      | ValidatedResponse<'__Empty', 200, Schemas.__Empty>
-      | ValidatedResponse<'__Empty', 403, Schemas.__Empty>
-      | ValidatedResponse<'unknown', undefined, unknown>;
-    export type ActionCreator = Action<Payload, ActionValidatableConfig>;
-    export const actionCreator = (params: Params): ActionCreator => {
-        const path = '/api/policies/v1.0/policies/ids/enabled';
-        const query = {} as Record<string, any>;
-        if (params.enabled !== undefined) {
-            query.enabled = params.enabled;
-        }
-
-        return actionBuilder('POST', path)
-        .queryParams(query)
-        .data(params.body)
-        .config({
-            rules: [
-                new ValidateRule(Schemas.__Empty, '__Empty', 200),
-                new ValidateRule(Schemas.__Empty, '__Empty', 403)
-            ]
+            rules: [ new ValidateRule(Schemas.__Empty, '__Empty', 404) ]
         })
         .build();
     };
@@ -2930,156 +2857,6 @@ export namespace Operations {
         .build();
     };
   }
-  // GET /policies/{id}
-  // Retrieve a single policy for a customer by its id
-  export namespace GetPoliciesById {
-    export interface Params {
-      id: Schemas.UUID;
-    }
-
-    export type Payload =
-      | ValidatedResponse<'Policy', 200, Schemas.Policy>
-      | ValidatedResponse<'__Empty', 403, Schemas.__Empty>
-      | ValidatedResponse<'__Empty', 404, Schemas.__Empty>
-      | ValidatedResponse<'unknown', undefined, unknown>;
-    export type ActionCreator = Action<Payload, ActionValidatableConfig>;
-    export const actionCreator = (params: Params): ActionCreator => {
-        const path = '/api/policies/v1.0/policies/{id}'.replace(
-            '{id}',
-            params.id.toString()
-        );
-        const query = {} as Record<string, any>;
-        return actionBuilder('GET', path)
-        .queryParams(query)
-        .config({
-            rules: [
-                new ValidateRule(Schemas.Policy, 'Policy', 200),
-                new ValidateRule(Schemas.__Empty, '__Empty', 403),
-                new ValidateRule(Schemas.__Empty, '__Empty', 404)
-            ]
-        })
-        .build();
-    };
-  }
-  // DELETE /policies/{id}
-  // Delete a single policy for a customer by its id
-  export namespace DeletePoliciesById {
-    export interface Params {
-      id: Schemas.UUID;
-    }
-
-    export type Payload =
-      | ValidatedResponse<'__Empty', 200, Schemas.__Empty>
-      | ValidatedResponse<'__Empty', 403, Schemas.__Empty>
-      | ValidatedResponse<'__Empty', 404, Schemas.__Empty>
-      | ValidatedResponse<'unknown', undefined, unknown>;
-    export type ActionCreator = Action<Payload, ActionValidatableConfig>;
-    export const actionCreator = (params: Params): ActionCreator => {
-        const path = '/api/policies/v1.0/policies/{id}'.replace(
-            '{id}',
-            params.id.toString()
-        );
-        const query = {} as Record<string, any>;
-        return actionBuilder('DELETE', path)
-        .queryParams(query)
-        .config({
-            rules: [
-                new ValidateRule(Schemas.__Empty, '__Empty', 200),
-                new ValidateRule(Schemas.__Empty, '__Empty', 403),
-                new ValidateRule(Schemas.__Empty, '__Empty', 404)
-            ]
-        })
-        .build();
-    };
-  }
-  // PUT /policies/{policyId}
-  // Update a single policy for a customer by its id
-  export namespace PutPoliciesByPolicyId {
-    const Dry = z.boolean();
-    type Dry = z.infer<typeof Dry>;
-    const Response409 = z.object({
-        msg: z.string().optional().nullable()
-    });
-    type Response409 = z.infer<typeof Response409>;
-    export interface Params {
-      policyId: Schemas.UUID;
-      dry?: Dry;
-      body: Schemas.Policy;
-    }
-
-    export type Payload =
-      | ValidatedResponse<'__Empty', 200, Schemas.__Empty>
-      | ValidatedResponse<'__Empty', 400, Schemas.__Empty>
-      | ValidatedResponse<'__Empty', 403, Schemas.__Empty>
-      | ValidatedResponse<'__Empty', 404, Schemas.__Empty>
-      | ValidatedResponse<'Response409', 409, Response409>
-      | ValidatedResponse<'unknown', undefined, unknown>;
-    export type ActionCreator = Action<Payload, ActionValidatableConfig>;
-    export const actionCreator = (params: Params): ActionCreator => {
-        const path = '/api/policies/v1.0/policies/{policyId}'.replace(
-            '{policyId}',
-            params.policyId.toString()
-        );
-        const query = {} as Record<string, any>;
-        if (params.dry !== undefined) {
-            query.dry = params.dry;
-        }
-
-        return actionBuilder('PUT', path)
-        .queryParams(query)
-        .data(params.body)
-        .config({
-            rules: [
-                new ValidateRule(Schemas.__Empty, '__Empty', 200),
-                new ValidateRule(Schemas.__Empty, '__Empty', 400),
-                new ValidateRule(Schemas.__Empty, '__Empty', 403),
-                new ValidateRule(Schemas.__Empty, '__Empty', 404),
-                new ValidateRule(Response409, 'Response409', 409)
-            ]
-        })
-        .build();
-    };
-  }
-  // POST /policies/validate-name
-  // Validates the Policy.name and verifies if it is unique.
-  export namespace PostPoliciesValidateName {
-    const Body = z.string();
-    type Body = z.infer<typeof Body>;
-    export interface Params {
-      id?: Schemas.UUID;
-      body: Body;
-    }
-
-    export type Payload =
-      | ValidatedResponse<'__Empty', 200, Schemas.__Empty>
-      | ValidatedResponse<'__Empty', 400, Schemas.__Empty>
-      | ValidatedResponse<'__Empty', 403, Schemas.__Empty>
-      | ValidatedResponse<'__Empty', 409, Schemas.__Empty>
-      | ValidatedResponse<'__Empty', 500, Schemas.__Empty>
-      | ValidatedResponse<'unknown', undefined, unknown>;
-    export type ActionCreator = Action<Payload, ActionValidatableConfig>;
-    export const actionCreator = (params: Params): ActionCreator => {
-        const path = '/api/policies/v1.0/policies/validate-name';
-        const query = {} as Record<string, any>;
-        if (params.id !== undefined) {
-            query.id = params.id;
-        }
-
-        return actionBuilder('POST', path)
-        .queryParams(query)
-        .data(params.body)
-        .config({
-            rules: [
-                new ValidateRule(Schemas.__Empty, '__Empty', 200),
-                new ValidateRule(Schemas.__Empty, '__Empty', 400),
-                new ValidateRule(Schemas.__Empty, '__Empty', 403),
-                new ValidateRule(Schemas.__Empty, '__Empty', 409),
-                new ValidateRule(Schemas.__Empty, '__Empty', 500)
-            ]
-        })
-        .build();
-    };
-  }
   // GET /policies/ids
   // Return all policy ids for a given account after applying the filters
   export namespace GetPoliciesIds {
@@ -3173,6 +2950,40 @@ export namespace Operations {
         .build();
     };
   }
+  // POST /policies/ids/enabled
+  // Enable/disable policies identified by list of uuid in body
+  export namespace PostPoliciesIdsEnabled {
+    const Enabled = z.boolean();
+    type Enabled = z.infer<typeof Enabled>;
+    export interface Params {
+      enabled?: Enabled;
+      body: Schemas.ListUUID;
+    }
+
+    export type Payload =
+      | ValidatedResponse<'__Empty', 200, Schemas.__Empty>
+      | ValidatedResponse<'__Empty', 403, Schemas.__Empty>
+      | ValidatedResponse<'unknown', undefined, unknown>;
+    export type ActionCreator = Action<Payload, ActionValidatableConfig>;
+    export const actionCreator = (params: Params): ActionCreator => {
+        const path = '/api/policies/v1.0/policies/ids/enabled';
+        const query = {} as Record<string, any>;
+        if (params.enabled !== undefined) {
+            query.enabled = params.enabled;
+        }
+
+        return actionBuilder('POST', path)
+        .queryParams(query)
+        .data(params.body)
+        .config({
+            rules: [
+                new ValidateRule(Schemas.__Empty, '__Empty', 200),
+                new ValidateRule(Schemas.__Empty, '__Empty', 403)
+            ]
+        })
+        .build();
+    };
+  }
   // POST /policies/validate
   // Validates a Policy condition
   export namespace PostPoliciesValidate {
@@ -3202,20 +3013,144 @@ export namespace Operations {
         .build();
     };
   }
-  // GET /
-  // Just a filler to have a defined return code for the base path
-  export namespace Get {
+  // POST /policies/validate-name
+  // Validates the Policy.name and verifies if it is unique.
+  export namespace PostPoliciesValidateName {
+    const Body = z.string();
+    type Body = z.infer<typeof Body>;
+    export interface Params {
+      id?: Schemas.UUID;
+      body: Body;
+    }
+
     export type Payload =
+      | ValidatedResponse<'__Empty', 200, Schemas.__Empty>
+      | ValidatedResponse<'__Empty', 400, Schemas.__Empty>
+      | ValidatedResponse<'__Empty', 403, Schemas.__Empty>
+      | ValidatedResponse<'__Empty', 409, Schemas.__Empty>
+      | ValidatedResponse<'__Empty', 500, Schemas.__Empty>
+      | ValidatedResponse<'unknown', undefined, unknown>;
+    export type ActionCreator = Action<Payload, ActionValidatableConfig>;
+    export const actionCreator = (params: Params): ActionCreator => {
+        const path = '/api/policies/v1.0/policies/validate-name';
+        const query = {} as Record<string, any>;
+        if (params.id !== undefined) {
+            query.id = params.id;
+        }
+
+        return actionBuilder('POST', path)
+        .queryParams(query)
+        .data(params.body)
+        .config({
+            rules: [
+                new ValidateRule(Schemas.__Empty, '__Empty', 200),
+                new ValidateRule(Schemas.__Empty, '__Empty', 400),
+                new ValidateRule(Schemas.__Empty, '__Empty', 403),
+                new ValidateRule(Schemas.__Empty, '__Empty', 409),
+                new ValidateRule(Schemas.__Empty, '__Empty', 500)
+            ]
+        })
+        .build();
+    };
+  }
+  // GET /policies/{id}
+  // Retrieve a single policy for a customer by its id
+  export namespace GetPoliciesById {
+    export interface Params {
+      id: Schemas.UUID;
+    }
+
+    export type Payload =
+      | ValidatedResponse<'Policy', 200, Schemas.Policy>
+      | ValidatedResponse<'__Empty', 403, Schemas.__Empty>
       | ValidatedResponse<'__Empty', 404, Schemas.__Empty>
       | ValidatedResponse<'unknown', undefined, unknown>;
     export type ActionCreator = Action<Payload, ActionValidatableConfig>;
-    export const actionCreator = (): ActionCreator => {
-        const path = '/api/policies/v1.0/';
+    export const actionCreator = (params: Params): ActionCreator => {
+        const path = '/api/policies/v1.0/policies/{id}'.replace(
+            '{id}',
+            params.id.toString()
+        );
         const query = {} as Record<string, any>;
         return actionBuilder('GET', path)
         .queryParams(query)
         .config({
-            rules: [ new ValidateRule(Schemas.__Empty, '__Empty', 404) ]
+            rules: [
+                new ValidateRule(Schemas.Policy, 'Policy', 200),
+                new ValidateRule(Schemas.__Empty, '__Empty', 403),
+                new ValidateRule(Schemas.__Empty, '__Empty', 404)
+            ]
+        })
+        .build();
+    };
+  }
+  // DELETE /policies/{id}
+  // Delete a single policy for a customer by its id
+  export namespace DeletePoliciesById {
+    export interface Params {
+      id: Schemas.UUID;
+    }
+
+    export type Payload =
+      | ValidatedResponse<'__Empty', 200, Schemas.__Empty>
+      | ValidatedResponse<'__Empty', 403, Schemas.__Empty>
+      | ValidatedResponse<'__Empty', 404, Schemas.__Empty>
+      | ValidatedResponse<'unknown', undefined, unknown>;
+    export type ActionCreator = Action<Payload, ActionValidatableConfig>;
+    export const actionCreator = (params: Params): ActionCreator => {
+        const path = '/api/policies/v1.0/policies/{id}'.replace(
+            '{id}',
+            params.id.toString()
+        );
+        const query = {} as Record<string, any>;
+        return actionBuilder('DELETE', path)
+        .queryParams(query)
+        .config({
+            rules: [
+                new ValidateRule(Schemas.__Empty, '__Empty', 200),
+                new ValidateRule(Schemas.__Empty, '__Empty', 403),
+                new ValidateRule(Schemas.__Empty, '__Empty', 404)
+            ]
+        })
+        .build();
+    };
+  }
+  // POST /policies/{id}/enabled
+  // Enable/disable a policy
+  export namespace PostPoliciesByIdEnabled {
+    const Enabled = z.boolean();
+    type Enabled = z.infer<typeof Enabled>;
+    export interface Params {
+      id: Schemas.UUID;
+      enabled?: Enabled;
+    }
+
+    export type Payload =
+      | ValidatedResponse<'__Empty', 200, Schemas.__Empty>
+      | ValidatedResponse<'__Empty', 403, Schemas.__Empty>
+      | ValidatedResponse<'__Empty', 404, Schemas.__Empty>
+      | ValidatedResponse<'__Empty', 500, Schemas.__Empty>
+      | ValidatedResponse<'unknown', undefined, unknown>;
+    export type ActionCreator = Action<Payload, ActionValidatableConfig>;
+    export const actionCreator = (params: Params): ActionCreator => {
+        const path = '/api/policies/v1.0/policies/{id}/enabled'.replace(
+            '{id}',
+            params.id.toString()
+        );
+        const query = {} as Record<string, any>;
+        if (params.enabled !== undefined) {
+            query.enabled = params.enabled;
+        }
+
+        return actionBuilder('POST', path)
+        .queryParams(query)
+        .config({
+            rules: [
+                new ValidateRule(Schemas.__Empty, '__Empty', 200),
+                new ValidateRule(Schemas.__Empty, '__Empty', 403),
+                new ValidateRule(Schemas.__Empty, '__Empty', 404),
+                new ValidateRule(Schemas.__Empty, '__Empty', 500)
+            ]
         })
         .build();
     };
@@ -3319,6 +3254,71 @@ export namespace Operations {
         .build();
     };
   }
+  // PUT /policies/{policyId}
+  // Update a single policy for a customer by its id
+  export namespace PutPoliciesByPolicyId {
+    const Dry = z.boolean();
+    type Dry = z.infer<typeof Dry>;
+    const Response409 = z.object({
+        msg: z.string().optional().nullable()
+    });
+    type Response409 = z.infer<typeof Response409>;
+    export interface Params {
+      policyId: Schemas.UUID;
+      dry?: Dry;
+      body: Schemas.Policy;
+    }
+
+    export type Payload =
+      | ValidatedResponse<'__Empty', 200, Schemas.__Empty>
+      | ValidatedResponse<'__Empty', 400, Schemas.__Empty>
+      | ValidatedResponse<'__Empty', 403, Schemas.__Empty>
+      | ValidatedResponse<'__Empty', 404, Schemas.__Empty>
+      | ValidatedResponse<'Response409', 409, Response409>
+      | ValidatedResponse<'unknown', undefined, unknown>;
+    export type ActionCreator = Action<Payload, ActionValidatableConfig>;
+    export const actionCreator = (params: Params): ActionCreator => {
+        const path = '/api/policies/v1.0/policies/{policyId}'.replace(
+            '{policyId}',
+            params.policyId.toString()
+        );
+        const query = {} as Record<string, any>;
+        if (params.dry !== undefined) {
+            query.dry = params.dry;
+        }
+
+        return actionBuilder('PUT', path)
+        .queryParams(query)
+        .data(params.body)
+        .config({
+            rules: [
+                new ValidateRule(Schemas.__Empty, '__Empty', 200),
+                new ValidateRule(Schemas.__Empty, '__Empty', 400),
+                new ValidateRule(Schemas.__Empty, '__Empty', 403),
+                new ValidateRule(Schemas.__Empty, '__Empty', 404),
+                new ValidateRule(Response409, 'Response409', 409)
+            ]
+        })
+        .build();
+    };
+  }
+  // GET /status
+  export namespace GetStatus {
+    export type Payload =
+      | ValidatedResponse<'__Empty', 200, Schemas.__Empty>
+      | ValidatedResponse<'unknown', undefined, unknown>;
+    export type ActionCreator = Action<Payload, ActionValidatableConfig>;
+    export const actionCreator = (): ActionCreator => {
+        const path = '/api/policies/v1.0/status';
+        const query = {} as Record<string, any>;
+        return actionBuilder('GET', path)
+        .queryParams(query)
+        .config({
+            rules: [ new ValidateRule(Schemas.__Empty, '__Empty', 200) ]
+        })
+        .build();
+    };
+  }
 }
 "
 `;
@@ -3333,33 +3333,95 @@ import { ValidateRule } from 'openapi2typescript';
 import { actionBuilder } from 'openapi2typescript/react-fetching-library';
 
 export namespace Schemas {
-  export const Policy = zodSchemaPolicy();
-
-  export const Meta = zodSchemaMeta();
-
-  export const MapStringString = zodSchemaMapStringString();
-
-  export const HistoryItem = zodSchemaHistoryItem();
-
   export const Fact = zodSchemaFact();
-
-  export const PagedResponseOfHistoryItem = zodSchemaPagedResponseOfHistoryItem();
 
   export const FactType = zodSchemaFactType();
 
-  export const ListUUID = zodSchemaListUUID();
-
-  export const PagedResponseOfPolicy = zodSchemaPagedResponseOfPolicy();
+  export const HistoryItem = zodSchemaHistoryItem();
 
   export const List = zodSchemaList();
 
+  export const ListHistoryItem = zodSchemaListHistoryItem();
+
   export const ListPolicy = zodSchemaListPolicy();
+
+  export const ListUUID = zodSchemaListUUID();
+
+  export const MapStringString = zodSchemaMapStringString();
+
+  export const Meta = zodSchemaMeta();
+
+  export const PagedResponseOfHistoryItem = zodSchemaPagedResponseOfHistoryItem();
+
+  export const PagedResponseOfPolicy = zodSchemaPagedResponseOfPolicy();
+
+  export const Policy = zodSchemaPolicy();
 
   export const UUID = zodSchemaUUID();
 
-  export const ListHistoryItem = zodSchemaListHistoryItem();
-
   export const __Empty = zodSchema__Empty();
+
+  function zodSchemaFact() {
+      return z.object({
+          id: z.number().int().optional().nullable(),
+          name: z.string().optional().nullable(),
+          type: zodSchemaFactType().optional().nullable()
+      });
+  }
+
+  function zodSchemaFactType() {
+      return z.enum([ 'BOOLEAN', 'INT', 'LIST', 'STRING' ]);
+  }
+
+  function zodSchemaHistoryItem() {
+      return z.object({
+          ctime: z.number().int().optional().nullable(),
+          hostName: z.string().optional().nullable(),
+          id: z.string().optional().nullable()
+      });
+  }
+
+  function zodSchemaList() {
+      return z.array(z.unknown());
+  }
+
+  function zodSchemaListHistoryItem() {
+      return z.array(zodSchemaHistoryItem());
+  }
+
+  function zodSchemaListPolicy() {
+      return z.array(zodSchemaPolicy());
+  }
+
+  function zodSchemaListUUID() {
+      return z.array(z.string());
+  }
+
+  function zodSchemaMapStringString() {
+      return z.record(z.string());
+  }
+
+  function zodSchemaMeta() {
+      return z.object({
+          count: z.number().int().optional().nullable()
+      });
+  }
+
+  function zodSchemaPagedResponseOfHistoryItem() {
+      return z.object({
+          data: zodSchemaListHistoryItem().optional().nullable(),
+          links: zodSchemaMapStringString().optional().nullable(),
+          meta: zodSchemaMeta().optional().nullable()
+      });
+  }
+
+  function zodSchemaPagedResponseOfPolicy() {
+      return z.object({
+          data: zodSchemaListPolicy().optional().nullable(),
+          links: zodSchemaMapStringString().optional().nullable(),
+          meta: zodSchemaMeta().optional().nullable()
+      });
+  }
 
   function zodSchemaPolicy() {
       return z.object({
@@ -3375,70 +3437,8 @@ export namespace Schemas {
       });
   }
 
-  function zodSchemaMeta() {
-      return z.object({
-          count: z.number().int().optional().nullable()
-      });
-  }
-
-  function zodSchemaMapStringString() {
-      return z.record(z.string());
-  }
-
-  function zodSchemaHistoryItem() {
-      return z.object({
-          ctime: z.number().int().optional().nullable(),
-          hostName: z.string().optional().nullable(),
-          id: z.string().optional().nullable()
-      });
-  }
-
-  function zodSchemaFact() {
-      return z.object({
-          id: z.number().int().optional().nullable(),
-          name: z.string().optional().nullable(),
-          type: zodSchemaFactType().optional().nullable()
-      });
-  }
-
-  function zodSchemaPagedResponseOfHistoryItem() {
-      return z.object({
-          links: zodSchemaMapStringString().optional().nullable(),
-          meta: zodSchemaMeta().optional().nullable(),
-          data: zodSchemaListHistoryItem().optional().nullable()
-      });
-  }
-
-  function zodSchemaFactType() {
-      return z.enum([ 'BOOLEAN', 'INT', 'LIST', 'STRING' ]);
-  }
-
-  function zodSchemaListUUID() {
-      return z.array(z.string());
-  }
-
-  function zodSchemaPagedResponseOfPolicy() {
-      return z.object({
-          links: zodSchemaMapStringString().optional().nullable(),
-          meta: zodSchemaMeta().optional().nullable(),
-          data: zodSchemaListPolicy().optional().nullable()
-      });
-  }
-
-  function zodSchemaList() {
-      return z.array(z.unknown());
-  }
-
-  function zodSchemaListPolicy() {
-      return z.array(zodSchemaPolicy());
-  }
-
   function zodSchemaUUID() {
       return z.string();
-  }
-
-  function zodSchemaListHistoryItem() {
-      return z.array(zodSchemaHistoryItem());
   }
 
   function zodSchema__Empty() {
@@ -3447,75 +3447,16 @@ export namespace Schemas {
 }
 
 export namespace Operations {
-  // POST /policies/{id}/enabled
-  // Enable/disable a policy
-  export namespace PostPoliciesByIdEnabled {
-    const Enabled = z.boolean();
-    /*
- Params
-'id':Schemas.UUID,
-'enabled'?:Enabled
-*/
-    export const actionCreator = (params) => {
-        const path = '/api/policies/v1.0/policies/{id}/enabled'.replace(
-            '{id}',
-            params.id.toString()
-        );
-        const query = {};
-        if (params.enabled !== undefined) {
-            query.enabled = params.enabled;
-        }
-
-        return actionBuilder('POST', path)
-        .queryParams(query)
-        .config({
-            rules: [
-                new ValidateRule(Schemas.__Empty, '__Empty', 200),
-                new ValidateRule(Schemas.__Empty, '__Empty', 403),
-                new ValidateRule(Schemas.__Empty, '__Empty', 404),
-                new ValidateRule(Schemas.__Empty, '__Empty', 500)
-            ]
-        })
-        .build();
-    };
-  }
-  // GET /status
-  export namespace GetStatus {
+  // GET /
+  // Just a filler to have a defined return code for the base path
+  export namespace Get {
     export const actionCreator = () => {
-        const path = '/api/policies/v1.0/status';
+        const path = '/api/policies/v1.0/';
         const query = {};
         return actionBuilder('GET', path)
         .queryParams(query)
         .config({
-            rules: [ new ValidateRule(Schemas.__Empty, '__Empty', 200) ]
-        })
-        .build();
-    };
-  }
-  // POST /policies/ids/enabled
-  // Enable/disable policies identified by list of uuid in body
-  export namespace PostPoliciesIdsEnabled {
-    const Enabled = z.boolean();
-    /*
- Params
-'enabled'?:Enabled,
-body: Schemas.ListUUID
-*/
-    export const actionCreator = (params) => {
-        const path = '/api/policies/v1.0/policies/ids/enabled';
-        const query = {};
-        if (params.enabled !== undefined) {
-            query.enabled = params.enabled;
-        }
-
-        return actionBuilder('POST', path)
-        .queryParams(query)
-        .data(params.body)
-        .config({
-            rules: [
-                new ValidateRule(Schemas.__Empty, '__Empty', 200),
-                new ValidateRule(Schemas.__Empty, '__Empty', 403)
-            ]
+            rules: [ new ValidateRule(Schemas.__Empty, '__Empty', 404) ]
         })
         .build();
     };
@@ -3653,125 +3594,6 @@ body: Schemas.Policy
         .build();
     };
   }
-  // GET /policies/{id}
-  // Retrieve a single policy for a customer by its id
-  export namespace GetPoliciesById {
-    /*
- Params
-'id':Schemas.UUID
-*/
-    export const actionCreator = (params) => {
-        const path = '/api/policies/v1.0/policies/{id}'.replace(
-            '{id}',
-            params.id.toString()
-        );
-        const query = {};
-        return actionBuilder('GET', path)
-        .queryParams(query)
-        .config({
-            rules: [
-                new ValidateRule(Schemas.Policy, 'Policy', 200),
-                new ValidateRule(Schemas.__Empty, '__Empty', 403),
-                new ValidateRule(Schemas.__Empty, '__Empty', 404)
-            ]
-        })
-        .build();
-    };
-  }
-  // DELETE /policies/{id}
-  // Delete a single policy for a customer by its id
-  export namespace DeletePoliciesById {
-    /*
- Params
-'id':Schemas.UUID
-*/
-    export const actionCreator = (params) => {
-        const path = '/api/policies/v1.0/policies/{id}'.replace(
-            '{id}',
-            params.id.toString()
-        );
-        const query = {};
-        return actionBuilder('DELETE', path)
-        .queryParams(query)
-        .config({
-            rules: [
-                new ValidateRule(Schemas.__Empty, '__Empty', 200),
-                new ValidateRule(Schemas.__Empty, '__Empty', 403),
-                new ValidateRule(Schemas.__Empty, '__Empty', 404)
-            ]
-        })
-        .build();
-    };
-  }
-  // PUT /policies/{policyId}
-  // Update a single policy for a customer by its id
-  export namespace PutPoliciesByPolicyId {
-    const Dry = z.boolean();
-    const Response409 = z.object({
-        msg: z.string().optional().nullable()
-    });
-    /*
- Params
-'policyId':Schemas.UUID,
-'dry'?:Dry,
-body: Schemas.Policy
-*/
-    export const actionCreator = (params) => {
-        const path = '/api/policies/v1.0/policies/{policyId}'.replace(
-            '{policyId}',
-            params.policyId.toString()
-        );
-        const query = {};
-        if (params.dry !== undefined) {
-            query.dry = params.dry;
-        }
-
-        return actionBuilder('PUT', path)
-        .queryParams(query)
-        .data(params.body)
-        .config({
-            rules: [
-                new ValidateRule(Schemas.__Empty, '__Empty', 200),
-                new ValidateRule(Schemas.__Empty, '__Empty', 400),
-                new ValidateRule(Schemas.__Empty, '__Empty', 403),
-                new ValidateRule(Schemas.__Empty, '__Empty', 404),
-                new ValidateRule(Response409, 'Response409', 409)
-            ]
-        })
-        .build();
-    };
-  }
-  // POST /policies/validate-name
-  // Validates the Policy.name and verifies if it is unique.
-  export namespace PostPoliciesValidateName {
-    const Body = z.string();
-    /*
- Params
-'id'?:Schemas.UUID,
-body: Body
-*/
-    export const actionCreator = (params) => {
-        const path = '/api/policies/v1.0/policies/validate-name';
-        const query = {};
-        if (params.id !== undefined) {
-            query.id = params.id;
-        }
-
-        return actionBuilder('POST', path)
-        .queryParams(query)
-        .data(params.body)
-        .config({
-            rules: [
-                new ValidateRule(Schemas.__Empty, '__Empty', 200),
-                new ValidateRule(Schemas.__Empty, '__Empty', 400),
-                new ValidateRule(Schemas.__Empty, '__Empty', 403),
-                new ValidateRule(Schemas.__Empty, '__Empty', 409),
-                new ValidateRule(Schemas.__Empty, '__Empty', 500)
-            ]
-        })
-        .build();
-    };
-  }
   // GET /policies/ids
   // Return all policy ids for a given account after applying the filters
   export namespace GetPoliciesIds {
@@ -3847,6 +3669,34 @@ body: Schemas.ListUUID
         .build();
     };
   }
+  // POST /policies/ids/enabled
+  // Enable/disable policies identified by list of uuid in body
+  export namespace PostPoliciesIdsEnabled {
+    const Enabled = z.boolean();
+    /*
+ Params
+'enabled'?:Enabled,
+body: Schemas.ListUUID
+*/
+    export const actionCreator = (params) => {
+        const path = '/api/policies/v1.0/policies/ids/enabled';
+        const query = {};
+        if (params.enabled !== undefined) {
+            query.enabled = params.enabled;
+        }
+
+        return actionBuilder('POST', path)
+        .queryParams(query)
+        .data(params.body)
+        .config({
+            rules: [
+                new ValidateRule(Schemas.__Empty, '__Empty', 200),
+                new ValidateRule(Schemas.__Empty, '__Empty', 403)
+            ]
+        })
+        .build();
+    };
+  }
   // POST /policies/validate
   // Validates a Policy condition
   export namespace PostPoliciesValidate {
@@ -3870,16 +3720,115 @@ body: Schemas.Policy
         .build();
     };
   }
-  // GET /
-  // Just a filler to have a defined return code for the base path
-  export namespace Get {
-    export const actionCreator = () => {
-        const path = '/api/policies/v1.0/';
+  // POST /policies/validate-name
+  // Validates the Policy.name and verifies if it is unique.
+  export namespace PostPoliciesValidateName {
+    const Body = z.string();
+    /*
+ Params
+'id'?:Schemas.UUID,
+body: Body
+*/
+    export const actionCreator = (params) => {
+        const path = '/api/policies/v1.0/policies/validate-name';
+        const query = {};
+        if (params.id !== undefined) {
+            query.id = params.id;
+        }
+
+        return actionBuilder('POST', path)
+        .queryParams(query)
+        .data(params.body)
+        .config({
+            rules: [
+                new ValidateRule(Schemas.__Empty, '__Empty', 200),
+                new ValidateRule(Schemas.__Empty, '__Empty', 400),
+                new ValidateRule(Schemas.__Empty, '__Empty', 403),
+                new ValidateRule(Schemas.__Empty, '__Empty', 409),
+                new ValidateRule(Schemas.__Empty, '__Empty', 500)
+            ]
+        })
+        .build();
+    };
+  }
+  // GET /policies/{id}
+  // Retrieve a single policy for a customer by its id
+  export namespace GetPoliciesById {
+    /*
+ Params
+'id':Schemas.UUID
+*/
+    export const actionCreator = (params) => {
+        const path = '/api/policies/v1.0/policies/{id}'.replace(
+            '{id}',
+            params.id.toString()
+        );
         const query = {};
         return actionBuilder('GET', path)
         .queryParams(query)
         .config({
-            rules: [ new ValidateRule(Schemas.__Empty, '__Empty', 404) ]
+            rules: [
+                new ValidateRule(Schemas.Policy, 'Policy', 200),
+                new ValidateRule(Schemas.__Empty, '__Empty', 403),
+                new ValidateRule(Schemas.__Empty, '__Empty', 404)
+            ]
+        })
+        .build();
+    };
+  }
+  // DELETE /policies/{id}
+  // Delete a single policy for a customer by its id
+  export namespace DeletePoliciesById {
+    /*
+ Params
+'id':Schemas.UUID
+*/
+    export const actionCreator = (params) => {
+        const path = '/api/policies/v1.0/policies/{id}'.replace(
+            '{id}',
+            params.id.toString()
+        );
+        const query = {};
+        return actionBuilder('DELETE', path)
+        .queryParams(query)
+        .config({
+            rules: [
+                new ValidateRule(Schemas.__Empty, '__Empty', 200),
+                new ValidateRule(Schemas.__Empty, '__Empty', 403),
+                new ValidateRule(Schemas.__Empty, '__Empty', 404)
+            ]
+        })
+        .build();
+    };
+  }
+  // POST /policies/{id}/enabled
+  // Enable/disable a policy
+  export namespace PostPoliciesByIdEnabled {
+    const Enabled = z.boolean();
+    /*
+ Params
+'id':Schemas.UUID,
+'enabled'?:Enabled
+*/
+    export const actionCreator = (params) => {
+        const path = '/api/policies/v1.0/policies/{id}/enabled'.replace(
+            '{id}',
+            params.id.toString()
+        );
+        const query = {};
+        if (params.enabled !== undefined) {
+            query.enabled = params.enabled;
+        }
+
+        return actionBuilder('POST', path)
+        .queryParams(query)
+        .config({
+            rules: [
+                new ValidateRule(Schemas.__Empty, '__Empty', 200),
+                new ValidateRule(Schemas.__Empty, '__Empty', 403),
+                new ValidateRule(Schemas.__Empty, '__Empty', 404),
+                new ValidateRule(Schemas.__Empty, '__Empty', 500)
+            ]
         })
         .build();
     };
@@ -3959,6 +3908,57 @@ body: Schemas.Policy
                 new ValidateRule(Schemas.__Empty, '__Empty', 404),
                 new ValidateRule(Schemas.__Empty, '__Empty', 500)
             ]
+        })
+        .build();
+    };
+  }
+  // PUT /policies/{policyId}
+  // Update a single policy for a customer by its id
+  export namespace PutPoliciesByPolicyId {
+    const Dry = z.boolean();
+    const Response409 = z.object({
+        msg: z.string().optional().nullable()
+    });
+    /*
+ Params
+'policyId':Schemas.UUID,
+'dry'?:Dry,
+body: Schemas.Policy
+*/
+    export const actionCreator = (params) => {
+        const path = '/api/policies/v1.0/policies/{policyId}'.replace(
+            '{policyId}',
+            params.policyId.toString()
+        );
+        const query = {};
+        if (params.dry !== undefined) {
+            query.dry = params.dry;
+        }
+
+        return actionBuilder('PUT', path)
+        .queryParams(query)
+        .data(params.body)
+        .config({
+            rules: [
+                new ValidateRule(Schemas.__Empty, '__Empty', 200),
+                new ValidateRule(Schemas.__Empty, '__Empty', 400),
+                new ValidateRule(Schemas.__Empty, '__Empty', 403),
+                new ValidateRule(Schemas.__Empty, '__Empty', 404),
+                new ValidateRule(Response409, 'Response409', 409)
+            ]
+        })
+        .build();
+    };
+  }
+  // GET /status
+  export namespace GetStatus {
+    export const actionCreator = () => {
+        const path = '/api/policies/v1.0/status';
+        const query = {};
+        return actionBuilder('GET', path)
+        .queryParams(query)
+        .config({
+            rules: [ new ValidateRule(Schemas.__Empty, '__Empty', 200) ]
         })
         .build();
     };

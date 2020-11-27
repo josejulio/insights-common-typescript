@@ -193,6 +193,7 @@ describe('src/core/ApiDescriptorBuilder', () => {
                         typeName: 'Foo',
                         properties: {
                             bar: {
+                                hasLoop: true,
                                 typeName: 'Bar',
                                 isNullable: false,
                                 isOptional: true,
@@ -207,7 +208,6 @@ describe('src/core/ApiDescriptorBuilder', () => {
                         properties: {
                             foo: {
                                 typeName: 'Foo',
-                                hasLoop: true,
                                 isNullable: false,
                                 isOptional: true,
                                 referred: undefined
