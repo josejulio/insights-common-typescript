@@ -11,7 +11,7 @@ export class ApiTypeBuilder extends ApiBase {
 
     public build() {
         if (this.api.components?.schemas) {
-            const schemas = sortByKey(Object.entries(this.api.components.schemas)).map(([_key, value]) => value);
+            const schemas = sortByKey(Object.entries(this.api.components.schemas)).map(([ _key, value ]) => value);
             if (schemas.length > 0) {
                 this.appendTemp('export module Schemas {\n');
                 this.types(schemas);
