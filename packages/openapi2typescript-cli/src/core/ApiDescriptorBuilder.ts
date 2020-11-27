@@ -4,6 +4,7 @@ import {
     Parameter, ParamType, Path, RequestBody, Response, Verb, deType, isType
 } from './types/ApiDescriptor';
 import camelcase from 'camelcase';
+import { sortByKey } from './Utils';
 
 const refToName = (reference: OpenAPI3.Reference) => {
     const [ last ] = reference.$ref.split('/').reverse();
@@ -123,7 +124,7 @@ class ApiDescriptorBuilder {
     private getPaths(): Array<Path> {
         const paths: Array<Path> = [];
         if (this.openapi.paths) {
-            for (const [ pathKey, openApiPath ] of Object.entries(this.openapi.paths)) {
+            for (const [ pathKey, openApiPath ] of sortByKey(Object.entries(this.openapi.paths))) {
                 const path: Path = {
                     operations: [],
                     path: pathKey
@@ -206,7 +207,7 @@ class ApiDescriptorBuilder {
                 throw new Error('default response not yet supported');
             }
 
-            for (const [ status, oapiResponse ] of Object.entries(oapiResponses)) {
+            for (const [ status, oapiResponse ] of sortByKey(Object.entries(oapiResponses))) {
                 const response = this.getRequestBodyOrResponseSchemaOrType(oapiResponse);
 
                 responses.push({
@@ -387,7 +388,7 @@ class ApiDescriptorBuilder {
             let properties: SchemaObject['properties'] = undefined;
             if (schema.properties) {
                 properties = {};
-                for (const [ key, value ] of Object.entries(schema.properties)) {
+                for (const [ key, value ] of sortByKey(Object.entries(schema.properties))) {
                     properties[key] = this.getSchema(value);
                     if (!schema.required?.includes(key)) {
                         properties[key].isOptional = true;
@@ -424,7 +425,7 @@ class ApiDescriptorBuilder {
     private getTopSchemasPlaceholders(): StringMap<SchemaWithTypeName> {
         const schemas: StringMap<SchemaWithTypeName> = {};
         if (this.openapi.components?.schemas) {
-            for (const [ typeName ] of Object.entries(this.openapi.components.schemas)) {
+            for (const [ typeName ] of sortByKey(Object.entries(this.openapi.components.schemas))) {
                 schemas[typeName] = {
                     typeName
                 } as unknown as SchemaWithTypeName;

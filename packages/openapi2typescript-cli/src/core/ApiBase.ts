@@ -11,6 +11,7 @@ import {
 } from './types/ApiDescriptor';
 import { BufferType, Buffer } from './types/Buffer';
 import assertNever from 'assert-never';
+import { sortByKey } from './Utils';
 
 export interface Options {
     skipTypes: boolean;
@@ -43,7 +44,7 @@ export class ApiBase {
     // Types related methods
 
     protected propertiesTypes(properties: Record<string, SchemaOrType>) {
-        Object.entries(properties).forEach(([ key, schema ], index, array) => {
+        sortByKey(Object.entries(properties)).forEach(([ key, schema ], index, array) => {
             this.appendTemp(`${key}`);
             if (schema.isOptional) {
                 this.appendTemp('?');
@@ -201,7 +202,7 @@ export class ApiBase {
     // Zod related methods
 
     protected properties(properties: Record<string, SchemaOrType>) {
-        Object.entries(properties).forEach(([ key, schema ], index, array) => {
+        sortByKey(Object.entries(properties)).forEach(([ key, schema ], index, array) => {
             this.appendTemp(`${key}: `);
             this.schema(schema);
 
