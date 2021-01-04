@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.2.2](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.2.1...@redhat-cloud-services/insights-common-typescript@4.2.2) (2021-01-04)
+
+
+### Bug Fixes
+
+* cancel button is of type "link" (blue color, not gray) ([9d0ee3f](https://github.com/RedHatInsights/insights-common-typescript/commit/9d0ee3f5bb84d77554a3286a9c88fc1eb011faf7))
+* changed text from Delete to Remove ([772010a](https://github.com/RedHatInsights/insights-common-typescript/commit/772010aca886d3be5192a3b15e2f2c2021e0d698))
+
+
+
+
+
 ## [4.2.1](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.2.0...@redhat-cloud-services/insights-common-typescript@4.2.1) (2020-11-26)
 
 
