@@ -177,7 +177,7 @@ export abstract class ApiActionBuilder extends ApiBase {
 
                 for (const response of operation.responses) {
                     const responseType = this.responseTypeName(response, true);
-                    const responseTypeString = this.responseTypeName(response, false);
+                    const responseTypeString =  isType(response.schema) ? this.responseTypeName(response, false) : 'unknown';
                     this.appendTemp(`ValidatedResponse<'${responseTypeString}', ${response.status}, ${responseType}> | `);
                 }
 

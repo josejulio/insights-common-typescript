@@ -80,7 +80,7 @@ export class ReactFetchingLibraryApiActionBuilder extends ApiActionBuilder {
             this.appendTemp('.config({\nrules:[\n');
             const responses = Object.values(operation.responses);
             responses.forEach((response, index, array) => {
-                const responseType = isType(response.schema) ? `'${this.responseTypeName(response, false)}'` : 'unknown';
+                const responseType = isType(response.schema) ? `'${this.responseTypeName(response, false)}'` : '\'unknown\'';
                 const responseTypeName = this.responseTypeName(response, true);
                 this.appendTemp(`new ValidateRule(${responseTypeName}, ${responseType}, ${response.status})\n`);
                 if (array.length !== index + 1) {
