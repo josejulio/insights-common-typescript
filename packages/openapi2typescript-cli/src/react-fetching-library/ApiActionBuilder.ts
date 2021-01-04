@@ -1,4 +1,4 @@
-import { APIDescriptor, Operation, ParamType } from '../core/types/ApiDescriptor';
+import { APIDescriptor, isType, Operation, ParamType } from '../core/types/ApiDescriptor';
 import { Buffer, BufferType } from '../core/types/Buffer';
 import { ApiActionBuilder } from '../core/ApiActionBuilder';
 import { Options } from '../core/ApiBase';
@@ -80,9 +80,9 @@ export class ReactFetchingLibraryApiActionBuilder extends ApiActionBuilder {
             this.appendTemp('.config({\nrules:[\n');
             const responses = Object.values(operation.responses);
             responses.forEach((response, index, array) => {
-                const responseType = this.responseTypeName(response, false);
+                const responseType = isType(response.schema) ? `'${this.responseTypeName(response, false)}'` : 'unknown';
                 const responseTypeName = this.responseTypeName(response, true);
-                this.appendTemp(`new ValidateRule(${responseTypeName}, '${responseType}', ${response.status})\n`);
+                this.appendTemp(`new ValidateRule(${responseTypeName}, ${responseType}, ${response.status})\n`);
                 if (array.length !== index + 1) {
                     this.appendTemp(',\n');
                 }
