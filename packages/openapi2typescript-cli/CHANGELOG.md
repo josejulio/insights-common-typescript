@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript-cli@0.3.1...openapi2typescript-cli@0.4.0) (2021-01-04)
+
+
+### Features
+
+* use unknown for the string "type" when we have anonymous types ([939d731](https://github.com/RedHatInsights/insights-common-typescript/commit/939d731eefb395f74af6447d4bc426611d8d83a2))
+
+
+
+
+
 ## [0.3.1](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript-cli@0.3.0...openapi2typescript-cli@0.3.1) (2020-11-27)
 
 
