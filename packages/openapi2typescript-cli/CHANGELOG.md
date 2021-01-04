@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript-cli@0.4.0...openapi2typescript-cli@0.4.1) (2021-01-04)
+
+
+### Bug Fixes
+
+* type inference for ValidateRule ([20c0bfb](https://github.com/RedHatInsights/insights-common-typescript/commit/20c0bfbedb8eb065d0dcf50f91cfe29afec1ec70))
+
+
+
+
+
 # [0.4.0](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript-cli@0.3.1...openapi2typescript-cli@0.4.0) (2021-01-04)
 
 
