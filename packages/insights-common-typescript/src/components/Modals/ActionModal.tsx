@@ -65,7 +65,7 @@ export const ActionModal: React.FunctionComponent<ActionModalProps> = (props) =>
                 <Button
                     ouiaId="cancel"
                     key="cancel"
-                    variant={ ButtonVariant.plain }
+                    variant={ ButtonVariant.link }
                     isDisabled={ props.isPerformingAction }
                     onClick={ close }
                 >

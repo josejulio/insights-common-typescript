@@ -17,7 +17,7 @@ export const DeleteModal: React.FunctionComponent<DeleteModalProps> = (props) =>
         content={ props.content }
         onClose={ props.onClose }
         onAction={ props.onDelete }
-        actionButtonTitle="Delete"
+        actionButtonTitle="Remove"
         actionButtonVariant={ ButtonVariant.danger }
         error={ props.error }
         variant={ props.variant }
