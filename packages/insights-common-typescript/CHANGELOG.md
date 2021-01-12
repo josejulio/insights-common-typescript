@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.2.2...@redhat-cloud-services/insights-common-typescript@4.3.0) (2021-01-12)
+
+
+### Features
+
+* adding titleIconVariant to ActionModal (& friends) ([73c6e67](https://github.com/RedHatInsights/insights-common-typescript/commit/73c6e6733db664239d53b8776414d82d46bafbdf))
+* allows to specify a notification description as a node ([f6ca0f6](https://github.com/RedHatInsights/insights-common-typescript/commit/f6ca0f6f52504fd9a7db590bc109ad9054830921))
+
+
+
+
+
 ## [4.2.2](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.2.1...@redhat-cloud-services/insights-common-typescript@4.2.2) (2021-01-04)
 
 
