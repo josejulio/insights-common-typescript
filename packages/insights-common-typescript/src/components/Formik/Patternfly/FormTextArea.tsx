@@ -6,7 +6,7 @@ import { onChangePFAdapter } from './Common';
 import { OuiaComponentProps, withoutOuiaProps } from '../../../utils';
 import { getOuiaProps } from '../../../utils/Ouia';
 
-interface FormTextAreaProps extends OuiaComponentProps, Omit<PFTextAreaProps, 'onChange' | 'ref'> {
+interface FormTextAreaProps extends OuiaComponentProps, Pick<PFTextAreaProps, 'name' | 'isRequired' | 'label'> {
     id: string;
     name: string;
 }

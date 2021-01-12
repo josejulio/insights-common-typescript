@@ -15,7 +15,7 @@ export interface ActionModalError {
     description: React.ReactNode | string;
 }
 
-export interface ActionModalProps extends Pick<ModalProps, 'variant'> {
+export interface ActionModalProps extends Pick<ModalProps, 'variant' | 'titleIconVariant'> {
     isOpen: boolean;
     isPerformingAction: boolean;
     title: string;
@@ -52,6 +52,7 @@ export const ActionModal: React.FunctionComponent<ActionModalProps> = (props) =>
             isOpen={ props.isOpen }
             onClose={ close }
             variant={ props.variant ?? ModalVariant.small }
+            titleIconVariant={ props.titleIconVariant }
             actions={ [
                 <Button
                     ouiaId="action"
