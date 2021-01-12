@@ -11,7 +11,11 @@ export enum NotificationType {
     INFO = 'info'
 }
 
-export const addNotification = (type: NotificationType, title: string, description: string, dismissable?: boolean, dismissDelay?: number) => {
+export const addNotification = (
+    type: NotificationType,
+    title: string,
+    description: React.ReactNode,
+    dismissable?: boolean, dismissDelay?: number) => {
     getStore().dispatch(createNotificationAction({
         variant: type,
         title,
@@ -21,7 +25,7 @@ export const addNotification = (type: NotificationType, title: string, descripti
     }));
 };
 
-type ExplicitNotificationFunction = (title: string, description: string, dismissable?: boolean, dismissDelay?: number) => void;
+type ExplicitNotificationFunction = (title: string, description: React.ReactNode, dismissable?: boolean, dismissDelay?: number) => void;
 
 export const addSuccessNotification: ExplicitNotificationFunction = (...args) => addNotification(NotificationType.SUCCESS, ...args);
 export const addDangerNotification: ExplicitNotificationFunction = (...args) => addNotification(NotificationType.DANGER, ...args);
