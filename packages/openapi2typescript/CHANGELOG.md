@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript@0.1.0...openapi2typescript@0.1.1) (2021-01-12)
+
+
+### Bug Fixes
+
+* ensure we have a config before checking rules ([57f4128](https://github.com/RedHatInsights/insights-common-typescript/commit/57f4128cd7d4a5b4716198712796c2a1ff7f03dc))
+
+
+
+
+
 # [0.1.0](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript@0.0.7...openapi2typescript@0.1.0) (2020-11-04)
 
 
