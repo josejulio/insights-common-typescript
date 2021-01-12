@@ -74,7 +74,7 @@ const validateSchema =
     };
 
 export const validateSchemaResponseInterceptor: ResponseInterceptor<any, any> = _client => async (action, response) => {
-    if (action.config.rules) {
+    if (action.config?.rules) {
         const r = validateSchema(action as ActionWithRequiredConfig, response);
         response.payload = r;
         return response;
