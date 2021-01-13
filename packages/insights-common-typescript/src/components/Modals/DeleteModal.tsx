@@ -21,6 +21,6 @@ export const DeleteModal: React.FunctionComponent<DeleteModalProps> = (props) =>
         actionButtonVariant={ ButtonVariant.danger }
         error={ props.error }
         variant={ props.variant }
-        titleIconVariant={ props.titleIconVariant ?? 'danger' }
+        titleIconVariant={ props.titleIconVariant ?? 'warning' }
     />;
 };
