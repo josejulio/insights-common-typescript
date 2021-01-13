@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.1](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.3.0...@redhat-cloud-services/insights-common-typescript@4.3.1) (2021-01-13)
+
+
+### Bug Fixes
+
+* titleIconVariant was supposed to be warning on DeleteModal ([f4196f8](https://github.com/RedHatInsights/insights-common-typescript/commit/f4196f8143ae1c56662765a86c7791241c1195a8))
+
+
+
+
+
 # [4.3.0](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.2.2...@redhat-cloud-services/insights-common-typescript@4.3.0) (2021-01-12)
 
 
