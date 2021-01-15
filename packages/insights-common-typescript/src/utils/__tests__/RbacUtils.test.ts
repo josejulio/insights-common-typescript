@@ -1,10 +1,10 @@
-import { fetchRBAC, RawRbac } from '../..';
+import { fetchRBAC, RbacPermissionsBuilder } from '../..';
 import axios from 'axios';
 import { Access, AccessPagination } from '@redhat-cloud-services/rbac-client';
 import MockAdapter from 'axios-mock-adapter';
 
 describe('src/utils/RbacUtils', () => {
-    it('RawRbac detects fullAccess', () => {
+    it('RbacPermissionBuilder detects fullAccess', () => {
         const fullAccess: Access[] = [
             {
                 permission: 'policies:*:*',
@@ -12,15 +12,18 @@ describe('src/utils/RbacUtils', () => {
             }
         ];
 
-        const rbac = new RawRbac({
+        const rbac = new RbacPermissionsBuilder({
             data: fullAccess
-        });
+        }).build();
 
-        expect(rbac.canWriteAll()).toEqual(true);
-        expect(rbac.canReadAll()).toEqual(true);
+        expect(rbac).toEqual({
+            policies: {
+                '*': [ '*' ]
+            }
+        });
     });
 
-    it('RawRbac detects no access when given other permissions', () => {
+    it('RbacPermissionBuilder detects no access when given other permissions', () => {
         const otherAccess: Access[] = [
             {
                 permission: 'policies:foo:bar',
@@ -28,44 +31,44 @@ describe('src/utils/RbacUtils', () => {
             }
         ];
 
-        const rbac = new RawRbac({
+        const rbac = new RbacPermissionsBuilder({
             data: otherAccess
-        });
+        }).build();
 
-        expect(rbac.canWriteAll()).toEqual(false);
-        expect(rbac.canReadAll()).toEqual(false);
+        expect(rbac).toEqual({
+            policies: {
+                foo: [ 'bar' ]
+            }
+        });
     });
 
-    it('RawRbac detects no access', () => {
+    it('RbacPermissionBuilder detects no access', () => {
         const noAccess: Access[] = [];
 
-        const rbac = new RawRbac({
+        const rbac = new RbacPermissionsBuilder({
             data: noAccess
-        });
+        }).build();
 
-        expect(rbac.canWriteAll()).toEqual(false);
-        expect(rbac.canReadAll()).toEqual(false);
+        expect(rbac).toEqual({});
     });
 
-    it('RawRbac detects no access (undef data)', () => {
+    it('RbacPermissionBuilder detects no access (undef data)', () => {
         const noAccess = undefined as unknown as Access[];
 
-        const rbac = new RawRbac({
+        const rbac = new RbacPermissionsBuilder({
             data: noAccess
-        });
+        }).build();
 
-        expect(rbac.canWriteAll()).toEqual(false);
-        expect(rbac.canReadAll()).toEqual(false);
+        expect(rbac).toEqual({});
     });
 
-    it('RawRbac detects no access (undef access)', () => {
-        const rbac = new RawRbac(undefined as unknown as AccessPagination);
+    it('RbacPermissionBuilder detects no access (undef access)', () => {
+        const rbac = new RbacPermissionsBuilder(undefined as unknown as AccessPagination).build();
 
-        expect(rbac.canWriteAll()).toEqual(false);
-        expect(rbac.canReadAll()).toEqual(false);
+        expect(rbac).toEqual({});
     });
 
-    it('RawRbac detects only read', () => {
+    it('RbacPermissionBuilder detects only read', () => {
         const readAccess: Access[] = [
             {
                 permission: 'policies:*:read',
@@ -73,12 +76,15 @@ describe('src/utils/RbacUtils', () => {
             }
         ];
 
-        const rbac = new RawRbac({
+        const rbac = new RbacPermissionsBuilder({
             data: readAccess
-        });
+        }).build();
 
-        expect(rbac.canWriteAll()).toEqual(false);
-        expect(rbac.canReadAll()).toEqual(true);
+        expect(rbac).toEqual({
+            policies: {
+                '*': [ 'read' ]
+            }
+        });
     });
 
     it('RawRbac detects only write', () => {
@@ -89,12 +95,15 @@ describe('src/utils/RbacUtils', () => {
             }
         ];
 
-        const rbac = new RawRbac({
+        const rbac = new RbacPermissionsBuilder({
             data: writeAccess
-        });
+        }).build();
 
-        expect(rbac.canWriteAll()).toEqual(true);
-        expect(rbac.canReadAll()).toEqual(false);
+        expect(rbac).toEqual({
+            policies: {
+                '*': [ 'write' ]
+            }
+        });
     });
 
     it('fetchRBAC fetches the RBAC object', async () => {
@@ -111,10 +120,7 @@ describe('src/utils/RbacUtils', () => {
         );
 
         const rbac = await fetchRBAC('policies');
-        expect(rbac).toEqual({
-            canReadAll: true,
-            canWriteAll: true
-        });
+        expect(rbac.hasPermission('policies', 'foo', 'bar')).toBeTruthy();
         mock.restore();
     });
 });
