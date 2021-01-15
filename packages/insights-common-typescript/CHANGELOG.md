@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.3.1...@redhat-cloud-services/insights-common-typescript@4.4.0) (2021-01-15)
+
+
+### Features
+
+* update Rbac to handle better the Rbac permissions from the server ([3c0782f](https://github.com/RedHatInsights/insights-common-typescript/commit/3c0782f3c94e690b46aed60def3bb64c8d795667))
+
+
+
+
+
 ## [4.3.1](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.3.0...@redhat-cloud-services/insights-common-typescript@4.3.1) (2021-01-13)
 
 
