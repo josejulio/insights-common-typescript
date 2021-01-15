@@ -1,58 +1,46 @@
 import { AccessApi, AccessPagination } from '@redhat-cloud-services/rbac-client';
 import axios from 'axios';
-import { Rbac } from '../types/Rbac';
+import { Rbac, RbacPermission } from '../types/Rbac';
 
 const BASE_PATH = '/api/rbac/v1';
 
-export class RawRbac {
+export class RbacPermissionsBuilder {
     readonly accessPagination: AccessPagination;
 
     constructor(accessPagination: AccessPagination) {
         this.accessPagination = accessPagination;
     }
 
-    canRead(path: string): boolean {
-        return this.findPermission(path, 'read');
-    }
-
-    canWrite(path: string): boolean {
-        return this.findPermission(path, 'write');
-    }
-
-    canReadAll(): boolean {
-        return this.canRead('*');
-    }
-
-    canWriteAll(): boolean {
-        return this.canWrite('*');
-    }
-
-    private findPermission(path: string, what: string): boolean {
+    public build(): RbacPermission {
         if (!this.accessPagination?.data || this.accessPagination.data.length === 0) {
-            return false;
+            return {};
         }
+
+        const permissions: RbacPermission = {};
 
         for (const access of this.accessPagination.data) {
-            const fields = access.permission.split(':');
-            if (fields[1] === path) {
-                if (fields[2] === what || fields[2] === '*') {
-                    return true;
-                }
+            const [ app, what, verb ] = access.permission.split(':');
+
+            if (!permissions[app]) {
+                permissions[app] = {};
             }
+
+            if (!permissions[app][what]) {
+                permissions[app][what] = [];
+            }
+
+            permissions[app][what].push(verb);
         }
 
-        return false;
+        return permissions;
     }
 }
 
-export const fetchRBAC = (appId: string): Promise<Rbac> => {
+export const fetchRBAC = (appQuery: string): Promise<Rbac> => {
     const instance = axios.create();
 
     return new AccessApi(undefined, BASE_PATH, instance)
-    .getPrincipalAccess(appId)
-    .then(response => new RawRbac(response.data))
-    .then(rawRbac => ({
-        canReadAll: rawRbac.canReadAll(),
-        canWriteAll: rawRbac.canWriteAll()
-    }));
+    .getPrincipalAccess(appQuery)
+    .then(response => new RbacPermissionsBuilder(response.data))
+    .then(builder => new Rbac(builder.build()));
 };
