@@ -9,28 +9,28 @@ export const restoreStore = () => {
     registry = undefined;
 };
 
-export function initStore (...middleware: Middleware[]) {
+export const initStore = <State, Reducer extends Record<string, any>>(initialState?: State, reducer?: Reducer, ...middleware: Middleware[]) => {
     if (registry) {
         throw new Error('store already initialized');
     }
 
-    registry = new ReducerRegistry({}, [
+    registry = new ReducerRegistry(initialState ?? {}, [
         promiseMiddleware(),
         ...middleware
     ]);
 
-    //If you want to register all of your reducers, this is good place.
-    registry.register({
-        notifications
-    });
-    /*
-     *  registry.register({
-     *    someName: (state, action) => ({...state})
-     *  });
-     */
-    return registry;
-}
+    if (reducer && Object.keys(reducer).includes('notifications')) {
+        throw new Error('Invalid reducer with `notifications` key. This key is reserved for frontend-components-notifications');
+    }
 
-export function getStore () {
+    registry.register({
+        notifications,
+        ...(reducer ?? {})
+    });
+
+    return registry;
+};
+
+export const getStore = () => {
     return registry.getStore();
-}
+};
