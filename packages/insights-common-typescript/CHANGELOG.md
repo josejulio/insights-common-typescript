@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.4.0...@redhat-cloud-services/insights-common-typescript@4.5.0) (2021-01-26)
+
+
+### Features
+
+* allows to configure the redux store with initialState and reducers ([f75938b](https://github.com/RedHatInsights/insights-common-typescript/commit/f75938b5d0ead59d5c18d84217956b4f0e56dfd7))
+
+
+
+
+
 # [4.4.0](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.3.1...@redhat-cloud-services/insights-common-typescript@4.4.0) (2021-01-15)
 
 
