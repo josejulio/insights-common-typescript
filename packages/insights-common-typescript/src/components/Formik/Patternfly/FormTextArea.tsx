@@ -6,13 +6,14 @@ import { onChangePFAdapter } from './Common';
 import { OuiaComponentProps, withoutOuiaProps } from '../../../utils';
 import { getOuiaProps } from '../../../utils/Ouia';
 
-interface FormTextAreaProps extends OuiaComponentProps, Pick<PFTextAreaProps, 'name' | 'isRequired' | 'label'> {
+interface FormTextAreaProps extends OuiaComponentProps, Omit<PFTextAreaProps, 'id' | 'name' | 'onChange'> {
     id: string;
     name: string;
 }
 
 export const FormTextArea: React.FunctionComponent<FormTextAreaProps> = (props) => {
-    const [ field, meta ] = useField({ ...props });
+    const { innerRef, ...useFieldProps } = props;
+    const [ field, meta ] = useField({ ...useFieldProps });
     const isValid = !meta.error || !meta.touched;
 
     return (
