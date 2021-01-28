@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.1](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.5.0...@redhat-cloud-services/insights-common-typescript@4.5.1) (2021-01-28)
+
+
+### Bug Fixes
+
+* allow to use PF Textarea props in the Formik adapter ([bffb090](https://github.com/RedHatInsights/insights-common-typescript/commit/bffb09078773afc405f54aa87cd5a8c89f561058))
+
+
+
+
+
 # [4.5.0](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.4.0...@redhat-cloud-services/insights-common-typescript@4.5.0) (2021-01-26)
 
 
