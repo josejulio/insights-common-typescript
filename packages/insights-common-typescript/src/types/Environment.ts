@@ -1,4 +1,4 @@
-import { InsightsType } from '../utils';
+import { InsightsType } from '../utils/Insights';
 
 const nonBetaEnvironments = [
     'ci',

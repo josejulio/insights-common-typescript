@@ -3,6 +3,7 @@ import dts from 'rollup-plugin-dts';
 import compiler from '@ampproject/rollup-plugin-closure-compiler';
 import wildcardExternal from '@oat-sa/rollup-plugin-wildcard-external';
 import execute from 'rollup-plugin-execute';
+import tsImportPluginFactory from 'ts-import-plugin';
 import pkg from './package.json';
 import mainPkg from './../../package.json';
 
@@ -20,7 +21,21 @@ export default function makeConfig(params) {
             typescript({
                 sourceMap: true,
                 declaration: false,
-                exclude: /__tests__/
+                exclude: /__tests__/,
+                transformers: {
+                    before: [
+                        tsImportPluginFactory({
+                            libraryName: '@patternfly/react-tokens',
+                            libraryDirectory: 'dist/js',
+                            camel2DashComponentName: false
+                        }),
+                        tsImportPluginFactory({
+                            libraryName: '@patternfly/react-icons',
+                            libraryDirectory: 'dist/js/icons',
+                            camel2DashComponentName: true
+                        })
+                    ]
+                }
             })
         ];
 
