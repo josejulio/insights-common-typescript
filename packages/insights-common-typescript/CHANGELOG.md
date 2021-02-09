@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.2](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.5.1...@redhat-cloud-services/insights-common-typescript@4.5.2) (2021-02-09)
+
+
+### Bug Fixes
+
+* use flat imports on react-tokens/icons to decrease size when importing components ([719ee4b](https://github.com/RedHatInsights/insights-common-typescript/commit/719ee4b188519de9a5278fc3751c1f35e5a280f4))
+
+
+
+
+
 ## [4.5.1](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.5.0...@redhat-cloud-services/insights-common-typescript@4.5.1) (2021-01-28)
 
 
