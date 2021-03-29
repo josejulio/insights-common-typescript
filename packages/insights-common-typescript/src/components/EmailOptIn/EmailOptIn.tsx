@@ -33,7 +33,7 @@ export const EmailOptIn: React.FunctionComponent<EmailOptInProps> = (props) => {
     );
 };
 
-interface InsightsEmailOptInProps extends Omit<EmailOptInProps, 'isBeta'> {
+interface InsightsEmailOptInProps extends Omit<EmailOptInProps, 'isBeta' | 'bundle'> {
     insights: InsightsType;
 }
 
