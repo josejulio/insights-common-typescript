@@ -16,10 +16,10 @@ describe('src/config/Config', () => {
     });
 
     it('emailPreferences is /user-preferences/email on stable', () => {
-        expect(Config.pages.emailPreferences(false)).toBe('/user-preferences/email');
+        expect(Config.pages.emailPreferences(false, 'insights')).toBe('/user-preferences/notification/insights');
     });
 
     it('emailPreferences is /beta/user-preferences/email on beta', () => {
-        expect(Config.pages.emailPreferences(false)).toBe('/user-preferences/email');
+        expect(Config.pages.emailPreferences(false, 'insights')).toBe('/user-preferences/notification/insights');
     });
 });
