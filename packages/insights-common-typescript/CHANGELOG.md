@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.1](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.6.0...@redhat-cloud-services/insights-common-typescript@4.6.1) (2021-03-29)
+
+
+### Bug Fixes
+
+* insightsEmailOptIn doesnt need bundle ([21a56d5](https://github.com/RedHatInsights/insights-common-typescript/commit/21a56d5d0f755d4fc73e236c63214ac6952a9b92))
+
+
+
+
+
 # [4.6.0](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.5.2...@redhat-cloud-services/insights-common-typescript@4.6.0) (2021-03-29)
 
 
