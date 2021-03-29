@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.5.2...@redhat-cloud-services/insights-common-typescript@4.6.0) (2021-03-29)
+
+
+### Features
+
+* uses notification preferences instead of email-preferences (require bundle) ([d3a692c](https://github.com/RedHatInsights/insights-common-typescript/commit/d3a692c9e81aa33fe9c31feae76951e7bd9a754f))
+
+
+
+
+
 ## [4.5.2](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.5.1...@redhat-cloud-services/insights-common-typescript@4.5.2) (2021-02-09)
 
 
