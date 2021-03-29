@@ -9,10 +9,11 @@ import { getOuiaProps } from '../../utils/Ouia';
 interface EmailOptInProps extends OuiaComponentProps {
     content: string;
     isBeta: boolean;
+    bundle: string;
 }
 
 export const EmailOptIn: React.FunctionComponent<EmailOptInProps> = (props) => {
-    const emailUrl = React.useMemo(() => Config.pages.emailPreferences(props.isBeta), [ props.isBeta ]);
+    const emailUrl = React.useMemo(() => Config.pages.emailPreferences(props.isBeta, props.bundle), [ props.bundle, props.isBeta ]);
 
     return (
         <div { ...getOuiaProps('EmailOptin', props) }>
@@ -37,4 +38,4 @@ interface InsightsEmailOptInProps extends Omit<EmailOptInProps, 'isBeta'> {
 }
 
 export const InsightsEmailOptIn: React.FunctionComponent<InsightsEmailOptInProps> = (props) =>
-    <EmailOptIn { ...props } isBeta={ props.insights.chrome.isBeta() }/>;
+    <EmailOptIn { ...props } isBeta={ props.insights.chrome.isBeta() } bundle={ props.insights.chrome.getBundle() } />;
