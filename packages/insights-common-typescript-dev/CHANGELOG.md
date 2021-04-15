@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.2.0 (2021-04-15)
+
+
+### Features
+
+* adding mockInsights to -dev ([c9092ac](https://github.com/josejulio/insights-common-typescript/commit/c9092ac7108f5ab0193e42ef475c391e6a9459ee))
+* mocks getEnvironment into insights mock ([a0fad3d](https://github.com/josejulio/insights-common-typescript/commit/a0fad3def8dbcac6d98a93758a84db250609f9c6))
+
+
+* Split into multiple packages to reduce dependencies (#30) ([0bdee21](https://github.com/josejulio/insights-common-typescript/commit/0bdee219cc5a1beb4115bdaa3b6045b610ec0da0)), closes [#30](https://github.com/josejulio/insights-common-typescript/issues/30)
+
+
+### BREAKING CHANGES
+
+* Split some functionality in other packages
+
+* Remove deprecated code
+
+* Add correct package to openapi2typescript-cli workflow
+
+* Fix default path for openapi2typescript and insights-common-typescript-dev
+
+* Pushes yarn.lock file
+
+* Using @patternfly/react-core instead of own variables
+
+* Remaining update changes
+
+
+
+
+
 ## [0.1.11](https://github.com/RedHatInsights/insights-common-typescript/compare/insights-common-typescript-dev@0.1.10...insights-common-typescript-dev@0.1.11) (2021-03-29)
 
 **Note:** Version bump only for package insights-common-typescript-dev
