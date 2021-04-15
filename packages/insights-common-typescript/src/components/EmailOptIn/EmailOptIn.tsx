@@ -17,7 +17,7 @@ export const EmailOptIn: React.FunctionComponent<EmailOptInProps> = (props) => {
     const emailUrl = React.useMemo(() => Config.pages.emailPreferences(props.isBeta, props.bundle), [ props.bundle, props.isBeta ]);
     const content = React.useMemo(() => {
         return format(props.content, <a href={ Config.pages.notificationSettings(props.isBeta, props.bundle) }>notification settings</a>);
-    }, [ props.content ]);
+    }, [ props.content, props.bundle, props.isBeta ]);
 
     return (
         <div { ...getOuiaProps('EmailOptin', props) }>
