@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.2](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.6.1...@redhat-cloud-services/insights-common-typescript@4.6.2) (2021-04-15)
+
+
+### Bug Fixes
+
+* updates wording on EmailOptIn ([292fd5c](https://github.com/RedHatInsights/insights-common-typescript/commit/292fd5c86cbe5f0e01c1ffdf61a4815c4666e355))
+
+
+
+
+
 ## [4.6.1](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.6.0...@redhat-cloud-services/insights-common-typescript@4.6.1) (2021-03-29)
 
 
