@@ -10,7 +10,8 @@ export const localUrl = (path: string, isBeta: boolean): string => {
 
 const InternalConfig = {
     pages: {
-        emailPreferences: (isBeta: boolean, bundle: string): string => localUrl(`/user-preferences/notification/${bundle}`, isBeta)
+        emailPreferences: (isBeta: boolean, bundle: string): string => localUrl(`/user-preferences/notification/${bundle}`, isBeta),
+        notificationSettings: (isBeta: boolean, bundle: string): string => localUrl(`/settings/notifications/${bundle}`, isBeta)
     }
 };
 

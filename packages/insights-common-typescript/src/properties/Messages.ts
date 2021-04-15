@@ -4,8 +4,8 @@ import { DeepReadonly } from 'ts-essentials';
 const MutableMessages = {
     components: {
         emailOptIn: {
-            title: 'Enable email alerts',
-            link: 'Open email preferences'
+            title: 'Enable email notification',
+            link: 'Open user preferences'
         },
         errorPage: {
             showDetails: 'Show details'

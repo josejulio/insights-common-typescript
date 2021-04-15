@@ -5,6 +5,7 @@ import { Messages } from '../../properties/Messages';
 import { Config } from '../../config';
 import { InsightsType, OuiaComponentProps } from '../../utils';
 import { getOuiaProps } from '../../utils/Ouia';
+import { format } from 'react-string-format';
 
 interface EmailOptInProps extends OuiaComponentProps {
     content: string;
@@ -14,6 +15,9 @@ interface EmailOptInProps extends OuiaComponentProps {
 
 export const EmailOptIn: React.FunctionComponent<EmailOptInProps> = (props) => {
     const emailUrl = React.useMemo(() => Config.pages.emailPreferences(props.isBeta, props.bundle), [ props.bundle, props.isBeta ]);
+    const content = React.useMemo(() => {
+        return format(props.content, <a href={ Config.pages.notificationSettings(props.isBeta, props.bundle) }>notification settings</a>);
+    }, [ props.content ]);
 
     return (
         <div { ...getOuiaProps('EmailOptin', props) }>
@@ -23,7 +27,7 @@ export const EmailOptIn: React.FunctionComponent<EmailOptInProps> = (props) => {
                 isInline={ true }
             >
                 <TextContent>
-                    <Text>{ props.content }</Text>
+                    <Text>{ content }</Text>
                     <Text>
                         <a href={ emailUrl } target='_blank' rel='noopener noreferrer' >{ Messages.components.emailOptIn.link }</a>
                     </Text>
@@ -33,9 +37,16 @@ export const EmailOptIn: React.FunctionComponent<EmailOptInProps> = (props) => {
     );
 };
 
-interface InsightsEmailOptInProps extends Omit<EmailOptInProps, 'isBeta' | 'bundle'> {
+type Partials = 'isBeta' | 'bundle';
+type InsightsEmailOptInPropsType = Partial<Pick<EmailOptInProps, Partials>> & Omit<EmailOptInProps, Partials>;
+
+interface InsightsEmailOptInProps extends InsightsEmailOptInPropsType {
     insights: InsightsType;
 }
 
 export const InsightsEmailOptIn: React.FunctionComponent<InsightsEmailOptInProps> = (props) =>
-    <EmailOptIn { ...props } isBeta={ props.insights.chrome.isBeta() } bundle={ props.insights.chrome.getBundle() } />;
+    <EmailOptIn
+        { ...props }
+        isBeta={ props.isBeta ?? props.insights.chrome.isBeta() }
+        bundle={ props.bundle ?? props.insights.chrome.getBundle() }
+    />;
