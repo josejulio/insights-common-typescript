@@ -33,9 +33,10 @@ const logError = (action: ActionWithRequiredConfig, response: QueryResponse<unkn
         const request = `${action.method.toUpperCase()}: ${action.endpoint}`;
         console.error(
             `All validations failed for request ${request}`,
-            'with body', action.body,
-            ', response status:', response.status,
-            'and body:', response.payload
+            'with:\nrequest body:', action.body,
+            '\nresponse status:', response.status,
+            '\nresponse body:', response.payload,
+            '\nerrors:', response.error
         );
     }
 };
