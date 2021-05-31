@@ -38,6 +38,13 @@ describe('src/core/ApiDescriptorBuilder', () => {
         }).basePath).toBe('/foo/bar/');
     });
 
+    it('does not fail if there is not any server', () => {
+        expect(buildApiDescriptor({
+            ...emptyOpenApi,
+            servers: []
+        }).basePath).toBe('');
+    });
+
     it('Throws if using a default response', () => {
         expect(() => buildApiDescriptor({
             ...emptyOpenApi,

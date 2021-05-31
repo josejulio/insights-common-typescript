@@ -413,7 +413,7 @@ class ApiDescriptorBuilder {
 
     private getBasePath(): string {
         if (this.openapi.servers) {
-            const variables = this.openapi.servers[0].variables;
+            const variables = this.openapi.servers[0]?.variables;
             if (variables?.basePath?.default) {
                 return variables.basePath.default;
             }
