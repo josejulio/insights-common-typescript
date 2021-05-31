@@ -51,7 +51,7 @@ const validateSchema =
         for (const rule of rules) {
             if (rule.status === response.status) {
                 const result = rule.zod.safeParse(response.payload);
-                if (!!result.success) {
+                if (result.success) {
                     return validatedResponse(
                         rule.type,
                         rule.status,

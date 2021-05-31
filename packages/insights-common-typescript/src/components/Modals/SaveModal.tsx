@@ -1,28 +1,22 @@
 import * as React from 'react';
 import { ActionModal, ActionModalProps } from './ActionModal';
 import { ButtonVariant } from '@patternfly/react-core';
+import { SemiPartial } from '../../types/Utils';
 
+type ChangedProps = 'isPerformingAction' | 'onAction';
 type InheritedProps = 'isOpen' | 'title' | 'content'  | 'onClose' | 'error' | 'actionButtonDisabled' | 'variant' | 'titleIconVariant';
 
-export interface SaveModalProps extends Pick<ActionModalProps, InheritedProps> {
+export type SaveModalProps = Omit<SemiPartial<ActionModalProps, InheritedProps>, ChangedProps> & {
     isSaving: boolean;
     onSave: () => boolean | Promise<boolean>;
-    actionButtonTitle?: string;
 }
 
 export const SaveModal: React.FunctionComponent<SaveModalProps> = (props) => {
     return <ActionModal
-        isOpen={ props.isOpen }
+        { ...props }
         isPerformingAction={ props.isSaving }
-        title={ props.title }
-        content={ props.content }
-        onClose={ props.onClose }
         onAction={ props.onSave }
         actionButtonTitle={ props.actionButtonTitle ?? 'Save' }
-        actionButtonVariant={ ButtonVariant.primary }
-        error={ props.error }
-        actionButtonDisabled={ props.actionButtonDisabled }
-        variant={ props.variant }
-        titleIconVariant={ props.titleIconVariant }
+        actionButtonVariant={ props.actionButtonVariant ?? ButtonVariant.primary }
     />;
 };

@@ -26,7 +26,9 @@ export interface ActionModalProps extends Pick<ModalProps, 'variant' | 'titleIco
     actionButtonTitle: string;
     actionButtonVariant: ButtonVariant;
     actionButtonDisabled?: boolean;
+    actionButtonHidden?: boolean;
     cancelButtonTitle?: string;
+    cancelButtonVariant?: ButtonVariant;
 }
 
 export const ActionModal: React.FunctionComponent<ActionModalProps> = (props) => {
@@ -46,6 +48,43 @@ export const ActionModal: React.FunctionComponent<ActionModalProps> = (props) =>
         }
     }, [ props.onAction, props.onClose ]);
 
+    const actions = React.useMemo(() => {
+        const actionContent: Array<React.ReactNode> = [];
+        if (!props.actionButtonHidden) {
+            actionContent.push(<Button
+                ouiaId="action"
+                key="action"
+                variant={ props.actionButtonVariant }
+                isDisabled={ props.isPerformingAction || props.actionButtonDisabled }
+                onClick={ actionCallback }
+            >
+                { props.isPerformingAction ? <Spinner size="md"/> : props.actionButtonTitle }
+            </Button>);
+        }
+
+        actionContent.push(<Button
+            ouiaId="cancel"
+            key="cancel"
+            variant={ props.cancelButtonVariant ?? ButtonVariant.link }
+            isDisabled={ props.isPerformingAction }
+            onClick={ close }
+        >
+            { props.cancelButtonTitle ?? 'Cancel' }
+        </Button>);
+
+        return actionContent;
+    }, [
+        props.actionButtonVariant,
+        props.actionButtonTitle,
+        props.actionButtonDisabled,
+        props.actionButtonHidden,
+        props.isPerformingAction,
+        props.cancelButtonTitle,
+        props.cancelButtonVariant,
+        close,
+        actionCallback
+    ]);
+
     return (
         <Modal
             title={ props.title }
@@ -53,26 +92,7 @@ export const ActionModal: React.FunctionComponent<ActionModalProps> = (props) =>
             onClose={ close }
             variant={ props.variant ?? ModalVariant.small }
             titleIconVariant={ props.titleIconVariant }
-            actions={ [
-                <Button
-                    ouiaId="action"
-                    key="action"
-                    variant={ props.actionButtonVariant }
-                    isDisabled={ props.isPerformingAction || props.actionButtonDisabled }
-                    onClick={ actionCallback }
-                >
-                    { props.isPerformingAction ? <Spinner size="md"/> : props.actionButtonTitle }
-                </Button>,
-                <Button
-                    ouiaId="cancel"
-                    key="cancel"
-                    variant={ ButtonVariant.link }
-                    isDisabled={ props.isPerformingAction }
-                    onClick={ close }
-                >
-                    { props.cancelButtonTitle ?? 'Cancel' }
-                </Button>
-            ] }
+            actions={ actions }
         >
             { props.error && (
                 <>
