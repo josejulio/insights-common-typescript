@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.7.0](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.6.3...@redhat-cloud-services/insights-common-typescript@4.7.0) (2021-05-31)
+
+
+### Features
+
+* adds ci, qa, stage to environments presets ([2db3245](https://github.com/RedHatInsights/insights-common-typescript/commit/2db324536d919413d3f248b2109268e337ee5d47))
+* adds SemiPartial type for specifying which attributes are not optional ([1dcd861](https://github.com/RedHatInsights/insights-common-typescript/commit/1dcd8618ab28712a7d58f86475c9531a1108c5c3))
+* more optional configuration for Delete/Edit Modals ([c9c6ca9](https://github.com/RedHatInsights/insights-common-typescript/commit/c9c6ca97bb3e2817461d750440666d8dc8c3dcf9))
+
+
+
+
+
 ## [4.6.3](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.6.2...@redhat-cloud-services/insights-common-typescript@4.6.3) (2021-05-12)
 
 **Note:** Version bump only for package @redhat-cloud-services/insights-common-typescript

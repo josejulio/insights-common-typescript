@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript-cli@0.4.1...openapi2typescript-cli@0.4.2) (2021-05-31)
+
+
+### Bug Fixes
+
+* does not fail if the servers array is empty ([bbcaf89](https://github.com/RedHatInsights/insights-common-typescript/commit/bbcaf89242b9262c8a726436962eab138d3ed1ca))
+
+
+
+
+
 ## [0.4.1](https://github.com/RedHatInsights/insights-common-typescript/compare/openapi2typescript-cli@0.4.0...openapi2typescript-cli@0.4.1) (2021-01-04)
 
 
