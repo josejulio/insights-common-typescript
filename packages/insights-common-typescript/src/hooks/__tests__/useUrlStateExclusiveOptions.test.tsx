@@ -6,6 +6,7 @@ import { waitForAsyncEventsHooks } from '../../../test/TestUtils';
 
 const getWrapper = (path?: string): React.FunctionComponent => {
     const Wrapper = (props) => (
+        // eslint-disable-next-line testing-library/no-node-access
         <MemoryRouter initialEntries={ path ? [ path ] : undefined } > { props.children } </MemoryRouter>
     );
     return Wrapper;

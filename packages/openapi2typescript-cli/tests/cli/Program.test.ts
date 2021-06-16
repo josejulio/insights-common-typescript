@@ -3,7 +3,8 @@ import { ActionGeneratorType } from '../../src/core/types/ActionGeneratorType';
 
 describe('src/Program', () => {
     it('getProgram default values', () => {
-        expect(getProgram()).toMatchObject({
+        const options = getProgram().opts();
+        expect(options).toEqual({
             skipPostProcess: false,
             actionGenerator: ActionGeneratorType.NONE,
             addEslintDisable: false,
@@ -14,7 +15,7 @@ describe('src/Program', () => {
     });
 
     it('Allows to override default values', () => {
-        expect(getProgram().parse([
+        const options = getProgram().parse([
             '--skip-post-process',
             '--action-generator',
             'react-fetching-library',
@@ -28,13 +29,17 @@ describe('src/Program', () => {
             'output'
         ], {
             from: 'user'
-        })).toMatchObject({
+        }).opts();
+
+        expect(options).toEqual({
             skipPostProcess: true,
             actionGenerator: ActionGeneratorType.REACT_FETCHING_LIBRARY,
             addEslintDisable: true,
             skipTypes: true,
             strict: false,
-            explicitTypes: true
+            explicitTypes: true,
+            input: 'input',
+            output: 'output'
         });
     });
 });

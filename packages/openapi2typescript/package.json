@@ -21,10 +21,10 @@
     "test:ci": "npm-run-all 'test --coverage --forceExit --maxWorkers=4 --detectOpenHandles'"
   },
   "peerDependencies": {
-    "zod": "^1.11.8"
+    "zod": "^3.2.0"
   },
   "optionalDependencies": {
-    "react-fetching-library": "^1.7.4"
+    "react-fetching-library": "^1.7.6"
   },
   "publishConfig": {
     "access": "public"

@@ -137,6 +137,9 @@ describe('src/hooks/useDebouncedState', () => {
         act(() => {
             const [ , setState ] = result.current;
             setState('other update');
+        });
+
+        act(() => {
             jest.advanceTimersByTime(150);
         });
 
@@ -184,6 +187,9 @@ describe('src/hooks/useDebouncedState', () => {
         act(() => {
             const [ , setState ] = result.current;
             setState('other update');
+        });
+
+        act(() => {
             jest.advanceTimersByTime(150);
         });
 

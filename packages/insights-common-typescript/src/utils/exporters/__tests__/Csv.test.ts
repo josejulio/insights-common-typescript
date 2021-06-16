@@ -1,5 +1,3 @@
-import * as csv from '@fast-csv/parse';
-
 import { ExporterCsv, ExporterHeaders } from '../Csv';
 import { ExporterType } from '../Type';
 
@@ -38,59 +36,13 @@ describe('src/utils/exporters/Csv', () => {
     it('Exports elements to csv string', () => {
         const exporter = new FooExporterCsv();
         const result = exporter.export([ foo, { ...foo, just: 'foo,baz', object: undefined }, { ...foo, just: '"bar,ok"' }]);
-
         const reader = new FileReader();
-        return new Promise((done, fail) => {
+        return new Promise((done) => {
             reader.addEventListener('loadend', () => {
-                try {
-                    let index = 0;
-                    csv.parseString((reader.result as string), { headers: true })
-                    .on('data', (row) => {
-                        expect(Object.keys(row)).toEqual([
-                            'Justice',
-                            'Object,and,stuff',
-                            'Array "data"'
-                        ]);
-
-                        switch (index) {
-                            case 0:
-                                // eslint-disable-next-line jest/no-conditional-expect
-                                expect(row).toEqual({
-                                    Justice: 'an',
-                                    'Object,and,stuff': 'with some',
-                                    'Array "data"': 'ba,1,2,3'
-                                });
-                                break;
-                            case 1:
-                                // eslint-disable-next-line jest/no-conditional-expect
-                                expect(row).toEqual({
-                                    Justice: 'foo,baz',
-                                    'Object,and,stuff': '',
-                                    'Array "data"': 'ba,1,2,3'
-                                });
-                                break;
-                            case 2:
-                                // eslint-disable-next-line jest/no-conditional-expect
-                                expect(row).toEqual({
-                                    Justice: '"bar,ok"',
-                                    'Object,and,stuff': 'with some',
-                                    'Array "data"': 'ba,1,2,3'
-                                });
-                                break;
-                            default:
-                                fail(`Unexpected element at index ${index}: ${JSON.stringify(row)}`);
-                        }
-
-                        ++index;
-                    })
-                    .on('error', fail)
-                    .on('end', (count) => {
-                        expect(count).toBe(3);
-                        done(undefined);
-                    });
-                } catch (ex) {
-                    fail(ex);
-                }
+                expect(reader.result).toEqual(
+                    'Justice,"Object,and,stuff","Array ""data"""\ran,with some,"ba,1,2,3"\r"foo,baz",,"ba,1,2,3"\r"""bar,ok""",with some,"ba,1,2,3"\r'
+                );
+                done(undefined);
             });
             reader.readAsText(result);
         });

@@ -3,8 +3,9 @@ import { renderHook, act } from '@testing-library/react-hooks';
 import { useUrlState, UseUrlStateType, useUrlStateString, UseUrlStateStringType } from '../..';
 import { MemoryRouter, useLocation, useHistory } from 'react-router';
 
-const getWrapper = (path?: string): React.FunctionComponent => {
+const getWrapper = (path?: string): React.FunctionComponent<any> => {
     const Wrapper = (props) => (
+        // eslint-disable-next-line testing-library/no-node-access
         <MemoryRouter initialEntries={ path ? [ path ] : undefined } > { props.children } </MemoryRouter>
     );
     return Wrapper;

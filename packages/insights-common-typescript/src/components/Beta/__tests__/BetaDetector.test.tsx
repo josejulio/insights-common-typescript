@@ -12,7 +12,7 @@ describe('src/components/Beta', () => {
                 </BetaIf>
             </BetaDetector>
         );
-        expect(screen.getByText('hello')).toBeTruthy();
+        expect(screen.getByText('hello')).toBeInTheDocument();
     });
 
     it('BetaIf does not render in non-beta', () => {
@@ -23,7 +23,7 @@ describe('src/components/Beta', () => {
                 </BetaIf>
             </BetaDetector>
         );
-        expect(screen.queryByText('hello')).toBeFalsy();
+        expect(screen.queryByText('hello')).not.toBeInTheDocument();
     });
 
     it('BetaIfNot does not render in beta', () => {
@@ -34,7 +34,7 @@ describe('src/components/Beta', () => {
                 </BetaIfNot>
             </BetaDetector>
         );
-        expect(screen.queryByText('hello')).toBeFalsy();
+        expect(screen.queryByText('hello')).not.toBeInTheDocument();
     });
 
     it('BetaIfNot renders in non-beta', () => {
@@ -45,7 +45,7 @@ describe('src/components/Beta', () => {
                 </BetaIfNot>
             </BetaDetector>
         );
-        expect(screen.queryByText('hello')).toBeTruthy();
+        expect(screen.queryByText('hello')).toBeInTheDocument();
     });
 
     it('Mixing BetaIf and BetaIfNot', () => {
@@ -59,8 +59,8 @@ describe('src/components/Beta', () => {
                 </BetaIfNot>
             </BetaDetector>
         );
-        expect(screen.queryByText('foo')).toBeTruthy();
-        expect(screen.queryByText('hello')).toBeFalsy();
+        expect(screen.queryByText('foo')).toBeInTheDocument();
+        expect(screen.queryByText('hello')).not.toBeInTheDocument();
     });
 
     it('Using BetaIf without BetaDetector throws error', () => {
@@ -105,7 +105,7 @@ describe('src/components/Beta', () => {
                     </BetaIf>
                 </InsightsBetaDetector>
             );
-            expect(screen.queryByText('hello')).toBeTruthy();
+            expect(screen.queryByText('hello')).toBeInTheDocument();
         });
 
         it('BetaIf does not render in non-beta', () => {
@@ -121,7 +121,7 @@ describe('src/components/Beta', () => {
                     </BetaIf>
                 </InsightsBetaDetector>
             );
-            expect(screen.queryByText('hello')).toBeFalsy();
+            expect(screen.queryByText('hello')).not.toBeInTheDocument();
         });
     });
 });

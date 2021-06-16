@@ -22,6 +22,7 @@ describe('src/components/Modals/ActionModal', () => {
                 cancelButtonTitle={ 'no!' }
             />
         );
+        // eslint-disable-next-line testing-library/no-node-access
         expect(document.body.lastChild).toBeEmptyDOMElement();
     });
 
@@ -40,6 +41,7 @@ describe('src/components/Modals/ActionModal', () => {
             />
         );
 
+        // eslint-disable-next-line testing-library/no-node-access
         expect(document.body.lastChild).not.toBeEmptyDOMElement();
     });
 
@@ -190,8 +192,8 @@ describe('src/components/Modals/ActionModal', () => {
             />
         );
 
-        expect(screen.getByText('foo')).toBeTruthy();
-        expect(screen.getByText('bar')).toBeTruthy();
+        expect(screen.getByText('foo')).toBeInTheDocument();
+        expect(screen.getByText('bar')).toBeInTheDocument();
     });
 
     it('No error is shown if error prop is not passed', () => {
@@ -234,8 +236,8 @@ describe('src/components/Modals/ActionModal', () => {
         const alert = ouiaSelectors.getByOuia('PF4/Alert');
 
         expect(alert).toBeTruthy();
-        expect(getByText(alert, /this is an error/i)).toBeTruthy();
-        expect(getByText(alert, /And its description/i)).toBeTruthy();
+        expect(getByText(alert, /this is an error/i)).toBeInTheDocument();
+        expect(getByText(alert, /And its description/i)).toBeInTheDocument();
     });
 
     it('onClose is called with false when clicking the cancel and the x button', async () => {
