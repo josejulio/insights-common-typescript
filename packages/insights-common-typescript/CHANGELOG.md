@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.8.0](https://github.com/josejulio/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.7.0...@redhat-cloud-services/insights-common-typescript@4.8.0) (2021-06-16)
+
+
+### Features
+
+* adds fromUTC function ([ba43d87](https://github.com/josejulio/insights-common-typescript/commit/ba43d87c934a20fdb3e5de82ba646d7d61b4008c))
+
+
+
+
+
 # [4.7.0](https://github.com/RedHatInsights/insights-common-typescript/compare/@redhat-cloud-services/insights-common-typescript@4.6.3...@redhat-cloud-services/insights-common-typescript@4.7.0) (2021-05-31)
 
 
