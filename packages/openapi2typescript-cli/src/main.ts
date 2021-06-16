@@ -108,5 +108,5 @@ export const execute = async (options: Options) => {
 if (require.main === module) {
     const program = getProgram();
     program.parse(process.argv);
-    execute(program as unknown as Options);
+    execute(program.opts() as Options);
 }

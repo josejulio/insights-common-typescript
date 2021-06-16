@@ -23,6 +23,6 @@
   },
   "devDependencies": {
     "@redhat-cloud-services/insights-common-typescript": "file:../insights-common-typescript",
-    "jest-mock": "26.5.2"
+    "jest-mock": "27.0.3"
   }
 }

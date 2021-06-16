@@ -6,18 +6,24 @@ describe('src/components/EmailOptIn', () => {
     it('Builds link for beta', () => {
         render(<EmailOptIn content="foobar" isBeta={ true } bundle="mybundle"/>);
         expect(
-            screen.getByText('Open user preferences').closest('a')).toHaveAttribute('href', '/beta/user-preferences/notification/mybundle'
+            screen.getByText('Open user preferences', {
+                selector: 'a'
+            })).toHaveAttribute('href', '/beta/user-preferences/notification/mybundle'
         );
     });
 
     it('Builds link for stable', () => {
         render(<EmailOptIn content="foobar" isBeta={ false } bundle="mybundle"/>);
-        expect(screen.getByText('Open user preferences').closest('a')).toHaveAttribute('href', '/user-preferences/notification/mybundle');
+        expect(screen.getByText('Open user preferences', {
+            selector: 'a'
+        })).toHaveAttribute('href', '/user-preferences/notification/mybundle');
     });
 
     it('Builds link using the bundle', () => {
         render(<EmailOptIn content="foobar" isBeta={ false } bundle="abc"/>);
-        expect(screen.getByText('Open user preferences').closest('a')).toHaveAttribute('href', '/user-preferences/notification/abc');
+        expect(screen.getByText('Open user preferences', {
+            selector: 'a'
+        })).toHaveAttribute('href', '/user-preferences/notification/abc');
     });
 
     describe('Insights component', () => {
@@ -30,7 +36,9 @@ describe('src/components/EmailOptIn', () => {
             };
             render(<InsightsEmailOptIn content="foobar" insights={ insights } />);
             expect(
-                screen.getByText('Open user preferences').closest('a')).toHaveAttribute('href', '/beta/user-preferences/notification/mybundle'
+                screen.getByText('Open user preferences', {
+                    selector: 'a'
+                })).toHaveAttribute('href', '/beta/user-preferences/notification/mybundle'
             );
         });
 
@@ -42,7 +50,9 @@ describe('src/components/EmailOptIn', () => {
                 }
             };
             render(<InsightsEmailOptIn content="foobar" insights={ insights } />);
-            expect(screen.getByText('Open user preferences').closest('a')).toHaveAttribute('href', '/user-preferences/notification/mybundle');
+            expect(screen.getByText('Open user preferences', {
+                selector: 'a'
+            })).toHaveAttribute('href', '/user-preferences/notification/mybundle');
         });
 
         it('Builds link using the bundle', () => {
@@ -53,7 +63,9 @@ describe('src/components/EmailOptIn', () => {
                 }
             };
             render(<InsightsEmailOptIn content="foobar" insights={ insights } />);
-            expect(screen.getByText('Open user preferences').closest('a')).toHaveAttribute('href', '/user-preferences/notification/abc');
+            expect(screen.getByText('Open user preferences', {
+                selector: 'a'
+            })).toHaveAttribute('href', '/user-preferences/notification/abc');
         });
     });
 });

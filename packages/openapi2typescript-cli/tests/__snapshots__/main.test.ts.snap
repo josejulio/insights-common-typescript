@@ -69,12 +69,14 @@ export namespace Schemas {
   export const MediaType = zodSchemaMediaType();
   export type MediaType = z.infer<typeof MediaType>;
 
-  export const MultivaluedMapStringObject = zodSchemaMultivaluedMapStringObject();
+  export const MultivaluedMapStringObject =
+    zodSchemaMultivaluedMapStringObject();
   export type MultivaluedMapStringObject = z.infer<
     typeof MultivaluedMapStringObject
   >;
 
-  export const MultivaluedMapStringString = zodSchemaMultivaluedMapStringString();
+  export const MultivaluedMapStringString =
+    zodSchemaMultivaluedMapStringString();
   export type MultivaluedMapStringString = z.infer<
     typeof MultivaluedMapStringString
   >;
@@ -661,7 +663,8 @@ export namespace Operations {
       | ValidatedResponse<'unknown', undefined, unknown>;
     export type ActionCreator = Action<Payload, ActionValidatableConfig>;
     export const actionCreator = (params: Params): ActionCreator => {
-        const path = '/api/integrations/v1.0/endpoints/{id}/history/{history_id}/details'
+        const path =
+        '/api/integrations/v1.0/endpoints/{id}/history/{history_id}/details'
         .replace('{history_id}', params.historyId.toString())
         .replace('{id}', params.id.toString());
         const query = {} as Record<string, any>;
@@ -743,9 +746,11 @@ export namespace Schemas {
 
   export const MediaType = zodSchemaMediaType();
 
-  export const MultivaluedMapStringObject = zodSchemaMultivaluedMapStringObject();
+  export const MultivaluedMapStringObject =
+    zodSchemaMultivaluedMapStringObject();
 
-  export const MultivaluedMapStringString = zodSchemaMultivaluedMapStringString();
+  export const MultivaluedMapStringString =
+    zodSchemaMultivaluedMapStringString();
 
   export const NewCookie = zodSchemaNewCookie();
 
@@ -1260,7 +1265,8 @@ body: Schemas.Endpoint
 'sortBy'?:SortBy
 */
     export const actionCreator = (params) => {
-        const path = '/api/integrations/v1.0/endpoints/{id}/history/{history_id}/details'
+        const path =
+        '/api/integrations/v1.0/endpoints/{id}/history/{history_id}/details'
         .replace('{history_id}', params.historyId.toString())
         .replace('{id}', params.id.toString());
         const query = {};
@@ -1365,12 +1371,14 @@ export namespace Schemas {
   export const MediaType = zodSchemaMediaType();
   export type MediaType = z.infer<typeof MediaType>;
 
-  export const MultivaluedMapStringObject = zodSchemaMultivaluedMapStringObject();
+  export const MultivaluedMapStringObject =
+    zodSchemaMultivaluedMapStringObject();
   export type MultivaluedMapStringObject = z.infer<
     typeof MultivaluedMapStringObject
   >;
 
-  export const MultivaluedMapStringString = zodSchemaMultivaluedMapStringString();
+  export const MultivaluedMapStringString =
+    zodSchemaMultivaluedMapStringString();
   export type MultivaluedMapStringString = z.infer<
     typeof MultivaluedMapStringString
   >;
@@ -1714,7 +1722,8 @@ export namespace Operations {
       | ValidatedResponse<'unknown', undefined, unknown>;
     export type ActionCreator = Action<Payload, ActionValidatableConfig>;
     export const actionCreator = (params: Params): ActionCreator => {
-        const path = '/api/notifications/v1.0/notifications/defaults/{endpointId}'.replace(
+        const path =
+        '/api/notifications/v1.0/notifications/defaults/{endpointId}'.replace(
             '{endpointId}',
             params.endpointId.toString()
         );
@@ -1738,7 +1747,8 @@ export namespace Operations {
       | ValidatedResponse<'unknown', undefined, unknown>;
     export type ActionCreator = Action<Payload, ActionValidatableConfig>;
     export const actionCreator = (params: Params): ActionCreator => {
-        const path = '/api/notifications/v1.0/notifications/defaults/{endpointId}'.replace(
+        const path =
+        '/api/notifications/v1.0/notifications/defaults/{endpointId}'.replace(
             '{endpointId}',
             params.endpointId.toString()
         );
@@ -1828,7 +1838,8 @@ export namespace Operations {
       | ValidatedResponse<'unknown', undefined, unknown>;
     export type ActionCreator = Action<Payload, ActionValidatableConfig>;
     export const actionCreator = (params: Params): ActionCreator => {
-        const path = '/api/notifications/v1.0/notifications/eventTypes/{eventTypeId}'.replace(
+        const path =
+        '/api/notifications/v1.0/notifications/eventTypes/{eventTypeId}'.replace(
             '{eventTypeId}',
             params.eventTypeId.toString()
         );
@@ -1873,7 +1884,8 @@ export namespace Operations {
       | ValidatedResponse<'unknown', undefined, unknown>;
     export type ActionCreator = Action<Payload, ActionValidatableConfig>;
     export const actionCreator = (params: Params): ActionCreator => {
-        const path = '/api/notifications/v1.0/notifications/eventTypes/{eventTypeId}/{endpointId}'
+        const path =
+        '/api/notifications/v1.0/notifications/eventTypes/{eventTypeId}/{endpointId}'
         .replace('{endpointId}', params.endpointId.toString())
         .replace('{eventTypeId}', params.eventTypeId.toString());
         const query = {} as Record<string, any>;
@@ -1899,7 +1911,8 @@ export namespace Operations {
       | ValidatedResponse<'unknown', undefined, unknown>;
     export type ActionCreator = Action<Payload, ActionValidatableConfig>;
     export const actionCreator = (params: Params): ActionCreator => {
-        const path = '/api/notifications/v1.0/notifications/eventTypes/{eventTypeId}/{endpointId}'
+        const path =
+        '/api/notifications/v1.0/notifications/eventTypes/{eventTypeId}/{endpointId}'
         .replace('{endpointId}', params.endpointId.toString())
         .replace('{eventTypeId}', params.eventTypeId.toString());
         const query = {} as Record<string, any>;
@@ -2004,9 +2017,11 @@ export namespace Schemas {
 
   export const MediaType = zodSchemaMediaType();
 
-  export const MultivaluedMapStringObject = zodSchemaMultivaluedMapStringObject();
+  export const MultivaluedMapStringObject =
+    zodSchemaMultivaluedMapStringObject();
 
-  export const MultivaluedMapStringString = zodSchemaMultivaluedMapStringString();
+  export const MultivaluedMapStringString =
+    zodSchemaMultivaluedMapStringString();
 
   export const NewCookie = zodSchemaNewCookie();
 
@@ -2324,7 +2339,8 @@ export namespace Operations {
 'endpointId':Schemas.UUID
 */
     export const actionCreator = (params) => {
-        const path = '/api/notifications/v1.0/notifications/defaults/{endpointId}'.replace(
+        const path =
+        '/api/notifications/v1.0/notifications/defaults/{endpointId}'.replace(
             '{endpointId}',
             params.endpointId.toString()
         );
@@ -2344,7 +2360,8 @@ export namespace Operations {
 'endpointId':Schemas.UUID
 */
     export const actionCreator = (params) => {
-        const path = '/api/notifications/v1.0/notifications/defaults/{endpointId}'.replace(
+        const path =
+        '/api/notifications/v1.0/notifications/defaults/{endpointId}'.replace(
             '{endpointId}',
             params.endpointId.toString()
         );
@@ -2415,7 +2432,8 @@ export namespace Operations {
 'sortBy'?:SortBy
 */
     export const actionCreator = (params) => {
-        const path = '/api/notifications/v1.0/notifications/eventTypes/{eventTypeId}'.replace(
+        const path =
+        '/api/notifications/v1.0/notifications/eventTypes/{eventTypeId}'.replace(
             '{eventTypeId}',
             params.eventTypeId.toString()
         );
@@ -2454,7 +2472,8 @@ export namespace Operations {
 'eventTypeId':EventTypeId
 */
     export const actionCreator = (params) => {
-        const path = '/api/notifications/v1.0/notifications/eventTypes/{eventTypeId}/{endpointId}'
+        const path =
+        '/api/notifications/v1.0/notifications/eventTypes/{eventTypeId}/{endpointId}'
         .replace('{endpointId}', params.endpointId.toString())
         .replace('{eventTypeId}', params.eventTypeId.toString());
         const query = {};
@@ -2475,7 +2494,8 @@ export namespace Operations {
 'eventTypeId':EventTypeId
 */
     export const actionCreator = (params) => {
-        const path = '/api/notifications/v1.0/notifications/eventTypes/{eventTypeId}/{endpointId}'
+        const path =
+        '/api/notifications/v1.0/notifications/eventTypes/{eventTypeId}/{endpointId}'
         .replace('{endpointId}', params.endpointId.toString())
         .replace('{eventTypeId}', params.eventTypeId.toString());
         const query = {};
@@ -2566,7 +2586,8 @@ export namespace Schemas {
   export const Meta = zodSchemaMeta();
   export type Meta = z.infer<typeof Meta>;
 
-  export const PagedResponseOfHistoryItem = zodSchemaPagedResponseOfHistoryItem();
+  export const PagedResponseOfHistoryItem =
+    zodSchemaPagedResponseOfHistoryItem();
   export type PagedResponseOfHistoryItem = z.infer<
     typeof PagedResponseOfHistoryItem
   >;
@@ -3351,7 +3372,8 @@ export namespace Schemas {
 
   export const Meta = zodSchemaMeta();
 
-  export const PagedResponseOfHistoryItem = zodSchemaPagedResponseOfHistoryItem();
+  export const PagedResponseOfHistoryItem =
+    zodSchemaPagedResponseOfHistoryItem();
 
   export const PagedResponseOfPolicy = zodSchemaPagedResponseOfPolicy();
 
