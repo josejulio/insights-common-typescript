@@ -4,7 +4,9 @@ const nonBetaEnvironments = [
     'ci',
     'qa',
     'stage',
-    'prod'
+    'prod',
+    'fedrampprod',
+    'fedrampstage'
 ] as const;
 
 const betaEnvironments = nonBetaEnvironments.map(v => `${v}-beta` as const);
@@ -17,12 +19,18 @@ const ciEnvironments: ReadonlyArray<Environment> = [ 'ci', 'ci-beta' ];
 const qaEnvironments: ReadonlyArray<Environment> = [ 'qa', 'qa-beta' ];
 const stageEnvironments: ReadonlyArray<Environment> = [ 'stage', 'stage-beta' ];
 
+const fedrampProdEnvironments: ReadonlyArray<Environment> = [ 'fedrampprod', 'fedrampprod-beta' ];
+const fedrampStageEnvironments: ReadonlyArray<Environment> = [ 'fedrampstage', 'fedrampstage-beta' ];
+
 export type NonBetaEnvironment = typeof nonBetaEnvironments[number];
 export type BetaEnvironment = typeof betaEnvironments[number];
 
 export type Environment = NonBetaEnvironment | BetaEnvironment;
 
-type Environments = Record<'all' | 'beta' | 'nonBeta' | 'prod' | 'nonProd' | 'ci' | 'qa' | 'stage', ReadonlyArray<Environment>>;
+type Environments = Record<
+    'all' | 'beta' | 'nonBeta' | 'prod' | 'nonProd' | 'ci' | 'qa' | 'stage' | 'fedrampprod' | 'fedrampstage',
+    ReadonlyArray<Environment>
+>;
 export const Environments: Environments = {
     all: environments,
     beta: betaEnvironments,
@@ -31,7 +39,9 @@ export const Environments: Environments = {
     nonProd: nonProdEnvironments,
     ci: ciEnvironments,
     qa: qaEnvironments,
-    stage: stageEnvironments
+    stage: stageEnvironments,
+    fedrampprod: fedrampProdEnvironments,
+    fedrampstage: fedrampStageEnvironments
 };
 
 export const getInsightsEnvironment = (insights: InsightsType): Environment => {
